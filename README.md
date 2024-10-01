@@ -20,6 +20,14 @@ This iteration of the project was forked from the [original Gallery Gateway Repo
 
 The second iteration of the project was built during the Fall 2019 and Spring 2020 semesters by [The Curators](http://www.se.rit.edu/~thecurators/) under supervision of sponsor Nanette Salvaggio and faculty coach Mohamed Wiem Mkaouer
 
+### Iterations
+
+Iteration 1: https://github.com/abstractionhq/gallery-gateway/
+Iteration 2: https://github.com/johnbyrne727rit/gallery-gateway
+Iteration 3: https://github.com/Third-Time-s-the-Charm/gallery-gateway
+Iteration 4: https://github.com/RIT-GG/gallery-gateway
+Iteration 5: https://github.com/CooperMist/gallery-gateway
+
 ## Architecture
 
 Both the frontend and backend are written in JavaScript.
