@@ -22,11 +22,11 @@ The second iteration of the project was built during the Fall 2019 and Spring 20
 
 ### Iterations
 
-Iteration 1: https://github.com/abstractionhq/gallery-gateway/
-Iteration 2: https://github.com/johnbyrne727rit/gallery-gateway
-Iteration 3: https://github.com/Third-Time-s-the-Charm/gallery-gateway
-Iteration 4: https://github.com/RIT-GG/gallery-gateway
-Iteration 5: https://github.com/CooperMist/gallery-gateway
+- Iteration 1: https://github.com/abstractionhq/gallery-gateway
+- Iteration 2: https://github.com/johnbyrne727rit/gallery-gateway
+- Iteration 3: https://github.com/Third-Time-s-the-Charm/gallery-gateway
+- Iteration 4: https://github.com/RIT-GG/gallery-gateway
+- Iteration 5: https://github.com/CooperMist/gallery-gateway
 
 ## Architecture
 
