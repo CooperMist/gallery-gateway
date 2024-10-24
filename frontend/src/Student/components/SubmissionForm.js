@@ -375,7 +375,7 @@ class SubmissionForm extends Component {
                                     name='moreCopies'
                                     value={i}
                                     required
-                                    checked={values.forSale === i}
+                                    checked={values.moreCopies === i}
                                   />
                                   <span className='ml-2'>{i}</span>
                                 </Label>
