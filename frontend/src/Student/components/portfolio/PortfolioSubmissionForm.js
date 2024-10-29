@@ -34,6 +34,7 @@ const ENTRY_FACTORY = () => {
 
 function PortfolioSubmissionForm(props) {
   const [showPreview, setShowPreview] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [form_data, setFormData] = useState({
     title: "Untitled",
     studentUsername: props.user.username,
@@ -148,6 +149,8 @@ function PortfolioSubmissionForm(props) {
 
   async function createPortfolio() {
     // Create the portfolio from form_data
+    setShowPreview(false);
+    setIsProcessing(true);
     const portfolio = {
       title: form_data.title,
       studentUsername: form_data.studentUsername,
@@ -276,7 +279,7 @@ function PortfolioSubmissionForm(props) {
         <Row className="mt-5">
           <Col md={8} className="d-flex justify-content-between align-items-center">
             <Button color="secondary d-block mb-3" onClick={addSubmission}>Add Entry</Button>
-            <Button type="submit" color="primary">Create</Button>
+            <Button type="submit" color="primary" disabled={isProcessing}>Create</Button>
           </Col>
         </Row>
       </Container>
