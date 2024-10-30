@@ -105,7 +105,7 @@ class PrintableReport extends Component {
     return (
       <DocumentTitle title={`Gallery Guide - ${show.name}`}>
         <Fragment>
-          {this.state.allImagesLoaded || entries.length === 0 ? null : (
+          {this.state.allImagesLoaded || show.entries.length === 0 ? null : (
             <LoadingContainer>
               <Loading />
             </LoadingContainer>
@@ -113,19 +113,19 @@ class PrintableReport extends Component {
           <PageContainer>
             <h1>Gallery Guide</h1>
             <h2>{show.name}</h2>
-            <p>Entries: {entries.length}</p>
+            <p>Entries: {show.entries.length}</p>
             <p style={{ paddingLeft: '2em' }}>
-              Images: {entries.filter(e => e.entryType === 'PHOTO').length}
+              Images: {show.entries.filter(e => e.entryType === 'PHOTO').length}
             </p>
             <p style={{ paddingLeft: '2em' }}>
-              Videos: {entries.filter(e => e.entryType === 'VIDEO').length}
+              Videos: {show.entries.filter(e => e.entryType === 'VIDEO').length}
             </p>
             <p style={{ paddingLeft: '2em' }}>
-              Other: {entries.filter(e => e.entryType === 'OTHER').length}
+              Other: {show.entries.filter(e => e.entryType === 'OTHER').length}
             </p>
           </PageContainer>
           {// Create a page for each entry
-            entries.map(entry => (
+            show.entries.map(entry => (
               <PageContainer key={entry.id}>
                 <h1>{entry.title}</h1>
                 <h3>
