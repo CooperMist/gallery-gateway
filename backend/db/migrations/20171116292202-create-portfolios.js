@@ -20,7 +20,8 @@ export function up (queryInterface, Sequelize) {
     studentUsername: {
       type: Sequelize.STRING,
       allowNull: false,
-      references: { model: 'users', key: 'username' }
+      references: { model: 'users', key: 'username' },
+      primaryKey: true
     },
     name: {
       type: Sequelize.STRING,
