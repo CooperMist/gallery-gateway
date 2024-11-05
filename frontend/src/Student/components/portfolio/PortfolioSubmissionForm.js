@@ -279,7 +279,7 @@ function PortfolioSubmissionForm(props) {
         <Row className="mt-5">
           <Col md={8} className="d-flex justify-content-between align-items-center">
             <Button color="secondary d-block mb-3" onClick={addSubmission}>Add Entry</Button>
-            <Button type="submit" color="primary" disabled={isProcessing}>Create</Button>
+            <Button type="submit" color="primary" disabled={isProcessing}>{isProcessing ? 'Submitting...' : 'Create'}</Button>
           </Col>
         </Row>
       </Container>
