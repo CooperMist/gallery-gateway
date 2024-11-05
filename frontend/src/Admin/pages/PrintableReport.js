@@ -72,7 +72,8 @@ class PrintableReport extends Component {
   }
 
   state = {
-    allImagesLoaded: false
+    allImagesLoaded: false,
+    printTriggered: false
   }
 
   loadedImagePaths = new Set()
@@ -88,10 +89,12 @@ class PrintableReport extends Component {
 
     // If all paths are now loaded, we are ready to print
     if (allPaths.every(path => this.loadedImagePaths.has(path))) {
-      this.setState({
-        allImagesLoaded: true
-      })
-      setTimeout(window.print, 1000)
+      this.setState({ allImagesLoaded: true }, () => {
+        if (!this.state.printTriggered) { // only print if not triggered
+          this.setState({ printTriggered: true });
+          setTimeout(window.print, 1000);
+        }
+      });
     }
   }
 
