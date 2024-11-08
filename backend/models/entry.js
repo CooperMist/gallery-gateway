@@ -59,6 +59,11 @@ const Entry = sequelize.define('entry', {
     defaultValue: false,
     type: DataTypes.BOOLEAN
   },
+  score:{
+    allowNull: true,
+    defaultValue: 0,
+    type: DataTypes.INTEGER
+  },
   // The id of the portfolio the entry is associated with (only if showId is null)
   portfolioId: {
     allowNull: true,

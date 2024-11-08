@@ -68,6 +68,11 @@ export function up (queryInterface, Sequelize) {
       defaultValue: false,
       type: Sequelize.BOOLEAN
     },
+    score: {
+      allowNull:false,
+      defaultValue: false,
+      type: Sequelize.INTEGER
+    },
     forSale: {
       allowNull: false,
       defaultValue: false,

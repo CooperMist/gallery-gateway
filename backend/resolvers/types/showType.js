@@ -14,9 +14,13 @@ export default {
         return show.getEntries()
       } else {
         return User.findByPk(context.username)
-          .then((user) => {
-            return user.getOwnAndGroupEntries(show.id)
-          })
+        .then((user) => {
+          if (!user) {
+            // Handle case where user is not found with specific message
+            throw new Error(`User with username "${context.username}" not found`);
+          }
+          return user.getOwnAndGroupEntries(show.id);
+        });
       }
     },
     ownVotes (show, _, context) {
