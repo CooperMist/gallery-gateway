@@ -60,7 +60,7 @@ const Entry = sequelize.define('entry', {
     type: DataTypes.BOOLEAN
   },
   score:{
-    allowNull: true,
+    allowNull: false,
     defaultValue: 0,
     type: DataTypes.INTEGER
   },

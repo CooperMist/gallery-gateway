@@ -70,7 +70,7 @@ export function up (queryInterface, Sequelize) {
     },
     score: {
       allowNull:false,
-      defaultValue: false,
+      defaultValue: 0,
       type: Sequelize.INTEGER
     },
     forSale: {

@@ -201,7 +201,7 @@ interface Entry {
     yearLevel: String
     academicProgram: String
     moreCopies: Boolean
-    score: Float
+    score: Int
     entryType: String
     votes: [Vote]
     excludeFromJudging: Boolean
@@ -221,6 +221,8 @@ input EntryInput {
     yearLevel: String
     academicProgram: String
     moreCopies: Boolean
+    score: Int
+
 }
 
 input EntryUpdate {
@@ -231,6 +233,7 @@ input EntryUpdate {
     yearLevel: String
     academicProgram: String
     moreCopies: Boolean
+    score: Int
     excludeFromJudging: Boolean
 }
 
@@ -248,7 +251,7 @@ type Photo implements Entry {
     yearLevel: String
     academicProgram: String
     moreCopies: Boolean
-    score: Float
+    score: Int
     entryType: String
     votes: [Vote]
     excludeFromJudging: Boolean
@@ -281,7 +284,7 @@ type Video implements Entry {
     yearLevel: String
     academicProgram: String
     moreCopies: Boolean
-    score: Float
+    score: Int
     entryType: String
     votes: [Vote]
     excludeFromJudging: Boolean
@@ -309,7 +312,7 @@ type OtherMedia implements Entry {
     yearLevel: String
     academicProgram: String
     moreCopies: Boolean
-    score: Float
+    score: Int
     entryType: String
     votes: [Vote]
     excludeFromJudging: Boolean
