@@ -200,7 +200,7 @@ class ShowSubmissionDetails extends Component {
               </Fragment>
             ) : null}
             <dt>Score</dt>
-            <dd>{submission.score.toFixed(3)}</dd>
+            <dd>{submission.getScore.toFixed(3)}</dd>
             <dt>Distribution Allowed?</dt>
             <dd>{submission.distributionAllowed ? 'Yes' : 'No'}</dd>
             <dt>Invited?</dt>

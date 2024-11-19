@@ -266,6 +266,7 @@ router.route('/csv/:showId')
                       mediaType: '',
                       videoUrl: ''
                     }
+                    console.log(`Score for entry ${entry.id}:`, entry);
                     // Add entry data to data object
                     if (entry.entryType === IMAGE_ENTRY) {
                       let imageObj = imageIdsToImage[entry.entryId]
