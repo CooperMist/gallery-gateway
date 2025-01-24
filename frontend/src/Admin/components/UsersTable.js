@@ -1,37 +1,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactTable from 'react-table'
+
+import CheckboxTable from 'shared/components/CheckboxTable'
+
+const columns = [
+  {
+    Header: 'Last Name',
+    accessor: 'lastName'
+  },
+  {
+    Header: 'First Name',
+    accessor: 'firstName'
+  },
+  {
+    Header: 'Username',
+    accessor: 'username'
+  }
+]
 
 const UsersTable = props => (
-  <ReactTable
-    data={props.data}
-    columns={[
-      {
-        Header: 'Last Name',
-        accessor: 'lastName'
-      },
-      {
-        Header: 'First Name',
-        accessor: 'firstName'
-      },
-      {
-        Header: 'Username',
-        accessor: 'username'
-      }
-    ]}
-    defaultPageSize={10}
+  <CheckboxTable
+    columns={columns}
+    data={props.users}
+    unique='username'
+    selected={props.selected}
+    onChange={props.onChange}
     defaultSorted={[{ id: 'lastName', desc: false }]}
-    resizable={false}
-    className='-striped -highlight'
   />
 )
 
 UsersTable.propTypes = {
-  data: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  selected: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
 UsersTable.defaultProps = {
-  data: []
+  users: [],
+  selected: {}
 }
 
 export default UsersTable

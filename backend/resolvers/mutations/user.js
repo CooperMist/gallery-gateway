@@ -73,5 +73,35 @@ export const updateUser = (_, args, context) => {
 
 }
 
+export const demoteAdminUsers = (_, args, context) => {
+  if (context.authType !== ADMIN) {
+    throw new UserError('Permission Denied')
+  }
+  if (args.usernames.length < 1) {
+    throw new UserError('Please input one or more usernames')
+  }
+  User.findAll({where: {type: ADMIN}})
+    .then(([admins]) => {
+      if(admins.length <= args.usernames.length) {
+        throw new UserError("At least one admin must remain")
+      }
+    })
+
+  //Add Stuff
+
+}
+
+export const demoteJudgeUsers = (_, args, context) => {
+  if (context.authType !== ADMIN) {
+    throw new UserError('Permission Denied')
+  }
+  if (args.usernames.length < 1) {
+    throw new UserError('Please input one or more usernames')
+  }
+
+  //Add Stuff
+
+}
+
 export const createAdmin = (_, args, context) => createUser(_, args, context, ADMIN)
 export const createJudge = (_, args, context) => createUser(_, args, context, JUDGE)

@@ -13,5 +13,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default compose(
+
+  //Connections Needed!
+  
   connect(mapStateToProps, mapDispatchToProps)
 )(ManageAdminsTab)

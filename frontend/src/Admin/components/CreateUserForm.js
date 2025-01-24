@@ -60,7 +60,7 @@ class CreateUserForm extends Component {
           <Form onSubmit={handleSubmit}>
             <h3>{heading}</h3>
             <Row>
-              <Col md='6' xs='12'>
+              <Col md='auto' xs='12'>
                 <FormGroup>
                   <Label>Username</Label>
                   <div className='input-group'>

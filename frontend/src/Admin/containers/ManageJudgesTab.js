@@ -13,5 +13,8 @@ const mapDispatchToProps = (dispatch, { showId }) => ({
 })
 
 export default compose(
+  
+  //Connections Needed!
+
   connect(mapStateToProps, mapDispatchToProps)
 )(ManageJudgesTab)
