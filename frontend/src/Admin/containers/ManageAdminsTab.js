@@ -1,6 +1,10 @@
-import { compose } from 'recompose'
+import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
+import { compose } from 'recompose'
+import { displayError } from '../../shared/actions'
 
+import AdminsQuery from '../queries/admins.graphql'
+import demoteAdminUsersMutation from '../mutations/demoteAdminUsers.graphql'
 import ManageAdminsTab from '../components/ManageAdminsTab'
 import { fetchAdmins } from '../actions'
 
@@ -9,12 +13,31 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchAdmins: () => dispatch(fetchAdmins())
+  fetchAdmins: () => dispatch(fetchAdmins()),
+  handleError: message => dispatch(displayError(message))
 })
 
 export default compose(
-
-  //Connections Needed!
-  
-  connect(mapStateToProps, mapDispatchToProps)
+connect(mapStateToProps, mapDispatchToProps),
+  graphql(demoteAdminUsersMutation, {
+    props: ({ ownProps, mutate }) => ({
+      demoteAdminUsers: usernames =>
+        mutate({
+          variables: {
+            usernames
+          },
+          refetchQueries: [
+            {
+              query: AdminsQuery,
+              variables: {
+                id: ownProps.showId
+              }
+            },
+            {
+              query: AdminsQuery
+            }
+          ]
+        })
+    })
+  })
 )(ManageAdminsTab)

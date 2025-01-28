@@ -43,9 +43,9 @@ class ManageJudgesTab extends Component {
 
     if (judges.length) {
       this.props
-        .assign(judges)
+        .demoteJudgeUsers(judges)
         .then(() => {
-          this.props.afterAssign(judges)
+          // this.props.afterAssign(judges)
           // Reset the checkboxes
           this.setState({
             selectedJudges: {},

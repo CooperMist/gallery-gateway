@@ -42,9 +42,9 @@ class ManageAdminsTab extends Component {
 
     if (admins.length) {
       this.props
-        .assign(admins)
+        .demoteAdminUsers(admins)
         .then(() => {
-          this.props.afterAssign(admins)
+          // this.props.afterAssign(admins)
           // Reset the checkboxes
           this.setState({
             selectedAdmins: {},

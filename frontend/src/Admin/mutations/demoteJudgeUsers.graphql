@@ -1,3 +1,5 @@
 mutation demoteJudgeUsers($usernames: [String]!) {
-  demoteJudgeUsers(usernames: $usernames)
+  demoteJudgeUsers(usernames: $usernames){
+    username
+  }
 }
