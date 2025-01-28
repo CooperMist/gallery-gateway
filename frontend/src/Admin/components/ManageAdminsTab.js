@@ -37,7 +37,7 @@ class ManageAdminsTab extends Component {
     this.props.fetchAdmins()
   }
 
-  removeSelected = () => {
+  demoteSelected = () => {
     const admins = Object.keys(this.state.selectedAdmins)
 
     if (admins.length) {
@@ -104,7 +104,7 @@ class ManageAdminsTab extends Component {
               color='danger'
               onClick={() => {
                 this.onDismissConfirmation()
-                this.removeSelected()
+                this.demoteSelected()
               }}
             >
               Continue
