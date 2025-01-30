@@ -28,12 +28,6 @@ export default compose(
           },
           refetchQueries: [
             {
-              query: JudgesQuery,
-              variables: {
-                id: ownProps.showId
-              }
-            },
-            {
               query: JudgesQuery
             }
           ]

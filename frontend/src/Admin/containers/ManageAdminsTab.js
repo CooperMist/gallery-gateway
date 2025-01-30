@@ -28,12 +28,6 @@ connect(mapStateToProps, mapDispatchToProps),
           },
           refetchQueries: [
             {
-              query: AdminsQuery,
-              variables: {
-                id: ownProps.showId
-              }
-            },
-            {
               query: AdminsQuery
             }
           ]
