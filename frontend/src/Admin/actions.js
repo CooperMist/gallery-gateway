@@ -18,6 +18,8 @@ export const ASSIGN_JUDGES_TO_SHOW = 'ASSIGN_JUDGES_TO_SHOW'
 export const REMOVE_JUDGES_FROM_SHOW = 'REMOVE_JUDGES_FROM_SHOW'
 export const ADD_ADMIN = 'ADD_ADMIN'
 export const ADD_JUDGE = 'ADD_JUDGE'
+export const DEMOTE_ADMINS = 'DEMOTE_ADMINS'
+export const DEMOTE_JUDGES = 'DEMOTE_JUDGES'
 
 export const fetchShow = showId => (dispatch, getState, client) => {
   return client
@@ -142,6 +144,20 @@ export const addJudge = judge => (dispatch, getState, client) => {
   dispatch({
     type: ADD_JUDGE,
     payload: judge
+  })
+}
+
+export const demoteAdmins = admins => dispatch => {
+  dispatch({
+    type: DEMOTE_ADMINS,
+    payload: admins
+  })
+}
+
+export const demoteJudges = judges => (dispatch, getState, client) => {
+  dispatch({
+    type: DEMOTE_JUDGES,
+    payload: judges
   })
 }
 

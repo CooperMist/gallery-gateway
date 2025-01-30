@@ -6,13 +6,14 @@ import { displayError } from '../../shared/actions'
 import AdminsQuery from '../queries/admins.graphql'
 import demoteAdminUsersMutation from '../mutations/demoteAdminUsers.graphql'
 import ManageAdminsTab from '../components/ManageAdminsTab'
-import { fetchAdmins } from '../actions'
+import { fetchAdmins, demoteAdmins } from '../actions'
 
 const mapStateToProps = state => ({
   admins: Object.values(state.admin.admins)
 })
 
 const mapDispatchToProps = dispatch => ({
+  demoteAdmins: () => dispatch(demoteAdmins()),
   fetchAdmins: () => dispatch(fetchAdmins()),
   handleError: message => dispatch(displayError(message))
 })
@@ -31,7 +32,7 @@ connect(mapStateToProps, mapDispatchToProps),
               query: AdminsQuery
             }
           ]
-        })
+        }).then(({}) => demoteAdmins(usernames))
     })
   })
 )(ManageAdminsTab)

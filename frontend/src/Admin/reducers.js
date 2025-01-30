@@ -80,6 +80,25 @@ const admins = (state = {}, action) => {
         ...state,
         [action.payload.username]: action.payload
       }
+      case actions.DEMOTE_ADMINS:
+        // action.payload.admins.forEach(admin =>{ 
+        //   if (!admin) {
+        //     return state
+        //   }
+        // })
+        
+        // return {
+        //   ...state,
+        //   ...action.payload.admins
+        // }
+
+        const updatedAdmins = { ...state }
+        console.log("HI " + action.payload)
+        action.payload.forEach(admin => {
+          delete updatedAdmins[admin] // Remove the demoted admin
+        })
+
+        return updatedAdmins
     default:
       return state
   }
@@ -113,6 +132,17 @@ const judges = (state = {}, action) => {
       return {
         ...state,
         [action.payload.username]: action.payload
+      }
+    case actions.DEMOTE_JUDGES:
+      action.payload.judges.forEach(judge =>{ 
+        if (!judge) {
+          return state
+        }
+      })
+
+      return {
+        ...state,
+        ...judges
       }
     default:
       return state

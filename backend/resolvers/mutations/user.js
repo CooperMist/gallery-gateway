@@ -82,22 +82,6 @@ export const demoteAdminUsers = async (_, args, context) => {
     throw new UserError('Please input one or more usernames')　
   }
 
-  // User.findAll({where: {type: ADMIN}})
-  //   .then((admins) => {
-  //     if(admins.length <= args.usernames.length) {
-  //       throw new UserError("At least one admin must remain")
-  //     }
-  //   })
-
-  // User.findAll({where: {username: {$in: args.usernames}}})
-  //   .then(([admins]) => {
-  //   for(admin in admins) {
-  //     if(admin.type !== ADMIN) {
-  //       throw new UserError("One or more users selected isn't an admin")
-  //     }
-  //   }
-  // })
-
   return await db.transaction(async (transaction) => {
     // Get all current admins
     const admins = await User.findAll({ where: { type: ADMIN }, transaction })
@@ -124,26 +108,39 @@ export const demoteAdminUsers = async (_, args, context) => {
       { where: { username: args.usernames }, transaction }
     )
 
-    return usersToDemote
+    const usersNotDemoted = await User.findAll({
+      where: { username: !args.usernames },
+      transaction
+    })
+
+    return usersNotDemoted
   })
-
-  //Add Stuff
-
 }
 
-export const demoteJudgeUsers = (_, args, context) => {
-  // if (context.authType !== ADMIN) {
-  //   throw new UserError('Permission Denied')
-  // }
-  // if (args.usernames.length < 1) {
-  //   throw new UserError('Please input one or more usernames')
-  // }
+export const demoteJudgeUsers = async (_, args, context) => {
+  if (context.authType !== ADMIN) {
+    throw new UserError('Permission Denied')
+  }
+  if (args.usernames.length < 1) {
+    throw new UserError('Please input one or more usernames')
+  }
 
-  throw new UserError('Reached Backend Resolver!')
+  return await db.transaction(async (transaction) => {
+    // Perform the update
+    User.update(
+      { type: STUDENT }, 
+      { where: { username: args.usernames }, transaction }
+    )
 
-  //Add Stuff
+    const usersNotDemoted = User.findAll({
+      where: { username: !args.usernames },
+      transaction
+    })
 
+    return usersNotDemoted
+  })
 }
+
 
 export const createAdmin = (_, args, context) => createUser(_, args, context, ADMIN)
 export const createJudge = (_, args, context) => createUser(_, args, context, JUDGE)

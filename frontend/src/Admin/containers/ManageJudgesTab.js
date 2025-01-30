@@ -6,13 +6,14 @@ import { displayError } from '../../shared/actions'
 import ManageJudgesTab from '../components/ManageJudgesTab'
 import JudgesQuery from '../queries/judges.graphql'
 import demoteJudgeUsersMutation from '../mutations/demoteJudgeUsers.graphql'
-import { fetchJudges } from '../actions'
+import { fetchJudges, demoteJudges } from '../actions'
 
 const mapStateToProps = state => ({
   judges: Object.values(state.admin.judges)
 })
 
 const mapDispatchToProps = (dispatch, { showId }) => ({
+  demoteJudges: admin => dispatch(demoteJudges(admin)),
   fetchJudges: () => dispatch(fetchJudges()),
   handleError: message => dispatch(displayError(message))
 })
@@ -31,7 +32,7 @@ export default compose(
               query: JudgesQuery
             }
           ]
-        })
+        }).then(({data: judges}) => demoteJudges(judges))
     })
   })
 )(ManageJudgesTab)

@@ -37,6 +37,7 @@ class ManageAdminsTab extends Component {
     this.props.fetchAdmins()
   }
 
+  //Security Risk: Demoted users will still have Admin Permissions until they logout!
   demoteSelected = () => {
     const admins = Object.keys(this.state.selectedAdmins)
 
