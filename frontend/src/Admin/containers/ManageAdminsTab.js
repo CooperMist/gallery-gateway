@@ -13,13 +13,13 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  demoteAdmins: () => dispatch(demoteAdmins()),
+  demoteAdmins: usernames => dispatch(demoteAdmins(usernames)),
   fetchAdmins: () => dispatch(fetchAdmins()),
   handleError: message => dispatch(displayError(message))
 })
 
 export default compose(
-connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   graphql(demoteAdminUsersMutation, {
     props: ({ ownProps, mutate }) => ({
       demoteAdminUsers: usernames =>
@@ -32,7 +32,9 @@ connect(mapStateToProps, mapDispatchToProps),
               query: AdminsQuery
             }
           ]
-        }).then(({}) => demoteAdmins(usernames))
+        }).then(() => {
+          ownProps.demoteAdmins(usernames)
+        })
     })
   })
 )(ManageAdminsTab)

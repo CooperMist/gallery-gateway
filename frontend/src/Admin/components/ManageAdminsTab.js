@@ -45,7 +45,6 @@ class ManageAdminsTab extends Component {
       this.props
         .demoteAdminUsers(admins)
         .then(() => {
-          // this.props.afterAssign(admins)
           // Reset the checkboxes
           this.setState({
             selectedAdmins: {},
@@ -90,8 +89,8 @@ class ManageAdminsTab extends Component {
           </ModalHeader>
           <ModalBody>
             <p>
-            If you remove yourself as an Admin, you cannot add yourself back without help from other Admins.
-            There must always be at least one Admin in the system.
+            If you remove yourself as an admin, you cannot add yourself back without help from other admins.
+            There must always be at least one admin in the system.
             </p>
           </ModalBody>
           <ModalFooter>

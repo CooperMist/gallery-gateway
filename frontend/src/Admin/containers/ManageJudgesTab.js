@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch, { showId }) => ({
-  demoteJudges: admin => dispatch(demoteJudges(admin)),
+  demoteJudges: usernames => dispatch(demoteJudges(usernames)),
   fetchJudges: () => dispatch(fetchJudges()),
   handleError: message => dispatch(displayError(message))
 })
@@ -32,7 +32,9 @@ export default compose(
               query: JudgesQuery
             }
           ]
-        }).then(({data: judges}) => demoteJudges(judges))
+        }).then(() => {
+          ownProps.demoteJudges(usernames)
+        })
     })
   })
 )(ManageJudgesTab)
