@@ -61,12 +61,11 @@ export function vote (_, args, context) {
           if (created) {
             return vote
           } else {
-            return vote.update({ value: input.value })
+            return vote.update({ value: input.value }).then(() => vote)
           }
         })
     })
-    .then(() => {
-
+    .then((vote) => {
       return Entry.findByPk(input.entryId)
         .then((entry) => {
           if (!entry) {
@@ -77,6 +76,7 @@ export function vote (_, args, context) {
             console.log("Entry ID: " + entry.id)
             console.log("Entry Title: " + entry.title)
             console.log("Entry Score: " + newScore)
+            // Update the entry with the new score
             return entry.update({ score: newScore }).then(() => vote)
           })
         })
