@@ -88,6 +88,11 @@ export function up (queryInterface, Sequelize) {
       allowNull: true,
       type: Sequelize.TEXT
     },
+    score: {
+      allowNull: false,
+      defaultValue: 0,
+      type: Sequelize.INTEGER
+    },
     excludeFromJudging: {
       allowNull: false,
       defaultValue: false,
