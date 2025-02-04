@@ -7,6 +7,7 @@ import WorkReleasePopover from '../../../shared/components/WorkReleasePopover'
 
 import { IMAGE_UPLOAD_PATH, PDF_UPLOAD_PATH } from '../../../utils'
 import PortfolioCreationPreviewModal from './PortfolioCreationPreviewModal'
+import PortfolioSubmittingModal from './PortfolioSubmitting'
 
 import PortfolioEntryInput from './PortfolioEntryInput'
 
@@ -150,12 +151,12 @@ function PortfolioSubmissionForm(props) {
   async function createPortfolio() {
     // Create the portfolio from form_data
     setShowPreview(false);
-    setIsProcessing(true);
     const portfolio = {
       title: form_data.title,
       studentUsername: form_data.studentUsername,
       portfolioPeriodId: portfolioPeriodId,
     }
+    setIsProcessing(true);
     const portfolio_response = await props.createPortfolio(portfolio);
     try {
       // Extract the portfolio id and use that to create all the entries
@@ -283,7 +284,7 @@ function PortfolioSubmissionForm(props) {
           </Col>
         </Row>
       </Container>
-      <PortfolioCreationPreviewModal isOpen={showPreview} cancel={() => { setShowPreview(false) }} accept={createPortfolio} form_data={form_data} />
+      <PortfolioCreationPreviewModal isPreview={showPreview} isProcess={isProcessing} cancel={() => { setShowPreview(false) }} accept={createPortfolio} form_data={form_data} />
     </Form>
   )
 }

@@ -49,36 +49,50 @@ function PortfolioEntryPreview(props) {
 }
 
 function PortfolioCreationPreviewModal(props) {
-  return (
-    <Modal isOpen={props.isOpen} toggle={props.cancel} size="lg" className="portfolio-modal">
-      <ModalHeader toggle={props.cancel} className='' >
-        Portfolio Summary - {props.form_data.title}
-      </ModalHeader>
-      <ModalBody>
-        <h2>Details</h2>
-        <p><strong>Created:</strong> {new Date().toDateString()}</p>
-        <hr />
-        <h2>Entries</h2>
-        <div className='d-flex flex-column'>
-          {props.form_data.submissions.map((submission) => {
-            return <div>
-              <PortfolioEntryPreview entry={submission} key={submission.id} /> <br />
-            </div>
-          })}
-        </div>
-        <div className='d-flex flex-column'>
-        <h2>Additional info</h2>
-        <WorkReleasePopover id="modal-pop-over-work-release" />
-        <span className='mb-4'><strong>{props.form_data.distributionAllowed ? "Yes" : "No"}</strong></span>
-        <span><strong>After submitting this portfolio it cannot be changed. Please click cancel if you want to make any additional changes.</strong></span>
-        </div>
-      </ModalBody>
-      <ModalFooter>
-        <Button color="secondary" className="mr-auto" onClick={props.cancel}>Cancel</Button>
-        <Button color="primary" className="ml-auto" onClick={props.accept}>Confirm</Button>
-      </ModalFooter>
-    </Modal>
-  )
+  if(props.isPreview) {
+    return (
+      <Modal isOpen={props.isPreview} toggle={props.cancel} size="lg" className="portfolio-modal">
+        <ModalHeader toggle={props.cancel} className='' >
+          Portfolio Summary - {props.form_data.title}
+        </ModalHeader>
+        <ModalBody>
+          <h2>Details</h2>
+          <p><strong>Created:</strong> {new Date().toDateString()}</p>
+          <hr />
+          <h2>Entries</h2>
+          <div className='d-flex flex-column'>
+            {props.form_data.submissions.map((submission) => {
+              return <div>
+                <PortfolioEntryPreview entry={submission} key={submission.id} /> <br />
+              </div>
+            })}
+          </div>
+          <div className='d-flex flex-column'>
+          <h2>Additional info</h2>
+          <WorkReleasePopover id="modal-pop-over-work-release" />
+          <span className='mb-4'><strong>{props.form_data.distributionAllowed ? "Yes" : "No"}</strong></span>
+          <span><strong>After submitting this portfolio it cannot be changed. Please click cancel if you want to make any additional changes.</strong></span>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" className="mr-auto" onClick={props.cancel}>Cancel</Button>
+          <Button color="primary" className="ml-auto" onClick={props.accept}>Confirm</Button>
+        </ModalFooter>
+      </Modal>
+    )
+  } else {
+        return (
+          <Modal isOpen={props.isProcess} size="lg" className="portfolio-modal">
+            <ModalHeader className='' >
+              Do not close this page!
+            </ModalHeader>
+            <ModalBody>
+              <p>Your portfolio is submitting. This may take a few minutes...</p>
+              <p>You will be redirected when it is submitted.</p>
+            </ModalBody>
+          </Modal>
+        )
+  }
 }
 
 export default PortfolioCreationPreviewModal
