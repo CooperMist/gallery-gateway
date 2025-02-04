@@ -65,13 +65,11 @@ export function vote (_, args, context) {
           }
         })
     })
-    .then(vote => {
+    .then(() => {
       // Update the score of the entry
-      console.log("Entry ID" + vote.entryId)
-      return Entry.findByPk(vote.entryId).then(entry => {
-        return entry.getScore().then(score => {
-          return entry.update({ score }).then(() => vote)
-        })
-      })
+      console.log("Entry ID" + input.entryId)
+      entry = Entry.findByPk(input.entryId)
+      totalScore = entry.getScore()
+      return entry.update({ score: totalScore })
     })
 }
