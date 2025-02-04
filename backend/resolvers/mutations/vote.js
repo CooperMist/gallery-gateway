@@ -43,7 +43,6 @@ export function vote (_, args, context) {
   }
   // Make sure judge is allowed to vote on this entry
   const input = args.input
-  const showEntry = Entry.findByPk(input.entryId)
   return judgeIsAllowedToVote(input.judgeUsername, input.entryId, context.authType)
     .then(() => {
       return Vote
@@ -67,8 +66,19 @@ export function vote (_, args, context) {
         })
     })
     .then(() => {
-      // Update the score of the entry
-      console.log("Entry ID: " + input.entryId)
-      return showEntry.update({ score: showEntry.getScore()})
+
+      return Entry.findByPk(input.entryId)
+        .then((entry) => {
+          if (!entry) {
+            throw new UserError('Entry not found')
+          }
+          // Get and log the score of the entry
+          return entry.getScore().then(newScore => {
+            console.log("Entry ID: " + entry.id)
+            console.log("Entry Title: " + entry.title)
+            console.log("Entry Score: " + newScore)
+            return entry.update({ score: newScore }).then(() => vote)
+          })
+        })
     })
 }
