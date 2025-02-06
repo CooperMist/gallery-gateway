@@ -7,7 +7,6 @@ import WorkReleasePopover from '../../../shared/components/WorkReleasePopover'
 
 import { IMAGE_UPLOAD_PATH, PDF_UPLOAD_PATH } from '../../../utils'
 import PortfolioCreationPreviewModal from './PortfolioCreationPreviewModal'
-import PortfolioSubmittingModal from './PortfolioSubmitting'
 
 import PortfolioEntryInput from './PortfolioEntryInput'
 
