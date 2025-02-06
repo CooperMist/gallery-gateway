@@ -25,6 +25,8 @@ const filterUnassignedJudges = (judges, assignments = []) => {
 
 const mapAssignmentsToJudges = (judges, assignments = []) => {
   return assignments.map(key => judges[key])
+  //Error Here! Trys to makes all judges to ones that are currently assigned.
+  //Users that have been removed as judges, but are still assigned to shows create error!
 }
 
 const mapStateToProps = (state, ownProps) => {
