@@ -234,20 +234,6 @@ function PortfolioSubmissionForm(props) {
                 )
               })} */}
 
-<PortfolioEntryInput
-                      submission={form_data.submissions[0]}
-                      renderErrors={this.renderErrors}
-                      setSubmissions={(submissions) => {
-                        setFormData({
-                          ...form_data,
-                          submissions
-                        })
-                      }}
-                      submissions={form_data.submissions}
-                    />
-
-
-
             <FormGroup>
               <WorkReleasePopover />
             </FormGroup>
