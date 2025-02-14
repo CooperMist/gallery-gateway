@@ -213,7 +213,7 @@ function PortfolioSubmissionForm(props) {
             <SubHeader>Upload Media Submissions</SubHeader>
             <b>You may upload up to 10 submissions. (Photo, Video, or Other Media)</b>
             <p>You may only upload one file OR video link per row.</p>
-            {/* {form_data.submissions.length > 0 &&
+            {form_data.submissions.length > 0 &&
               form_data.submissions.map((submission, index) => {
                 return (
                   <div key={`form_data.submissions.${submission.id}`}>
@@ -232,7 +232,7 @@ function PortfolioSubmissionForm(props) {
                     <hr />
                   </div>
                 )
-              })} */}
+              })}
 
             <FormGroup>
               <WorkReleasePopover />
