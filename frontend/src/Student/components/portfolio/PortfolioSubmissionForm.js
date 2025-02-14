@@ -219,7 +219,7 @@ function PortfolioSubmissionForm(props) {
                   <div key={`form_data.submissions.${submission.id}`}>
                     <PortfolioEntryInput
                       submission={submission}
-                      renderErrors={this.renderErrors}
+                      renderErrors={props.renderErrors}
                       setSubmissions={(submissions) => {
                         setFormData({
                           ...form_data,
