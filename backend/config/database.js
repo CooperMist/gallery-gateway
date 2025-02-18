@@ -84,5 +84,6 @@ export const production = {
 
 export const database = {
   development,
-  test
+  test,
+  production
 }
