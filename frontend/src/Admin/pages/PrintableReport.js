@@ -132,8 +132,8 @@ class PrintableReport extends Component {
               <PageContainer key={entry.id}>
                 <h1>{entry.title}</h1>
                 <h3>
-                  {entry.student.lastName}, {entry.student.firstName} -{' '}
-                  {entry.student.username}@rit.edu
+                  {entry.student == null ? "" : entry.student.lastName}, {entry.student == null ? "" : entry.student.firstName} -{' '}
+                  {entry.student == null ? "" : entry.student.username}@rit.edu
                 </h3>
                 {entry.path && entry.path.endsWith('.jpg') ? (
                   <img
