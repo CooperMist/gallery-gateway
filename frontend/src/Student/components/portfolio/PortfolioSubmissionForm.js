@@ -150,12 +150,12 @@ function PortfolioSubmissionForm(props) {
   async function createPortfolio() {
     // Create the portfolio from form_data
     setShowPreview(false);
-    setIsProcessing(true);
     const portfolio = {
       title: form_data.title,
       studentUsername: form_data.studentUsername,
       portfolioPeriodId: portfolioPeriodId,
     }
+    setIsProcessing(true);
     const portfolio_response = await props.createPortfolio(portfolio);
     try {
       // Extract the portfolio id and use that to create all the entries
@@ -219,7 +219,6 @@ function PortfolioSubmissionForm(props) {
                   <div key={`form_data.submissions.${submission.id}`}>
                     <PortfolioEntryInput
                       submission={submission}
-                      renderErrors={this.renderErrors}
                       setSubmissions={(submissions) => {
                         setFormData({
                           ...form_data,
@@ -233,8 +232,6 @@ function PortfolioSubmissionForm(props) {
                   </div>
                 )
               })}
-
-
 
             <FormGroup>
               <WorkReleasePopover />
@@ -279,11 +276,11 @@ function PortfolioSubmissionForm(props) {
         <Row className="mt-5">
           <Col md={8} className="d-flex justify-content-between align-items-center">
             <Button color="secondary d-block mb-3" onClick={addSubmission}>Add Entry</Button>
-            <Button type="submit" color="primary" disabled={isProcessing}>Create</Button>
+            <Button type="submit" color="primary" disabled={isProcessing}>{isProcessing ? 'Submitting...' : 'Create'}</Button>
           </Col>
         </Row>
       </Container>
-      <PortfolioCreationPreviewModal isOpen={showPreview} cancel={() => { setShowPreview(false) }} accept={createPortfolio} form_data={form_data} />
+      <PortfolioCreationPreviewModal isPreview={showPreview} isProcess={isProcessing} cancel={() => { setShowPreview(false) }} accept={createPortfolio} form_data={form_data} />
     </Form>
   )
 }

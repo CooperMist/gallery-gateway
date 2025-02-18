@@ -2,6 +2,7 @@ import { UserError } from 'graphql-errors'
 import { ADMIN } from '../../constants'
 import PortfolioPeriod from '../../models/portfolioPeriod'
 import PortfolioPeriodJudge from '../../models/portfolioPeriodJudge'
+import moment from 'moment-timezone'
 
 export async function createPortfolioPeriod(_, args, context) {
   // only students can create portfolios
@@ -10,12 +11,17 @@ export async function createPortfolioPeriod(_, args, context) {
   }
   const { description, name, startDate, endDate, judgingStartDate, judgingEndDate } = args.input
 
+  const entryStart = moment(startDate).tz('America/New_York').startOf('day')
+  const entryEnd = moment(endDate).tz('America/New_York').endOf('day')
+  const judgingStart = moment(judgingStartDate).tz('America/New_York').startOf('day')
+  const judgingEnd = moment(judgingEndDate).tz('America/New_York').endOf('day')
+
   // Required portfolio period fields
   let newPortfolioPeriod = {
-    startDate,
-    endDate,
-    judgingStartDate,
-    judgingEndDate
+    startDate: entryStart,
+    endDate: entryEnd,
+    judgingStartDate: judgingStart,
+    judgingEndDate: judgingEnd
   }
 
   // Appened optional fields, check that types match expected schema type prior to appending 
