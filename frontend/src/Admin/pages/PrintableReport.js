@@ -130,11 +130,13 @@ class PrintableReport extends Component {
           {// Create a page for each entry
             show.entries.map(entry => (
               <PageContainer key={entry.id}>
-                <h1>{entry.title}</h1>
-                <h3>
-                  {entry.student == null ? "" : entry.student.lastName}, {entry.student == null ? "" : entry.student.firstName} -{' '}
-                  {entry.student == null ? "" : entry.student.username}@rit.edu
+                <h1>{entry.title}</h1>                
+                {entry.student ? ( 
+                <h3>               
+                  {entry.student.lastName}, {entry.student.firstName} -{' '}
+                  {entry.student.username}@rit.edu
                 </h3>
+                ) : null}                
                 {entry.path && entry.path.endsWith('.jpg') ? (
                   <img
                     src={`${STATIC_PATH}${entry.path}`}
