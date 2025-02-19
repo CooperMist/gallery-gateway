@@ -11,7 +11,7 @@ export default function ScholarshipSubmissionCard({ scholarshipSubmission }) {
     ) {
         return <React.Fragment></React.Fragment>
     }
-    const { portfolio, essayPath, scholarship } = scholarshipSubmission
+    const { portfolio, essayPath, scholarship, scholarshipId } = scholarshipSubmission
 
     return (
         <Row className="my-3 p-3 border rounded" key={`portfolio-row-${portfolio.id}`}>

@@ -2,6 +2,10 @@ query ScholarshipSubmissions($portfolioPeriodId: Int) {
   scholarshipSubmissions(portfolioPeriodId: $portfolioPeriodId) {
     id
     scholarshipId
+    scholarship {
+      id
+      name
+    }
     portfolioPeriodId
     portfolioId
     essayPath
@@ -44,10 +48,6 @@ query ScholarshipSubmissions($portfolioPeriodId: Int) {
           path
         }
       }
-    }
-
-    scholarship {
-      name
     }
   }
 }
