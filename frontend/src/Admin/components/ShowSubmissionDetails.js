@@ -164,17 +164,28 @@ class ShowSubmissionDetails extends Component {
         <Col>
           <h4 className='text-center'>Artist{submission.group ? 's' : null}</h4>
           <dl>
-            <dt>Name</dt>
-            <dd>
+            <dt>Name</dt>            
+            {entry.student ? ( 
+              <dd>
               {submission.student.firstName} {submission.student.lastName} ({
                 submission.student.username
               })
+              </dd>
+            ) : 
+            <dd>
+              {submission.group.participants}
             </dd>
-            {submission.student.displayName ? (
-              <Fragment>
-                <dt>Artist Name</dt>
-                <dd>{submission.student.displayName}</dd>
-              </Fragment>
+            }   
+            
+            {submission.student ? (
+              <dd>
+              {submission.student.displayName ? (
+                <Fragment>
+                  <dt>Artist Name</dt>
+                  <dd>{submission.student.displayName}</dd>
+                </Fragment>
+              ) : null}
+              </dd>
             ) : null}
             <dt>Year Level</dt>
             <dd>{submission.yearLevel}</dd>
