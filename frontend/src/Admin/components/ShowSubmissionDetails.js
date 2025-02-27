@@ -165,7 +165,7 @@ class ShowSubmissionDetails extends Component {
           <h4 className='text-center'>Artist{submission.group ? 's' : null}</h4>
           <dl>
             <dt>Name</dt>            
-            {entry.student ? ( 
+            {submission.student ? ( 
               <dd>
               {submission.student.firstName} {submission.student.lastName} ({
                 submission.student.username
