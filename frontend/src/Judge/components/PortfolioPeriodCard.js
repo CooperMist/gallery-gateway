@@ -154,6 +154,16 @@ function PortfolioPeriodCard(props) {
         >
           View Portfolios
         </Button>
+        <Button
+          color='primary'
+          style={{ cursor: 'pointer' }}
+          tag={Link}
+          to={`/portfolio-period/${props.id}/portfolios`}
+          block
+          outline
+        >
+          Start Judging
+        </Button>
       </Col>
     </Row>
   )
