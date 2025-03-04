@@ -158,7 +158,7 @@ function PortfolioPeriodCard(props) {
           color='primary'
           style={{ cursor: 'pointer' }}
           tag={Link}
-          to={`/portfolio-period/${props.id}/portfolios`}
+          to={`/portfolio-period/${props.id}/portfolio-judging`}
           block
           outline
         >
@@ -167,7 +167,6 @@ function PortfolioPeriodCard(props) {
       </Col>
     </Row>
   )
-
 
 
   return (
