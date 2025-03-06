@@ -17,7 +17,7 @@ const PortfolioRating = sequelize.define('portfolioRating', {
     onUpdate: 'cascade'
   },
   value: {
-    type: DataTypes.DOUBLE,
+    type: DataTypes.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
