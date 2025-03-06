@@ -17,7 +17,7 @@ const PortfolioRating = sequelize.define('portfolioRating', {
     onUpdate: 'cascade'
   },
   value: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 0,
     allowNull: false
   },
@@ -50,6 +50,26 @@ const PortfolioRating = sequelize.define('portfolioRating', {
         }
       }
 })
+
+/**
+ * Gets the ratings and portfolio IDs for a given portfolioPeriodId and judgeUsername as a Promise
+ */
+ PortfolioRating.getRatingsByPortfolioPeriodAndJudge = function getRatingsByPortfolioPeriodAndJudge (portfolioPeriodId, judgeUsername) {
+  return PortfolioRating.findAll({
+    attributes: ['portfolioId', 'value'],
+    include: [{
+      model: sequelize.models.portfolio,
+      required: true,
+      attributes: [],
+      where: {
+        portfolioPeriodId: portfolioPeriodId
+      }
+    }],
+    where: {
+      judgeUsername: judgeUsername
+    }
+  })
+}
 
 
 export default PortfolioRating

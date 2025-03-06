@@ -51,7 +51,7 @@ Portfolio.prototype.getEntries = function getEntries () {
 /*
 * Calculate the score for a portfolio
 */
-PortfolioRating.prototype.getScore = function getScore () {
+Portfolio.prototype.getScore = function getScore () {
   // Calculate score by getting all votes with this
   // entry id and then averaging over the sum of the votes
   return PortfolioRating.findAll({ where: { porfolioId: this.id } })
