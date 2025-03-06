@@ -34,7 +34,7 @@ export function up (queryInterface, Sequelize) {
       }
     },
     score: {
-      type: DataTypes.DOUBLE,
+      type: Sequelize.DOUBLE,
       defaultValue: 0,
       allowNull: false
     },

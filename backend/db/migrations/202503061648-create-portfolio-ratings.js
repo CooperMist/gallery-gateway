@@ -22,7 +22,7 @@ export function up (queryInterface, Sequelize) {
         }
       },
       rating: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         defaultValue: 0,
         allowNull: false
       },
