@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import SinglePortfolioModal from "../../Student/components/SinglePortfolioModal";
 import PortfolioEntry from '../../Student/components/portfolio/PortfolioEntry'
+import PortfolioVotePanel from '../containers/PortfolioVotePanel'
 
 
 function PortfolioPeriodJudgingTab(props) {
     const { portfolioPeriod } = props
-    const [active_portfolio_id, setActivePortfolioId] = useState("");
+    const [active_portfolio_id, setActivePortfolioId] = useState(0);
+    const [isEnd, setIsEnd] = useState(false);
 
     // Handle bad state where portfolio period is not an object
     if (typeof portfolioPeriod !== "object") {
@@ -40,75 +42,64 @@ function PortfolioPeriodJudgingTab(props) {
             <Row>
                 <Col xs={12} className={"pt-3 pt-lg-5"}>
                     <Link to="/portfolio-periods">Back to Portfolio Periods</Link>
-                    JUDGING PAGE WAHOOO!!!!
                 </Col>
             </Row>
-            <Row className={"d-none d-lg-flex mt-5"}>
-                <Col xs={4} className=" h5">
-                    Title
-                </Col>
-                <Col xs={4} className=" h5">
-                    Artist
-                </Col>
-                <Col xs={4} className="d-flex justify-content-end h5">
-                    View
-                </Col>
-            </Row>
-            {portfolioPeriod.portfolios.map((portfolio, i) => {
-                return (
-                    <Row className="my-3 p-3 border rounded" key={`portfolio-row-${portfolio.id}`}>
-                        <Col xs={6} lg={4} className="d-flex flex-column flex-lg-row align-items-lg-center">
-                            <span className="d-lg-none text-muted">Title</span>
-                            {portfolio.title}
-                        </Col>
-                        <Col xs={6} lg={4} className="d-flex flex-column flex-lg-row align-items-lg-center">
-                            <span className="d-lg-none text-muted">Artist</span>
-                            {!portfolio.entries[0] ? null
-                                : portfolio.entries[0].student.displayName || `${portfolio.entries[0].student.firstName} ${portfolio.entries[0].student.lastName}`
-                            }
-                        </Col>
-                        <Col xs={12} lg={4} className="d-flex flex-column flex-lg-row justify-content-lg-end mt-3 mt-lg-0">
-                            <button
-                                className="btn btn-outline-primary mb-3 mb-lg-0 mr-lg-3"
-                                onClick={() => { props.downloadZip(portfolio.id) }}
-                            >
-                                Download Portfolio
-                            </button>
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => { setActivePortfolioId(portfolio.id) }}
-                            >
-                                View Portfolio
-                            </button>
-                        </Col>
-                        <SinglePortfolioModal
-                            isOpen={portfolio.id === active_portfolio_id}
-                            toggle={() => { setActivePortfolioId("") }}
-                            portfolio={portfolio}
-                        />
-
-                        <Col>
-                            <h2>Details</h2>
-                            <p><strong>Created:</strong> {new Date(portfolio.createdAt).toDateString()}</p>
-                            <hr />
-                            <h2>Entries</h2>
-                            <div className='d-flex flex-column'>
-                            {portfolio.entries.map((entry) => {
-                                return <PortfolioEntry entry={entry} key={entry.id} />
-                            })}
-                            </div>
-                            <button
-                            className="btn btn-primary"
-                            onClick={() => { setActivePortfolioId(portfolio.id) }}
-                            >
-                                Submit Vote
-                            </button>
-                        </Col>
-
-  
+            <h2>Voting</h2>
+            <Row>
+                {!isEnd ? 
+                    <Col>
+                    <p><strong>Created:</strong> {new Date(portfolioPeriod.portfolios[active_portfolio_id].createdAt).toDateString()}</p>
+                    <hr />
+                    <h2>Entries</h2>
+                    <div className='d-flex flex-column'>
+                    {portfolioPeriod.portfolios[active_portfolio_id].entries.map((entry) => {
+                        return <PortfolioEntry entry={entry} key={entry.id} />
+                    })}
+                    </div>
+                    <Row>
+                        <PortfolioVotePanel vote={1} /> 
                     </Row>
-                )
-            })}
+                    <button
+                    className="btn btn-primary"
+                    onClick={() => { if(portfolioPeriod.portfolios.length > active_portfolio_id + 1) {
+                        setActivePortfolioId(active_portfolio_id + 1) }
+                    else {
+                        setIsEnd(true)
+                    }}}
+                    >
+                    
+                        Next Portfolio
+                    </button>
+                    {active_portfolio_id > 0 ? 
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => { 
+                                setActivePortfolioId(active_portfolio_id - 1) 
+                            }}
+                        >
+                        Go Back
+                        </button>
+                        : null
+                    }
+                    </Col>
+                    : 
+                    <Col>
+                    <p>Reached end of portfolios for judging!</p>
+                    {active_portfolio_id > 0 ? 
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => { 
+                                setActivePortfolioId(active_portfolio_id) 
+                                setIsEnd(false)
+                            }}
+                        >
+                        Go Back
+                        </button>
+                        : null
+                    }
+                    </Col>
+                }    
+            </Row>
         </Container>
     )
 }
