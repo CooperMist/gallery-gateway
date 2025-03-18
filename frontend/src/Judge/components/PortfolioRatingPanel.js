@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { Alert, Button, ButtonGroup } from 'reactstrap'
 import styled from 'styled-components'
 
-// Vote Values
+// Rating Values
 const ONE = 1
 const TWO = 2
 const THREE = 3
 const FOUR = 4
 const FIVE = 5
 
-const PortfolioVotingContainer = styled.div`
+const PortfolioRatingContainer = styled.div`
   left: 0;
   margin: 10px auto;
   position: absolute;
@@ -22,11 +22,11 @@ const PortfolioVotingContainer = styled.div`
   }
 `
 
-class PortfolioVotePanel extends Component {
+class PortfolioRatingPanel extends Component {
   static propTypes = {
     handleError: PropTypes.func.isRequired,
-    makeVote: PropTypes.func.isRequired,
-    vote: PropTypes.shape({
+    makeRating: PropTypes.func.isRequired,
+    rating: PropTypes.shape({
       value: PropTypes.number
     })
   }
@@ -47,10 +47,10 @@ class PortfolioVotePanel extends Component {
     })
   }
 
-  handleVote = value => {
-    const { makePortfolioVote, handleError } = this.props
+  handleRating = value => {
+    const { makePortfolioRating, handleError } = this.props
 
-    makePortfolioVote(value)
+    makePortfolioRating(value)
       .then(() => {
         this.setState({
           alertVisible: true
@@ -63,37 +63,37 @@ class PortfolioVotePanel extends Component {
   }
 
   handleKeyInput = e => {
-    const { vote } = this.props
+    const { rating } = this.props
 
     // Listen for key presses. Only update the choice if there is none selected
     // or the key pressed doesn't match the currently selected choice
-    if ((e.key === '1') && (!vote || vote.value !== ONE)) {
+    if ((e.key === '1') && (!rating || rating.value !== ONE)) {
       // 1 key
-      this.handleVote(ONE)
+      this.handleRating(ONE)
     } else if (
       (e.key === '2') &&
-      (!vote || vote.value !== TWO)
+      (!rating || rating.value !== TWO)
     ) {
       // 2 key
-      this.handleVote(TWO)
+      this.handleRating(TWO)
     } else if (
       (e.key === '3') &&
-      (!vote || vote.value !== THREE)
+      (!rating || rating.value !== THREE)
     ) {
       // 3 key
-      this.handleVote(THREE)
+      this.handleRating(THREE)
     } else if (
       (e.key === '4') &&
-      (!vote || vote.value !== FOUR)
+      (!rating || rating.value !== FOUR)
     ) {
       // 4 key
-      this.handleVote(FOUR)
+      this.handleRating(FOUR)
     } else if (
       (e.key === '5') &&
-      (!vote || vote.value !== FIVE)
+      (!rating || rating.value !== FIVE)
     ) {
       // 5 key
-      this.handleVote(FIVE)
+      this.handleRating(FIVE)
     }
   }
 
@@ -106,52 +106,52 @@ class PortfolioVotePanel extends Component {
   }
 
   render () {
-    const { vote } = this.props
+    const { rating } = this.props
 
     return (
-      <PortfolioVotingContainer>
+      <PortfolioRatingContainer>
         <ButtonGroup style={{ width: '100%' }}>
           <Button
-            color={vote && vote.value === ONE ? 'dark' : 'light'}
+            color={rating && rating.value === ONE ? 'dark' : 'light'}
             size='lg'
-            disabled={vote && vote.value === ONE}
-            onClick={() => this.handleVote(ONE)}
+            disabled={rating && rating.value === ONE}
+            onClick={() => this.handleRating(ONE)}
             style={{ width: '20%', margin: '10px' }}
           >
             One
           </Button>
           <Button
-            color={vote && vote.value === TWO ? 'dark' : 'light'}
+            color={rating && rating.value === TWO ? 'dark' : 'light'}
             size='lg'
-            disabled={vote && vote.value === TWO}
-            onClick={() => this.handleVote(TWO)}
+            disabled={rating && rating.value === TWO}
+            onClick={() => this.handleRating(TWO)}
             style={{ width: '20%', margin: '10px' }}
           >
             Two
           </Button>
           <Button
-            color={vote && vote.value === THREE ? 'dark' : 'light'}
+            color={rating && rating.value === THREE ? 'dark' : 'light'}
             size='lg'
-            disabled={vote && vote.value === THREE}
-            onClick={() => this.handleVote(THREE)}
+            disabled={rating && rating.value === THREE}
+            onClick={() => this.handleRating(THREE)}
             style={{ width: '20%', margin: '10px' }}
           >
            Three
           </Button>
           <Button
-            color={vote && vote.value === FOUR ? 'dark' : 'light'}
+            color={rating && rating.value === FOUR ? 'dark' : 'light'}
             size='lg'
-            disabled={vote && vote.value === FOUR}
-            onClick={() => this.handleVote(FOUR)}
+            disabled={rating && rating.value === FOUR}
+            onClick={() => this.handleRating(FOUR)}
             style={{ width: '20%', margin: '10px' }}
           >
            Four
           </Button>
           <Button
-            color={vote && vote.value === FIVE ? 'dark' : 'light'}
+            color={rating && rating.value === FIVE ? 'dark' : 'light'}
             size='lg'
-            disabled={vote && vote.value === FIVE}
-            onClick={() => this.handleVote(FIVE)}
+            disabled={rating && rating.value === FIVE}
+            onClick={() => this.handleRating(FIVE)}
             style={{ width: '20%', margin: '10px' }}
           >
            Five
@@ -163,11 +163,11 @@ class PortfolioVotePanel extends Component {
           className='text-center'
           style={{ position: 'fixed', bottom: '0', right: '0', margin: '10px' }}
         >
-          Vote Saved
+          Rating Saved
         </Alert>
-      </PortfolioVotingContainer>
+      </PortfolioRatingContainer>
     )
   }
 }
 
-export default PortfolioVotePanel
+export default PortfolioRatingPanel

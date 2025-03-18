@@ -1,0 +1,10 @@
+mutation sendPortfolioRating($input: RatingInput!) {
+  rating(input: $input) {
+    id
+    portfolio {
+      id
+      score
+    }
+    rating
+  }
+}

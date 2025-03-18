@@ -57,7 +57,9 @@ function PortfolioPeriodJudgingTab(props) {
                     })}
                     </div>
                     <Row>
+                        <Row>
                         <PortfolioVotePanel vote={1} /> 
+                    </Row> 
                     </Row>
                     <button
                     className="btn btn-primary"

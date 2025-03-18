@@ -89,6 +89,7 @@ type Portfolio {
     studentUsername: String!
     description: String
     portfolioPeriodId: ID
+    score: Float
     entries: [Entry]
     createdAt: Date!
     updatedAt: Date!
@@ -185,6 +186,19 @@ input VoteInput {
     judgeUsername: String!
     entryId: Int!
     value: Int!
+}
+
+type Rating {
+    id: ID!
+    portfolio: Entry
+    rating: Int!
+    judge: User
+}
+
+input RatingInput {
+    portfolioId: Int!
+    rating: Int!
+    judgeUsername: String!
 }
 
 interface Entry {
@@ -346,6 +360,8 @@ type Query {
     shows(orderBy: OrderByItem, studentUsername: String): [Show]
     vote(entryId: ID!, judgeUsername: String!): Vote
     votes(showId: ID!, judgeUsername: String): [Vote]
+    rating(portfolioId: ID!, judgeUsername: String!): Rating
+    ratings(portfolioId: ID!): [Rating]
     photo(id: ID!): Photo
     video(id: ID!): Video
     otherMedia(id: ID!): OtherMedia
@@ -385,6 +401,7 @@ type Mutation {
     updateEntry(id: ID!, input: EntryUpdate!): Entry
 
     vote(input: VoteInput): Vote
+    rating(input: RatingInput): Rating
 }
 
 enum SortDirection {
