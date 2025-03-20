@@ -1,0 +1,26 @@
+query Portfolios($portfolioPeriodId: ID!) {
+  portfolios(portfolioPeriodId: $portfolioPeriodId) {
+    id
+    title
+    createdAt
+    entries{
+        id
+        title
+        entryType
+        forSale
+        comment
+        moreCopies
+        ... on Video {
+        provider
+        videoId
+        }
+        ... on Photo {
+        path
+        }
+        ... on OtherMedia {
+        path
+        }
+    }
+    score
+  }
+}

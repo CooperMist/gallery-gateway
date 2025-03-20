@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import SinglePortfolioModal from "../../Student/components/SinglePortfolioModal";
 import PortfolioEntry from '../../Student/components/portfolio/PortfolioEntry'
-import PortfolioVotePanel from '../containers/PortfolioVotePanel'
+import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 
 
 function PortfolioPeriodJudgingTab(props) {
@@ -58,7 +58,7 @@ function PortfolioPeriodJudgingTab(props) {
                     </div>
                     <Row>
                         <Row>
-                        <PortfolioVotePanel vote={1} /> 
+                        <PortfolioRatingPanel vote={1} /> 
                     </Row> 
                     </Row>
                     <button

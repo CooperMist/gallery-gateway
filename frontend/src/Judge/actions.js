@@ -7,6 +7,8 @@ import ShowVotes from './queries/showVotes.graphql'
 import GetVote from './queries/entryVote.graphql'
 import PortfolioPeriodRatings from './queries/portfolioPeriodRatings.graphql'
 import GetPortfolioRating from './queries/portfolioRating.graphql'
+import PortfolioQuery from './queries/portfolio.graphql'
+import PortfoliosQuery from './queries/portfolios.graphql'
 
 export const FETCH_SUBMISSION = 'FETCH_SUBMISSION'
 export const FETCH_SUBMISSIONS = 'FETCH_SUBMISSIONS'
@@ -14,9 +16,13 @@ export const FETCH_VOTES = 'FETCH_VOTES'
 export const FETCH_VOTE = 'FETCH_VOTE'
 export const WILL_FETCH_VOTES = 'WILL_FETCH_VOTES'
 export const WILL_FETCH_SUBMISSIONS = 'WILL_FETCH_SUBMISSIONS'
+
+export const FETCH_PORTFOLIO = 'FETCH_PORTFOLIO'
+export const FETCH_PORTFOLIOS = 'FETCH_PORTFOLIOS'
 export const FETCH_PORTFOLIO_RATINGS = 'FETCH_PORTFOLIO_RATINGS'
 export const FETCH_PORTFOLIO_RATING = 'FETCH_PORTFOLIO_RATING'
 export const WILL_FETCH_PORTFOLIO_RATINGS = 'WILL_FETCH_PORTFOLIO_RATINGS'
+export const WILL_FETCH_PORTFOLIOS = 'WILL_FETCH_PORTFOLIOS'
 
 export const fetchSubmission = submissionId => (dispatch, getState, client) => {
   return client
@@ -91,6 +97,43 @@ export const setViewing = (showId, entryId) => (dispatch, getState, client) => {
   dispatch(push(`/show/${showId}/vote?on=${entryId}`))
 }
 
+export const fetchPortfolio = portfolioId => (dispatch, getState, client) => {
+  return client
+    .query({
+      query: PortfolioQuery,
+      variables: {
+        id: portfolioId
+      }
+    })
+    .then(({ data: { portfolio } }) =>
+      dispatch({ type: FETCH_PORTFOLIO, payload: portfolio })
+    )
+    .catch(err => dispatch(displayError(err.message)))
+}
+
+export const fetchPortfolios = portfolioPeriodId => (dispatch, getState, client) => {
+  const { shared: { auth: { user: { username } } } } = getState()
+
+  dispatch({ type: WILL_FETCH_PORTFOLIOS, payload: portfolioPeriodId })
+  return client
+    .query({
+      query: PortfoliosQuery,
+      variables: {
+        id: portfolioPeriodId
+      }
+    })
+    .then(({ data: { portfolios } }) =>
+      dispatch({
+        type: FETCH_PORTFOLIOS,
+        payload: {
+          portfolios: portfolios.filter(s => !s.excludeFromJudging),
+          username
+        }
+      })
+    )
+    .catch(err => dispatch(displayError(err.message)))
+}
+
 export const fetchPortfolioRatings = portfolioPeriodId => (dispatch, getState, client) => {
   const { shared: { auth: { user: { username } } } } = getState()
 
@@ -121,4 +164,8 @@ export const fetchPortfolioRating = portfolioId => (dispatch, getState, client) 
     })
     .then(({ data: { rating } }) => dispatch({ type: FETCH_PORTFOLIO_RATING, payload: rating }))
     .catch(err => dispatch(displayError(err.message)))
+}
+
+export const setPortfolioViewing = (portfolioPeriodId, portfolioId) => (dispatch, getState, client) => {
+  dispatch(push(`/portfolio-period/${portfolioPeriodId}/rating?on=${portfolioId}`))
 }
