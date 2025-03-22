@@ -1,6 +1,6 @@
 import Portfolio from '../../models/portfolio'
 import { UserError } from 'graphql-errors'
-import { ADMIN } from '../../constants'
+import { ADMIN, JUDGE } from '../../constants'
 import { isRequestingOwnUser } from './queryUtils'
 
 export function portfolio (_, args, context) {
@@ -31,3 +31,19 @@ export function portfolios (_, args, context) {
   // Otherwise just show all portfolios (with possible ordering)
   return Portfolio.findAll(order)
 }
+
+
+export function periodPortfolios (_, args, context) {
+  // Students can only look at their own portfolios
+  if (context.authType !== ADMIN && context.authType !== JUDGE) {
+     throw new UserError('Permission Denied')
+   }
+
+  return Portfolio.findAll({
+      where: {
+        portfolioPeriodId: args.portfolioPeriodId
+      }
+    })
+}
+
+

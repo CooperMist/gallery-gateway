@@ -3,6 +3,8 @@ query Portfolios($id: ID!) {
     id
     title
     createdAt
+    portfolioPeriodId
+    score
     entries{
         id
         title
@@ -21,6 +23,5 @@ query Portfolios($id: ID!) {
         path
         }
     }
-    score
   }
 }

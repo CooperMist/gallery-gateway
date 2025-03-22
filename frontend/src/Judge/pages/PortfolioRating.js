@@ -157,6 +157,7 @@ const mapStateToProps = (state, ownProps) => {
     let { on: portfolioId } = queryString.parse(state.router.location.search)
     console.log("portfolioPeriodId: " + portfolioPeriodId + "\n")
     console.log("portfolio collection thing: " + state.judge.queues[portfolioPeriodId] + "\n")
+    console.log("portfolios: " + state.portfolios + "\n")
     // If this portfolioId is not in the ordering, throw it out
     if (order.indexOf(portfolioId) < 0) {
       portfolioId = null

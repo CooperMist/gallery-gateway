@@ -1,4 +1,4 @@
-import Rating from '../../models/rating'
+import {Rating, PortfolioPeriod} from '../../models/rating'
 import Portfolio from '../../models/portfolio'
 
 import { UserError } from 'graphql-errors'
@@ -10,9 +10,13 @@ export function ratings (_, args, context) {
   if (context.authType !== ADMIN && !isRequestingOwnJudgeUser) {
     throw new UserError('Permission Denied')
   }
-  //return all ratings for a given portfolio
-    return Rating.findAll({
-    where: { portfolioId: args.portfolioId }
+  //return all ratings for a given portfolio period
+  return PortfolioPeriod.findOne({
+    where: {
+      id: args.portfolioPeriodId }
+    }).then((portfolioPeriod) => {
+      const portfolioIds = portfolioPeriod.portfolios.map(portfolio => portfolio.id)
+      return getRatings(args.judgeUsername, context.authType, portfolioIds)
   })
 }
 
@@ -30,3 +34,20 @@ export function rating (_, args, context) {
   })
 }
 
+function getRatings (username, authType, portfolioIds) {
+  // Give all ratings on the portfolio period if the user
+  // is an admin and username was not given
+  if (authType === ADMIN && !username) {
+    return Rating.findAll({
+      where: { portfolioId: portfolioIds }
+    })
+  } else {
+    // Return the ratings only for the given judge
+    return Rating.findAll({
+      where: {
+        judgeUsername: username,
+        portfolioId: portfolioIds
+      }
+    })
+  }
+}

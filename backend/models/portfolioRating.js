@@ -16,7 +16,7 @@ const PortfolioRating = sequelize.define('portfolioRating', {
     onDelete: 'cascade',
     onUpdate: 'cascade'
   },
-  value: {
+  rating: {
     type: DataTypes.DOUBLE,
     defaultValue: 0,
     allowNull: false

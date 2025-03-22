@@ -367,7 +367,7 @@ type Query {
     otherMedia(id: ID!): OtherMedia
     entry(id: ID!): Entry
     entries(showId: ID, studentUsername: String): [Entry]
-    periodPortfolios(portfolioPeriodId: ID, studentUsername: String): [Portfolio]
+    periodPortfolios(portfolioPeriodId: ID!): [Portfolio]
 }
 
 type Mutation {

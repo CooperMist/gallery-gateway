@@ -204,6 +204,7 @@ const portfolios = (state = {}, action) => {
         }
       }
     case actions.FETCH_PORTFOLIOS:
+      console.log("Porfolios Payload " + action.payload.portfolios.length)
       if (!action.payload.portfolios.length) {
         return state
       }
@@ -244,6 +245,7 @@ const ratings = (state = initialRatingState, action) => {
   switch (action.type) {
     case actions.FETCH_PORTFOLIO_RATINGS:
       if (action.payload.ratings == null || !action.payload.ratings.length) {
+        console.log("Rating Payload = " + action.payload.ratings)
         return state
       }
 
@@ -297,7 +299,7 @@ const initialRatingQueueState = {
 const ratingQueue = (state = initialRatingQueueState, action) => {
   switch (action.type) {
     case actions.FETCH_PORTFOLIOS:
-      if(action.payloud.portfolios == null) {
+      if(action.payload.portfolios == null) {
         return state
       }
       const portfolioIds = action.payload.portfolios.map(
@@ -347,7 +349,7 @@ const ratingQueues = (state = {}, action) => {
         return state
       }
       // proxy the action to the subqueue
-      const portfolioPeriodId = action.payload.portfolios[0].portfolioPeriod.id
+      const portfolioPeriodId = action.payload.portfolios[0].portfolioPeriodId
       return {
         ...state,
         [portfolioPeriodId]: ratingQueue(state[portfolioPeriodId], action)

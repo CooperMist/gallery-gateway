@@ -99,7 +99,6 @@ export const setViewing = (showId, entryId) => (dispatch, getState, client) => {
 
 export const fetchPortfolio = portfolioId => (dispatch, getState, client) => {
   return client
-  console.log("Fetch Portfolio Action")
     .query({
       query: PortfolioQuery,
       variables: {
@@ -122,11 +121,11 @@ export const fetchPortfolios = portfolioPeriodId => (dispatch, getState, client)
         id: portfolioPeriodId
       }
     })
-    .then(({ data: { portfolios } }) =>
+    .then(({ data: { periodPortfolios } }) =>
       dispatch({
         type: FETCH_PORTFOLIOS,
         payload: {
-          portfolios: portfolios.filter(s => !s.excludeFromJudging),
+          portfolios: periodPortfolios,
           username
         }
       })
