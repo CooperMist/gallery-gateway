@@ -8,7 +8,7 @@ import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
-import { setportfolioViewing, fetchPortfolioRatings } from '../actions'
+import { setportfolioViewing, fetchPortfolioRatings, fetchPortfolios, qufetchRatings } from '../actions'
 
 
 class PortfolioRating extends Component{
@@ -30,6 +30,16 @@ class PortfolioRating extends Component{
         totalPortfolios: PropTypes.number.isRequired,
         currentIndex: PropTypes.number.isRequired
       }
+
+    componentDidMount () {
+      this.props.fetchPortfolios()
+      this.props.fetchPortfolioRatings()
+      document.addEventListener('keydown', this.handleKeyInput)
+    }
+
+    componentWillUnmount () {
+      document.removeEventListener('keydown', this.handleKeyInput)
+    }
 
     render () {
         const {
@@ -144,7 +154,8 @@ const mapStateToProps = (state, ownProps) => {
     const { order = [], loadingRatings = true, loadingPortfolios = true } =
       state.judge.queues[portfolioPeriodId] || {}
     let { on: portfolioId } = queryString.parse(state.router.location.search)
-    
+    console.log("portfolioPeriodId: " + portfolioPeriodId + "\n")
+    console.log("portfolio collection thing: " + state.judge.queues[portfolioPeriodId] + "\n")
     // If this portfolioId is not in the ordering, throw it out
     if (order.indexOf(portfolioId) < 0) {
       portfolioId = null
@@ -209,12 +220,12 @@ const mapStateToProps = (state, ownProps) => {
   }
   
   const mapDispatchToProps = (dispatch, ownProps) => {
-    const showId = ownProps.match.params.id
+    const portfolioPeriodId = ownProps.match.params.id
   
     return {
-      setPortfolioViewing: portfolioId => dispatch(setPortfolioViewing(portfolioPeriodId, submissionId)),
+      setPortfolioViewing: portfolioId => dispatch(setPortfolioViewing(portfolioPeriodId, portfolioId)),
       fetchPortfolios: () => dispatch(fetchPortfolios(portfolioPeriodId)),
-      fetchRatings: () => dispatch(fetchRatings(portfolioPeriodId))
+      fetchPortfolioRatings: () => dispatch(fetchPortfolioRatings(portfolioPeriodId))
     }
   }
   

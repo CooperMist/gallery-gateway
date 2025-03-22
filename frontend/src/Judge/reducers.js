@@ -242,7 +242,7 @@ const initialRatingState = {
 }
 const ratings = (state = initialRatingState, action) => {
   switch (action.type) {
-    case actions.FETCH_RATINGS:
+    case actions.FETCH_PORTFOLIO_RATINGS:
       if (!action.payload.rating.length) {
         return state
       }
@@ -267,7 +267,7 @@ const ratings = (state = initialRatingState, action) => {
           ...ratingsByPortfolioId
         }
       }
-    case actions.FETCH_RATING:
+    case actions.FETCH_PORTFOLIO_RATING:
       if (!action.payload.id) {
         return state
       }
@@ -320,7 +320,7 @@ const ratingQueue = (state = initialRatingQueueState, action) => {
         ...state,
         loadingPortfolios: true
       }
-    case actions.WILL_FETCH_RATINGS:
+    case actions.WILL_FETCH_PORTFOLIO_RATINGS:
       return {
         ...state,
         loadingRatings: true
@@ -355,7 +355,7 @@ const ratingQueues = (state = {}, action) => {
         ...state,
         [action.payload]: ratingQueue(state[action.payload], action)
       }
-    case actions.FETCH_RATINGS:
+    case actions.FETCH_PORTFOLIO_RATINGS:
       return {
         ...state,
         [action.payload.portfolioPeriodId]: ratingQueue(state[action.payload.portfolioPeriodId], action)

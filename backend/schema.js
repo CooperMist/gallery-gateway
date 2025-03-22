@@ -190,7 +190,7 @@ input VoteInput {
 
 type Rating {
     id: ID!
-    portfolio: Entry
+    portfolio: Portfolio
     rating: Int!
     judge: User
 }
@@ -361,12 +361,13 @@ type Query {
     vote(entryId: ID!, judgeUsername: String!): Vote
     votes(showId: ID!, judgeUsername: String): [Vote]
     rating(portfolioId: ID!, judgeUsername: String!): Rating
-    ratings(portfolioId: ID!): [Rating]
+    ratings(portfolioPeriodId: ID!, judgeUsername: String!): [Rating]
     photo(id: ID!): Photo
     video(id: ID!): Video
     otherMedia(id: ID!): OtherMedia
     entry(id: ID!): Entry
     entries(showId: ID, studentUsername: String): [Entry]
+    periodPortfolios(portfolioPeriodId: ID, studentUsername: String): [Portfolio]
 }
 
 type Mutation {

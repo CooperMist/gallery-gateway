@@ -1,5 +1,5 @@
-query Portfolios($portfolioPeriodId: ID!) {
-  portfolios(portfolioPeriodId: $portfolioPeriodId) {
+query Portfolios($id: ID!) {
+  periodPortfolios(portfolioPeriodId: $id) {
     id
     title
     createdAt

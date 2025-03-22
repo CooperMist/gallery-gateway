@@ -137,13 +137,13 @@ export const fetchPortfolios = portfolioPeriodId => (dispatch, getState, client)
 export const fetchPortfolioRatings = portfolioPeriodId => (dispatch, getState, client) => {
   const { shared: { auth: { user: { username } } } } = getState()
 
-  dispatch({ type: WILL_FETCH_PORTFOLIO_RATINGS, payload: showId })
+  dispatch({ type: WILL_FETCH_PORTFOLIO_RATINGS, payload: portfolioPeriodId })
   return client
     .query({
       query: PortfolioPeriodRatings,
       variables: {
         portfolioPeriodId,
-        username
+        judgeUsername: username
       }
     })
     .then(({ data: { ratings } }) =>
