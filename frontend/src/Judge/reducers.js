@@ -243,7 +243,7 @@ const initialRatingState = {
 const ratings = (state = initialRatingState, action) => {
   switch (action.type) {
     case actions.FETCH_PORTFOLIO_RATINGS:
-      if (!action.payload.rating.length) {
+      if (action.payload.ratings == null || !action.payload.ratings.length) {
         return state
       }
 
@@ -297,6 +297,9 @@ const initialRatingQueueState = {
 const ratingQueue = (state = initialRatingQueueState, action) => {
   switch (action.type) {
     case actions.FETCH_PORTFOLIOS:
+      if(action.payloud.portfolios == null) {
+        return state
+      }
       const portfolioIds = action.payload.portfolios.map(
         portfolio => portfolio.id
       )
@@ -340,7 +343,7 @@ const ratingQueues = (state = {}, action) => {
   // Proxy all queue actions to the particular queue we want to target
   switch (action.type) {
     case actions.FETCH_PORTFOLIOS:
-      if (action.payload.portfolio.length === 0) {
+      if (action.payload.portfolios.length === 0) {
         return state
       }
       // proxy the action to the subqueue

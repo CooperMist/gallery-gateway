@@ -4,6 +4,6 @@ query PortfolioPeriodRatings($portfolioPeriodId: ID!, $username: String!) {
     portfolio {
       id
     },
-    value
+    rating
   }
 }

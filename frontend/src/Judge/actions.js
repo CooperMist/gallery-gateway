@@ -99,6 +99,7 @@ export const setViewing = (showId, entryId) => (dispatch, getState, client) => {
 
 export const fetchPortfolio = portfolioId => (dispatch, getState, client) => {
   return client
+  console.log("Fetch Portfolio Action")
     .query({
       query: PortfolioQuery,
       variables: {
@@ -113,7 +114,6 @@ export const fetchPortfolio = portfolioId => (dispatch, getState, client) => {
 
 export const fetchPortfolios = portfolioPeriodId => (dispatch, getState, client) => {
   const { shared: { auth: { user: { username } } } } = getState()
-
   dispatch({ type: WILL_FETCH_PORTFOLIOS, payload: portfolioPeriodId })
   return client
     .query({
@@ -136,24 +136,24 @@ export const fetchPortfolios = portfolioPeriodId => (dispatch, getState, client)
 
 export const fetchPortfolioRatings = portfolioPeriodId => (dispatch, getState, client) => {
   const { shared: { auth: { user: { username } } } } = getState()
-
   dispatch({ type: WILL_FETCH_PORTFOLIO_RATINGS, payload: portfolioPeriodId })
   return client
     .query({
       query: PortfolioPeriodRatings,
       variables: {
         portfolioPeriodId,
-        judgeUsername: username
+        username
       }
     })
     .then(({ data: { ratings } }) =>
-      dispatch({ type: FETCH_PORTFOLIO_RATINGS, payload: { ratings, showId } })
+      dispatch({ type: FETCH_PORTFOLIO_RATINGS, payload: { ratings, portfolioPeriodId } })
     )
     .catch(err => dispatch(displayError(err.message)))
 }
 
 export const fetchPortfolioRating = portfolioId => (dispatch, getState, client) => {
   const { shared: { auth: { user: { username } } } } = getState()
+  
   return client
     .query({
       query: GetPortfolioRating,

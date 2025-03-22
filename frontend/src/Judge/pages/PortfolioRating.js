@@ -8,7 +8,7 @@ import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
-import { setportfolioViewing, fetchPortfolioRatings, fetchPortfolios, qufetchRatings } from '../actions'
+import { setportfolioViewing, fetchPortfolioRatings, fetchPortfolios} from '../actions'
 
 
 class PortfolioRating extends Component{
@@ -25,13 +25,14 @@ class PortfolioRating extends Component{
         next: PropTypes.shape({
           id: PropTypes.string
         }),
-        fetchRatings: PropTypes.func.isRequired,
+        fetchPortfolioRatings: PropTypes.func.isRequired,
         rating: PropTypes.object,
         totalPortfolios: PropTypes.number.isRequired,
         currentIndex: PropTypes.number.isRequired
       }
 
     componentDidMount () {
+
       this.props.fetchPortfolios()
       this.props.fetchPortfolioRatings()
       document.addEventListener('keydown', this.handleKeyInput)
@@ -184,7 +185,7 @@ const mapStateToProps = (state, ownProps) => {
           ...queryString.parse(ownProps.location.search),
           on: portfolioId
         })
-        ownProps.history.replace(`/portfolio-period/${showId}/rating?${newQueryString}`)
+        ownProps.history.replace(`/portfolio-period/${portfolioPeriodId}/rating?${newQueryString}`)
       }
     }
   
