@@ -24,6 +24,7 @@ export default compose(
         mutate({
           variables: {
             input: {
+              portfolioPeriodId: parseInt(ownProps.portfolio.portfolioPeriodId),
               portfolioId: parseInt(ownProps.portfolio.id),
               rating,
               judgeUsername: ownProps.user.username

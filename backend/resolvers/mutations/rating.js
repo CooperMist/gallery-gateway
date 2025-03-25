@@ -1,9 +1,9 @@
-import Vote from '../../models/vote'
-import Entry from '../../models/entry'
+import PortfolioRatings from '../../models/portfolioRating'
 import User from '../../models/user'
 import { UserError } from 'graphql-errors'
 import { ADMIN, JUDGE, STUDENT } from '../../constants'
 import PortfolioPeriodJudge from '../../models/portfolioPeriodJudge'
+import Portfolio from '../../models/portfolio'
 
 function judgeIsAllowedToVote(judgeUsername, userType, portfolioPeriodId) {
     // Admins can vote on any show
@@ -19,7 +19,7 @@ function judgeIsAllowedToVote(judgeUsername, userType, portfolioPeriodId) {
     // Judges may only vote on entries submitted to shows they've been assigned to.
     return PortfolioPeriodJudge.findOne({
       where: {
-        portfolioPeriodId: portfolioPeriodId,
+        portfolioPeriodId: portfolioId,
         judgeUsername: judgeUsername,
       },
     }).then((portfolioPeriodJudge) => {
@@ -28,11 +28,11 @@ function judgeIsAllowedToVote(judgeUsername, userType, portfolioPeriodId) {
           new UserError('Judge is not assigned to this portfolio period')
         );
       }
+      return Promise.resolve();
     }
     );
 }
 
-//EVERYTHING ABOVE IS FINE, NEED TO WORK ON BELOW
 
 export function rating(_, args, context) {
     // Ensure the judge is voting as themselves
@@ -47,17 +47,17 @@ export function rating(_, args, context) {
   
     const input = args.input;
   
-    // Validate if the judge is allowed to vote on the portfolio
+    // Validate if the judge is allowed to rate on the portfolio
     return judgeIsAllowedToVote(input.judgeUsername, context.authType, input.portfolioPeriodId)
       .then(() => {
         // Create or update the vote for the portfolio
         return PortfolioRatings.findOrCreate({
           where: {
             judgeUsername: input.judgeUsername,
-            portfolioId: input.portfolioPeriodId,
+            portfolioId: input.portfolioId,
           },
           defaults: {
-            rating: input.value,
+            rating: input.rating,
           },
         }).then((res) => {
           const rating = res[0];
@@ -65,8 +65,21 @@ export function rating(_, args, context) {
           if (created) {
             return rating;
           } else {
-            return rating.update({ rating: input.value }).then(() => rating);
+            return rating.update({ rating: input.rating }).then(() => rating);
           }
-        });
+        })
+      })
+      .then((rating) => {
+
+        return Portfolio.findByPk(input.portfolioId)
+          .then((portfolio) => {
+            if (!portfolio) {
+              throw new UserError('Portfolio not found')
+            }
+            // Get and log the score of the entry
+            return portfolio.getScore().then(newScore => {
+              return portfolio.update({ score: newScore }).then(() => rating)
+            })
+          })
       })
 }

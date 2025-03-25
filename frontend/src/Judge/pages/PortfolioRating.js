@@ -8,7 +8,7 @@ import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
-import { setportfolioViewing, fetchPortfolioRatings, fetchPortfolios} from '../actions'
+import { setPortfolioViewing, fetchPortfolioRatings, fetchPortfolios} from '../actions'
 
 
 class PortfolioRating extends Component{
@@ -90,20 +90,18 @@ class PortfolioRating extends Component{
                 </Row>
                 <h2>Voting</h2>
                 <Row>
-                    {currentIndex != totalPortfolios ? 
+                    {currentIndex <= totalPortfolios ? 
                         <Col>
-                        <p><strong>Created:</strong> {new Date(portfolioPeriod.portfolios[currentIndex].createdAt).toDateString()}</p>
+                        <p><strong>Created:</strong> {new Date(portfolio.createdAt).toDateString()}</p>
                         <hr />
                         <h2>Entries</h2>
                         <div className='d-flex flex-column'>
-                        {portfolioPeriod.portfolios[currentIndex].entries.map((entry) => {
+                        {portfolio.entries.map((entry) => {
                             return <PortfolioEntry entry={entry} key={entry.id} />
                         })}
                         </div>
                         <Row>
-                            <Row>
-                            <PortfolioRatingPanel vote={1} /> 
-                        </Row> 
+                            <PortfolioRatingPanel portfolio={portfolio} rating={rating} /> 
                         </Row>
                         {next && next.id ? (
                             <button
@@ -153,11 +151,9 @@ class PortfolioRating extends Component{
 const mapStateToProps = (state, ownProps) => {
     const portfolioPeriodId = ownProps.match.params.id
     const { order = [], loadingRatings = true, loadingPortfolios = true } =
-      state.judge.queues[portfolioPeriodId] || {}
+      state.judge.ratingQueues[portfolioPeriodId] || {}
     let { on: portfolioId } = queryString.parse(state.router.location.search)
-    console.log("portfolioPeriodId: " + portfolioPeriodId + "\n")
-    console.log("portfolio collection thing: " + state.judge.queues[portfolioPeriodId] + "\n")
-    console.log("portfolios: " + state.portfolios + "\n")
+
     // If this portfolioId is not in the ordering, throw it out
     if (order.indexOf(portfolioId) < 0) {
       portfolioId = null

@@ -74,9 +74,6 @@ export function vote (_, args, context) {
           }
           // Get and log the score of the entry
           return entry.getScore().then(newScore => {
-            console.log("Entry ID: " + entry.id)
-            console.log("Entry Title: " + entry.title)
-            console.log("Entry Score: " + newScore)
             return entry.update({ score: newScore }).then(() => vote)
           })
         })

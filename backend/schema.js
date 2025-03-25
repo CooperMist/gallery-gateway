@@ -196,6 +196,7 @@ type Rating {
 }
 
 input RatingInput {
+    portfolioPeriodId: Int!
     portfolioId: Int!
     rating: Int!
     judgeUsername: String!

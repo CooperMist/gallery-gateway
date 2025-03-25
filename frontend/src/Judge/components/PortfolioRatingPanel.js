@@ -25,7 +25,7 @@ const PortfolioRatingContainer = styled.div`
 class PortfolioRatingPanel extends Component {
   static propTypes = {
     handleError: PropTypes.func.isRequired,
-    makeRating: PropTypes.func.isRequired,
+    makePortfolioRating: PropTypes.func.isRequired,
     rating: PropTypes.shape({
       value: PropTypes.number
     })
@@ -47,10 +47,10 @@ class PortfolioRatingPanel extends Component {
     })
   }
 
-  handleRating = value => {
+  handleRating = rating => {
     const { makePortfolioRating, handleError } = this.props
 
-    makePortfolioRating(value)
+    makePortfolioRating(rating)
       .then(() => {
         this.setState({
           alertVisible: true
