@@ -18,6 +18,11 @@ export const getImageThumbnail = path => {
   return `${base}_thumb.${extn}`
 }
 
+export const getRawFile = path => {
+  const [base, extn] = path.split('.')
+  return `${base}_copy.${extn}`
+}
+
 /**
  * Performs a repeatable shuffle
  * @param {string} key the shuffle's unique keying which determines order

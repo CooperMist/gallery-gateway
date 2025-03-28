@@ -35,6 +35,8 @@ function judgeIsAllowedToVote(judgeUsername, userType, portfolioPeriodId) {
 
 
 export function rating(_, args, context) {
+  console.log("LOG In Rating");
+  
     // Ensure the judge is voting as themselves
     const isRequestingOwnJudgeUser =
       context.username !== undefined &&
@@ -44,7 +46,7 @@ export function rating(_, args, context) {
     if (!isRequestingOwnJudgeUser) {
       throw new UserError('Permission Denied');
     }
-  
+
     const input = args.input;
   
     // Validate if the judge is allowed to rate on the portfolio
@@ -62,6 +64,7 @@ export function rating(_, args, context) {
         }).then((res) => {
           const rating = res[0];
           const created = res[1];
+          console.log("Rating found: " + rating + "created: " + created);
           if (created) {
             return rating;
           } else {
@@ -76,7 +79,7 @@ export function rating(_, args, context) {
             if (!portfolio) {
               throw new UserError('Portfolio not found')
             }
-            // Get and log the score of the entry
+            // Get and log the score of the portfolio
             return portfolio.getScore().then(newScore => {
               return portfolio.update({ score: newScore }).then(() => rating)
             })

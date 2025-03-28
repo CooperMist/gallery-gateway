@@ -54,13 +54,16 @@ Portfolio.prototype.getEntries = function getEntries () {
 Portfolio.prototype.getScore = function getScore () {
   // Calculate score by getting all votes with this
   // entry id and then averaging over the sum of the votes
-  return PortfolioRating.findAll({ where: { porfolioId: this.id } })
+  return PortfolioRating.findAll({ where: { portfolioId: this.id } })
     .then((ratings) => {
-      const ratingValues = ratings.map(rating => rating.value)
-      if (ratingValues.length === 0) {
+      console.log('Ratings in portfolio.js:', ratings)
+      const ratingScores = ratings.map(rating => rating.rating)
+      if (ratingScores.length === 0) {
         return 0
       }
-      return ratingValues.reduce((acc, curr) => acc + curr) / ratingValues.length
+      console.log('Rating Scores: ', ratingScores)
+      console.log('Calculated Score:', ratingScores.reduce((acc, curr) => acc + curr) / ratingScores.length)
+      return ratingScores.reduce((acc, curr) => acc + curr) / ratingScores.length
     })
 }
 

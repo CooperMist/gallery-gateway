@@ -139,7 +139,7 @@ function PortfolioSubmissionForm(props) {
   /**
    * Creates the portfolio via the graphQL mutation prop provided by the container
    * Extracts the portfolio_id then loops over each submission and 
-   * creates an entry using the porfolio_id
+   * creates an entry using the portfolio_id
    * @param {React.FormEvent} event 
    */
   async function handleSubmit(event) {

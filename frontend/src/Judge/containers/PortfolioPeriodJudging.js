@@ -8,9 +8,9 @@ import PortfolioPeriodQuery from "../queries/portfolioPeriod.graphql"
 
 
 const mapDispatchToProps = (dispatch, { }) => ({
-    downloadZip: (porfolioId) =>
+    downloadZip: (portfolioId) =>
         dispatch(getDownloadToken()).then(() =>
-            dispatch(downloadPortfolioZip(porfolioId))
+            dispatch(downloadPortfolioZip(portfolioId))
         ),
     handleError: message => dispatch(displayError(message))
 })

@@ -195,7 +195,7 @@ const mapStateToProps = (state, ownProps) => {
         id: portfolioPeriodId
       },
       portfolio: portfolioId !== null ? portfolios[portfolioId] : null,
-      rating: portfolioId !== null ? ratings.byPortfolioId[portfolioId] : null,
+      rating: portfolioId !== null ? ratings.byPortfolioId[portfolioId].rating : null,
       currentIndex: viewing + 1,
       totalPortfolios: order.length
     }
