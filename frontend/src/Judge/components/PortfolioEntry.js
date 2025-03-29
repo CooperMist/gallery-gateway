@@ -1,7 +1,7 @@
 import React from "react"
 import { getImageThumbnail, getRawFile, STATIC_PATH } from '../../utils'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { EntryNoThumbContainer } from "./ShowCard";
+import { EntryNoThumbContainer } from "../../Student/components/ShowCard";
 import FaYouTube from '@fortawesome/fontawesome-free-brands/faYoutube'
 import FaVimeo from '@fortawesome/fontawesome-free-brands/faVimeoV'
 import FaBook from '@fortawesome/fontawesome-free-solid/faBook'
@@ -50,13 +50,16 @@ function PortfolioEntry({entry}) {
         </EntryNoThumbContainer>
       )
     case "OTHER":
+    const fileUrl = `${STATIC_PATH}${getRawFile(entry.path)}`;
+    const isPdf = entry.path.toLowerCase().endsWith(".pdf");
       return (
         <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative'>
           <h5>Other Submission  <FontAwesomeIcon icon={FaBook} /> </h5>
           <h5><span className="text-muted">Title: </span> {entry.title}</h5>
           <h5><span className="text-muted">Distribution Allowed:</span> {entry.distributionAllowed ? "Yes" : "No"}</h5>
-          <h5><a href={`${STATIC_PATH}${getRawFile(entry.path)}`} target="_blank" download>Download Link</a></h5>
-          <iframe src={`${STATIC_PATH}${getRawFile(entry.path)}`}></iframe>
+          <h5><a href={fileUrl} target="_blank" download>Download Link</a></h5>
+          {//<iframe src={fileUrl}></iframe>
+            }
         </EntryNoThumbContainer>
       )
     default:

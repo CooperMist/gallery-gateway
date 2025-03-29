@@ -26,9 +26,7 @@ class PortfolioRatingPanel extends Component {
   static propTypes = {
     handleError: PropTypes.func.isRequired,
     makePortfolioRating: PropTypes.func.isRequired,
-    rating: PropTypes.shape({
-      value: PropTypes.number
-    })
+    rating: PropTypes.number
   }
 
   constructor (props) {
@@ -67,30 +65,30 @@ class PortfolioRatingPanel extends Component {
 
     // Listen for key presses. Only update the choice if there is none selected
     // or the key pressed doesn't match the currently selected choice
-    if ((e.key === '1') && (!rating || rating.value !== ONE)) {
+    if ((e.key === '1') && (!rating || rating !== ONE)) {
       // 1 key
       this.handleRating(ONE)
     } else if (
       (e.key === '2') &&
-      (!rating || rating.value !== TWO)
+      (!rating || rating !== TWO)
     ) {
       // 2 key
       this.handleRating(TWO)
     } else if (
       (e.key === '3') &&
-      (!rating || rating.value !== THREE)
+      (!rating || rating!== THREE)
     ) {
       // 3 key
       this.handleRating(THREE)
     } else if (
       (e.key === '4') &&
-      (!rating || rating.value !== FOUR)
+      (!rating || rating !== FOUR)
     ) {
       // 4 key
       this.handleRating(FOUR)
     } else if (
       (e.key === '5') &&
-      (!rating || rating.value !== FIVE)
+      (!rating || rating !== FIVE)
     ) {
       // 5 key
       this.handleRating(FIVE)
@@ -112,49 +110,51 @@ class PortfolioRatingPanel extends Component {
       <PortfolioRatingContainer>
         <ButtonGroup style={{ width: '100%' }}>
           <Button
-            color={rating && rating.value === ONE ? 'dark' : 'light'}
+            color={rating && rating === ONE ? 'dark' : 'light'}
             size='lg'
-            disabled={rating && rating.value === ONE}
+            disabled={rating && rating === ONE}
             onClick={() => this.handleRating(ONE)}
             style={{ width: '20%', margin: '10px' }}
           >
             One
+            (Lowest)
           </Button>
           <Button
-            color={rating && rating.value === TWO ? 'dark' : 'light'}
+            color={rating && rating === TWO ? 'dark' : 'light'}
             size='lg'
-            disabled={rating && rating.value === TWO}
+            disabled={rating && rating === TWO}
             onClick={() => this.handleRating(TWO)}
             style={{ width: '20%', margin: '10px' }}
           >
             Two
           </Button>
           <Button
-            color={rating && rating.value === THREE ? 'dark' : 'light'}
+            color={rating && rating === THREE ? 'dark' : 'light'}
             size='lg'
-            disabled={rating && rating.value === THREE}
+            disabled={rating && rating === THREE}
             onClick={() => this.handleRating(THREE)}
             style={{ width: '20%', margin: '10px' }}
           >
            Three
           </Button>
           <Button
-            color={rating && rating.value === FOUR ? 'dark' : 'light'}
+            color={rating && rating === FOUR ? 'dark' : 'light'}
             size='lg'
-            disabled={rating && rating.value === FOUR}
+            disabled={rating && rating === FOUR}
             onClick={() => this.handleRating(FOUR)}
             style={{ width: '20%', margin: '10px' }}
           >
            Four
           </Button>
           <Button
-            color={rating && rating.value === FIVE ? 'dark' : 'light'}
+            color={rating && rating === FIVE ? 'dark' : 'light'}
             size='lg'
-            disabled={rating && rating.value === FIVE}
+            disabled={rating && rating === FIVE}
             onClick={() => this.handleRating(FIVE)}
             style={{ width: '20%', margin: '10px' }}
           >
            Five
+           (Highest)
           </Button>
         </ButtonGroup>
         <Alert

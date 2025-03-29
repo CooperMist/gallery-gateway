@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import SinglePortfolioModal from "../../Student/components/SinglePortfolioModal";
-import PortfolioEntry from '../../Student/components/portfolio/PortfolioEntry'
+import PortfolioEntry from '../components/PortfolioEntry'
 import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
@@ -26,7 +26,7 @@ class PortfolioRating extends Component{
           id: PropTypes.string
         }),
         fetchPortfolioRatings: PropTypes.func.isRequired,
-        rating: PropTypes.object,
+        rating: PropTypes.number,
         totalPortfolios: PropTypes.number.isRequired,
         currentIndex: PropTypes.number.isRequired
       }
@@ -54,7 +54,6 @@ class PortfolioRating extends Component{
           currentIndex
         } = this.props
 
-
         // Handle bad state where portfolio period is not an object
         if (typeof portfolioPeriod !== "object") {
             return (
@@ -79,7 +78,19 @@ class PortfolioRating extends Component{
                     </Row>
                 </Container>
             )
-            }
+          }
+
+          if(portfolio == undefined) {
+            return (
+              <Container fluid>
+                      <Row className={"d-none d-lg-flex mt-5"}>
+                          <Col xs={12}>
+                              Loading
+                          </Col>
+                      </Row>
+                  </Container>
+            )
+          }
 
         return (
             <Container>
@@ -151,7 +162,7 @@ class PortfolioRating extends Component{
 const mapStateToProps = (state, ownProps) => {
     const portfolioPeriodId = ownProps.match.params.id
     const { order = [], loadingRatings = true, loadingPortfolios = true } =
-      state.judge.ratingQueues[portfolioPeriodId] || {}
+      state.judge.ratingQueues[portfolioPeriodId] || {}    
     let { on: portfolioId } = queryString.parse(state.router.location.search)
 
     // If this portfolioId is not in the ordering, throw it out
@@ -195,7 +206,7 @@ const mapStateToProps = (state, ownProps) => {
         id: portfolioPeriodId
       },
       portfolio: portfolioId !== null ? portfolios[portfolioId] : null,
-      rating: portfolioId !== null ? ratings.byPortfolioId[portfolioId].rating : null,
+      rating: portfolioId !== null && ratings.byPortfolioId.size() != 0 ?  ratings.byPortfolioId[portfolioId].rating : null,
       currentIndex: viewing + 1,
       totalPortfolios: order.length
     }
