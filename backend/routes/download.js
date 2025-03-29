@@ -345,89 +345,51 @@ router.route('/csv/:showId')
       })
   })
 
-  router.route('/csv/:portfolioPeriodId')//WIP
+  router.route('/portfolioPeriodCsv/:portfolioPeriodId')
   .get(ensureAdminDownloadToken, (req, res, next) => {
-    // find the show where: { entryId: this.id } }
-    //Portfolio.findAll({where: {portfolioPeriodId: req.params.portfolioPeriodId}}
+
     PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
       .then(portfolioPeriod => {
+        console.log("LOGGER PortfolioPeriod:")
+        console.log(portfolioPeriod)
         // find all image Entries to this show id
-        Portfolio.findAll({where: {portfolioPeriodId: req.params.portfolioPeriodId}})
+        Portfolio.findAll({where: {portfolioPeriodId: portfolioPeriod.dataValues.id}})
           .then(portfolios => {
-            return Promise.all([
-              submissionsWithSubmittersPromise(portfolios)
-            ])
-              .then(([submissionsWithSubmitters]) => {
+            console.log("LOGGER FULL PORTFOLIOS:")
+            console.log(portfolios)
                 // Format the data to be csv-stringified
-                return submissionsWithSubmitters.reduce((arr, { user, group, portfolios }) => {
-                  // create update entry objects that contain modified entry data plus:
-                  // path, vert and horiz dementions medaiType, videoUrl
-                  const newSubmissionSummaries = [portfolios].map(portfolio => {
+                const newPortfolioSummaries = portfolios.map(portfolio => {
                     let portfolioData = portfolio.dataValues
+                    console.log("LOGGER SINGLE PORTFOLIO:")
+                    console.log(portfolio)
+                    console.log("LOGGER PORTFOLIO DATA:")
+                    console.log(portfolio.dataValues)
                     let newEntry = {
                       studentEmail: `${portfolioData.studentUsername}@rit.edu`,
-                      studentFirstName: user ? user.firstName : null,
-                      studentLastName: user ? user.lastName : null,
-                      studentHometown: user ? user.hometown : null,
-                      studentDisplayName: user ? user.displayName : null,
-                      isGroupSubmission: !!portfolioData.groupId,
-                      groupParticipants: group ? group.participants : null,
                       title: portfolioData.title,
-                      comment: portfolioData.comment,
-                      moreCopies: portfolioData.moreCopies,
-                      forSale: portfolioData.forSale,
-                      awardWon: portfolioData.awardWon,
-                      invited: portfolioData.invited,
-                      yearLevel: portfolioData.yearLevel,
                       score: portfolioData.score,
-                      academicProgram: portfolioData.academicProgram,
-                      excludeFromJudging: portfolioData.excludeFromJudging,
-                      submittedAt: moment(portfolioData.createdAt).format(),
-                      path: '',
-                      horizDimInch: '',
-                      vertDimInch: '',
-                      mediaType: '',
-                      videoUrl: ''
+                      submittedAt: moment(portfolioData.createdAt).format()
                     }
-                    // Add entry data to data object
-
+                    console.log("LOGGER NEW ENTRY:")
+                    console.log(newEntry)
+                    return {...newEntry}
                   })
-                  return [...arr, ...newSubmissionSummaries]
+                  return {...newPortfolioSummaries}
                 }, [])
               })
               .then(portfolioSummaries => {
                 // Send csv data to browser
                 const columns = {
                   studentEmail: 'Student Email',
-                  studentFirstName: 'Student First Name',
-                  studentLastName: 'Student Last Name',
-                  studentHometown: 'Student Homewtown',
-                  studentDisplayName: 'Student Display Name',
-                  isGroupSubmission: 'Group Submission?',
-                  groupParticipants: 'Group Participants',
-                  entryType: 'Submission Type',
                   title: 'Title',
-                  comment: 'Artist Comment',
-                  moreCopies: 'More Copies?',
-                  forSale: 'For Sale?',
-                  awardWon: 'Award Won?',
-                  invited: 'Invited?',
-                  yearLevel: 'Year Level',
                   score: 'Score',
-                  academicProgram: 'Academic Program',
-                  excludeFromJudging: 'Exclude From Judging?',
-                  submittedAt: 'Submitted At',
-                  path: 'File',
-                  horizDimInch: 'Width (in.)',
-                  vertDimInch: 'Height (in.)',
-                  mediaType: 'Media Type',
-                  videoUrl: 'Video URL'
+                  submittedAt: 'Submitted At'
                 }
                 stringifyAsync(portfolioSummaries, { header: true, columns: columns })
                   .then(output => {
                     res.status(200)
                       .type('text/csv')
-                      .attachment(`${portfolioPeriod.name}.csv`)
+                      .attachment(`${portfolioPeriod.dataValues.name}.csv`)
                       .send(output)
                   })
                   .catch(err => {
@@ -435,9 +397,7 @@ router.route('/csv/:showId')
                     res.status(500).send('500: Oops! Try again later.')
                   })
               })
-          })
       })
-  })
 
 
 /*

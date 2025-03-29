@@ -6,7 +6,6 @@ import moment from 'moment'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import FaTable from '@fortawesome/fontawesome-free-solid/faTable'
 import FaEdit from '@fortawesome/fontawesome-free-solid/faEdit'
-import { downloadPortfolioPeriodCsv } from '../../actions'
 
 function PortfolioPeriodDetailsTab(props){
 
@@ -41,7 +40,7 @@ function PortfolioPeriodDetailsTab(props){
               className='text-left'
               outline
               block
-              onClick={() => downloadPortfolioPeriodCsv()}
+              onClick={() => props.downloadPortfolioPeriodCsv()}
             >
               <FontAwesomeIcon icon={FaTable} className='align-middle' />{' '}
               Download Portfolio Period CSV Report
