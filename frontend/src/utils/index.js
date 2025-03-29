@@ -20,7 +20,7 @@ export const getImageThumbnail = path => {
 
 export const getRawFile = path => {
   const [base, extn] = path.split('.')
-  return `${base}_copy.${extn}`
+  return `${base}.${extn}`
 }
 
 /**

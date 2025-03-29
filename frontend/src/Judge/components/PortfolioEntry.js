@@ -40,23 +40,22 @@ function PortfolioEntry({entry}) {
         </EntryNoThumbContainer>
       )
     case "PHOTO":
-      const click_func = `window.open('${STATIC_PATH}${getRawFile(entry.path)}', '_blank');`
       return (
-        <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative' onClick={click_func}>
+        <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative'>
           <h5>Photo Submission  <FontAwesomeIcon icon={FaImage} /> </h5>
           <h5><span className="text-muted">Title: </span> {entry.title}</h5>
           <h5><span className="text-muted">Distribution Allowed:</span> <span className="fw-bold">{entry.distributionAllowed ? "Yes" : "No"}</span></h5>
+          <h5><a href={`${STATIC_PATH}${getRawFile(entry.path)}`} target="_blank" download>Full Image</a></h5>
           <img className="img-fluid" src={`${STATIC_PATH}${getImageThumbnail(entry.path)}`} alt="Submitted entry" />
         </EntryNoThumbContainer>
       )
     case "OTHER":
-      const click_other_func = `window.open('${STATIC_PATH}${getRawFile(entry.path)}', '_blank');`
       return (
-        <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative' onClick={click_func}>
+        <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative'>
           <h5>Other Submission  <FontAwesomeIcon icon={FaBook} /> </h5>
           <h5><span className="text-muted">Title: </span> {entry.title}</h5>
           <h5><span className="text-muted">Distribution Allowed:</span> {entry.distributionAllowed ? "Yes" : "No"}</h5>
-          <a href={`${STATIC_PATH}${getRawFile(entry.path)}`} download>Download Link</a>
+          <h5><a href={`${STATIC_PATH}${getRawFile(entry.path)}`} target="_blank" download>Download Link</a></h5>
           <iframe src={`${STATIC_PATH}${getRawFile(entry.path)}`}></iframe>
         </EntryNoThumbContainer>
       )
