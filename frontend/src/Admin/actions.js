@@ -171,3 +171,12 @@ export const downloadCsv = showId => (dispatch, getState, client) => {
     '_self'
   )
 }
+
+export const downloadPortfolioPeriodCsv = portfolioPeriodId => (dispatch, getState, client) => {
+  const { shared: { auth: { downloadToken } } } = getState()
+
+  window.open(
+    `${CSV_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`,
+    '_self'
+  )
+}

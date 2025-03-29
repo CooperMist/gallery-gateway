@@ -20,6 +20,7 @@ import sequelize from '../config/sequelize'
 import { parseToken } from '../helpers/jwt'
 import Portfolio from '../models/portfolio'
 import Other from '../models/other'
+import PortfolioPeriod from '../models/portfolioPeriod'
 
 const readFileAsync = promisify(fs.readFile)
 const stringifyAsync = promisify(stringify)
@@ -343,6 +344,101 @@ router.route('/csv/:showId')
           })
       })
   })
+
+  router.route('/csv/:portfolioPeriodId')//WIP
+  .get(ensureAdminDownloadToken, (req, res, next) => {
+    // find the show where: { entryId: this.id } }
+    //Portfolio.findAll({where: {portfolioPeriodId: req.params.portfolioPeriodId}}
+    PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
+      .then(portfolioPeriod => {
+        // find all image Entries to this show id
+        Portfolio.findAll({where: {portfolioPeriodId: req.params.portfolioPeriodId}})
+          .then(portfolios => {
+            return Promise.all([
+              submissionsWithSubmittersPromise(portfolios)
+            ])
+              .then(([submissionsWithSubmitters]) => {
+                // Format the data to be csv-stringified
+                return submissionsWithSubmitters.reduce((arr, { user, group, portfolios }) => {
+                  // create update entry objects that contain modified entry data plus:
+                  // path, vert and horiz dementions medaiType, videoUrl
+                  const newSubmissionSummaries = [portfolios].map(portfolio => {
+                    let portfolioData = portfolio.dataValues
+                    let newEntry = {
+                      studentEmail: `${portfolioData.studentUsername}@rit.edu`,
+                      studentFirstName: user ? user.firstName : null,
+                      studentLastName: user ? user.lastName : null,
+                      studentHometown: user ? user.hometown : null,
+                      studentDisplayName: user ? user.displayName : null,
+                      isGroupSubmission: !!portfolioData.groupId,
+                      groupParticipants: group ? group.participants : null,
+                      title: portfolioData.title,
+                      comment: portfolioData.comment,
+                      moreCopies: portfolioData.moreCopies,
+                      forSale: portfolioData.forSale,
+                      awardWon: portfolioData.awardWon,
+                      invited: portfolioData.invited,
+                      yearLevel: portfolioData.yearLevel,
+                      score: portfolioData.score,
+                      academicProgram: portfolioData.academicProgram,
+                      excludeFromJudging: portfolioData.excludeFromJudging,
+                      submittedAt: moment(portfolioData.createdAt).format(),
+                      path: '',
+                      horizDimInch: '',
+                      vertDimInch: '',
+                      mediaType: '',
+                      videoUrl: ''
+                    }
+                    // Add entry data to data object
+
+                  })
+                  return [...arr, ...newSubmissionSummaries]
+                }, [])
+              })
+              .then(portfolioSummaries => {
+                // Send csv data to browser
+                const columns = {
+                  studentEmail: 'Student Email',
+                  studentFirstName: 'Student First Name',
+                  studentLastName: 'Student Last Name',
+                  studentHometown: 'Student Homewtown',
+                  studentDisplayName: 'Student Display Name',
+                  isGroupSubmission: 'Group Submission?',
+                  groupParticipants: 'Group Participants',
+                  entryType: 'Submission Type',
+                  title: 'Title',
+                  comment: 'Artist Comment',
+                  moreCopies: 'More Copies?',
+                  forSale: 'For Sale?',
+                  awardWon: 'Award Won?',
+                  invited: 'Invited?',
+                  yearLevel: 'Year Level',
+                  score: 'Score',
+                  academicProgram: 'Academic Program',
+                  excludeFromJudging: 'Exclude From Judging?',
+                  submittedAt: 'Submitted At',
+                  path: 'File',
+                  horizDimInch: 'Width (in.)',
+                  vertDimInch: 'Height (in.)',
+                  mediaType: 'Media Type',
+                  videoUrl: 'Video URL'
+                }
+                stringifyAsync(portfolioSummaries, { header: true, columns: columns })
+                  .then(output => {
+                    res.status(200)
+                      .type('text/csv')
+                      .attachment(`${portfolioPeriod.name}.csv`)
+                      .send(output)
+                  })
+                  .catch(err => {
+                    console.error(err)
+                    res.status(500).send('500: Oops! Try again later.')
+                  })
+              })
+          })
+      })
+  })
+
 
 /*
  * Look up all Images for these Entries to add the 'path' attribute to
