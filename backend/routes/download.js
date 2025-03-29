@@ -377,7 +377,7 @@ router.route('/csv/:showId')
                   return {...newPortfolioSummaries}
                 }, [])
               })
-              .then(portfolioSummaries => {
+              .then(newPortfolioSummaries => {
                 // Send csv data to browser
                 const columns = {
                   studentEmail: 'Student Email',
@@ -385,7 +385,7 @@ router.route('/csv/:showId')
                   score: 'Score',
                   submittedAt: 'Submitted At'
                 }
-                stringifyAsync(portfolioSummaries, { header: true, columns: columns })
+                stringifyAsync(newPortfolioSummaries, { header: true, columns: columns })
                   .then(output => {
                     res.status(200)
                       .type('text/csv')
