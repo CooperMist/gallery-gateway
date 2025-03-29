@@ -243,7 +243,6 @@ const initialRatingState = {
 const ratings = (state = initialRatingState, action) => {
   switch (action.type) {
     case actions.FETCH_PORTFOLIO_RATINGS:
-      console.log("Reached Fetch Portfolio Ratings");
       if (action.payload.ratings == null || !action.payload.ratings.length) {
         return state
       }
@@ -269,9 +268,7 @@ const ratings = (state = initialRatingState, action) => {
         }
       }
     case actions.FETCH_PORTFOLIO_RATING:
-    console.log("Reached Fetch Portfolio Rating");
-    console.log("Reached Fetch Portfolio Rating: " + action.payload);
-      if (action.payload == null || !action.payload.id) {
+      if (!action.payload.id) {
         return state
       }
 

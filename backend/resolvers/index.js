@@ -27,6 +27,9 @@ import * as UserQuery from './queries/userQuery'
 import Vote from './types/voteType'
 import * as VoteMutations from './mutations/vote'
 import * as VoteQuery from './queries/voteQuery'
+import Rating from './types/portfolioRatingType'
+import * as RatingMutations from './mutations/rating'
+import * as RatingQuery from './queries/ratingQuery'
 
 export default {
   ...Entry,
@@ -42,6 +45,7 @@ export default {
   ...Show,
   ...PortfolioPeriod,
   ...Vote,
+  ...Rating,
   Query: {
     ...EntryQuery,
     ...PortfolioQuery,
@@ -50,7 +54,8 @@ export default {
     ...ShowQuery,
     ...PortfolioPeriodQuery,
     ...UserQuery,
-    ...VoteQuery
+    ...VoteQuery,
+    ...RatingQuery
   },
   Mutation: {
     ...EntryMutations,
@@ -60,6 +65,7 @@ export default {
     ...ScholarshipSubmissionMutations,
     ...ShowMutations,
     ...UserMutations,
-    ...VoteMutations
+    ...VoteMutations,
+    ...RatingMutations
   }
 }

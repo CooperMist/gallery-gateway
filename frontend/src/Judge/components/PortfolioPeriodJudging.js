@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import SinglePortfolioModal from "../../Student/components/SinglePortfolioModal";
-import PortfolioEntry from '../../Student/components/portfolio/PortfolioEntry'
+import PortfolioEntry from '../../Judge/components/PortfolioEntry'
 import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 
 

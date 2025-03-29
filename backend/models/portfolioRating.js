@@ -1,4 +1,5 @@
 import User from './user'
+import Portfolio from './portfolio'
 import DataTypes from 'sequelize'
 import sequelize from '../config/sequelize'
 import { IMAGE_ENTRY, VIDEO_ENTRY, OTHER_ENTRY } from '../constants'
@@ -44,7 +45,7 @@ const PortfolioRating = sequelize.define('portfolioRating', {
 {
     validate: {
         ratingValueValidation () {
-          if (!ALLOWED_RATING_VALUES.has(this.value)) {
+          if (!ALLOWED_RATING_VALUES.has(this.rating)) {
             throw new Error('Rating value must be an integer between 1 and 5 inclusive.')
           }
         }
@@ -71,5 +72,25 @@ const PortfolioRating = sequelize.define('portfolioRating', {
   })
 }
 
+
+/**
+ * Gets the judge for the rating as a Promise
+ */
+ PortfolioRating.prototype.getJudge = function getJudge () {
+  if (!this.judgeUsername) {
+    return Promise.resolve(null)
+  }
+  return User.findByPk(this.judgeUsername)
+}
+
+/**
+ * Gets the portfolio for the rating as a Promise
+ */
+PortfolioRating.prototype.getPortfolio = function getPortfolio () {
+  if (!this.portfolioId) {
+    return Promise.resolve(null)
+  }
+  return Portfolio.findByPk(this.portfolioId)
+}
 
 export default PortfolioRating
