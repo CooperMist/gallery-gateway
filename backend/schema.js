@@ -51,6 +51,7 @@ type PortfolioPeriod {
     judgingStartDate: Date!
     judgingEndDate: Date!
     portfolios: [Portfolio]
+    ownRatings: [Rating]
     createdAt: Date!
     updatedAt: Date!
 }

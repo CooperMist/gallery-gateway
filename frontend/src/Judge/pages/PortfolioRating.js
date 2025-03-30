@@ -123,7 +123,8 @@ class PortfolioRating extends Component{
                         <Link to="/portfolio-periods">Back to Portfolio Periods</Link>
                     </Col>
                 </Row>
-                <h2>Voting</h2>
+                <h2>Portfolio Rating</h2>
+                <br/>
                 <Row>
                     {currentIndex <= totalPortfolios ? 
                         <Col>
