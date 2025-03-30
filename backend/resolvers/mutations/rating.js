@@ -19,7 +19,7 @@ function judgeIsAllowedToVote(judgeUsername, userType, portfolioPeriodId) {
     // Judges may only vote on entries submitted to shows they've been assigned to.
     return PortfolioPeriodJudge.findOne({
       where: {
-        portfolioPeriodId: portfolioId,
+        portfolioPeriodId: portfolioPeriodId,
         judgeUsername: judgeUsername,
       },
     }).then((portfolioPeriodJudge) => {
@@ -34,9 +34,7 @@ function judgeIsAllowedToVote(judgeUsername, userType, portfolioPeriodId) {
 }
 
 
-export function rating(_, args, context) {
-  console.log("LOG In Rating");
-  
+export function rating(_, args, context) {  
     // Ensure the judge is voting as themselves
     const isRequestingOwnJudgeUser =
       context.username !== undefined &&
@@ -64,7 +62,6 @@ export function rating(_, args, context) {
         }).then((res) => {
           const rating = res[0];
           const created = res[1];
-          console.log("Rating found: " + rating + "created: " + created);
           if (created) {
             return rating;
           } else {

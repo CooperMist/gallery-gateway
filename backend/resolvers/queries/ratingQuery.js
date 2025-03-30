@@ -5,6 +5,7 @@ import { UserError } from 'graphql-errors'
 import { ADMIN, JUDGE } from '../../constants'
 
 export function ratings (_, args, context) {
+  console.log("Reached fetch ratings")
   const isRequestingOwnJudgeUser = context.username !== undefined &&
     context.authType === JUDGE && context.username === args.judgeUsername
   if (context.authType !== ADMIN && !isRequestingOwnJudgeUser) {

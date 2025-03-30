@@ -56,13 +56,10 @@ Portfolio.prototype.getScore = function getScore () {
   // entry id and then averaging over the sum of the votes
   return PortfolioRating.findAll({ where: { portfolioId: this.id } })
     .then((ratings) => {
-      console.log('Ratings in portfolio.js:', ratings)
       const ratingScores = ratings.map(rating => rating.rating)
       if (ratingScores.length === 0) {
         return 0
       }
-      console.log('Rating Scores: ', ratingScores)
-      console.log('Calculated Score:', ratingScores.reduce((acc, curr) => acc + curr) / ratingScores.length)
       return ratingScores.reduce((acc, curr) => acc + curr) / ratingScores.length
     })
 }

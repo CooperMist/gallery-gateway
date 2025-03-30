@@ -12,13 +12,22 @@ const FIVE = 5
 
 const PortfolioRatingContainer = styled.div`
   left: 0;
-  margin: 10px auto;
+  margin: 0px auto;
   position: absolute;
   width: 100%;
 
   @media (min-width: 768px) {
-    left: 25%;
-    width: 50%;
+    left: 10%;
+    width: 75%;
+  }
+
+  @media (max-width: 768px) {
+    left: 0%;
+    width: 100%;
+  }
+
+  & button {
+    border: 2px solid darkgray;
   }
 `
 
@@ -114,9 +123,9 @@ class PortfolioRatingPanel extends Component {
             size='lg'
             disabled={rating && rating === ONE}
             onClick={() => this.handleRating(ONE)}
-            style={{ width: '20%', margin: '10px' }}
+            style={{ width: '20%', margin: '5px' }}
           >
-            One
+            One <br/>
             (Lowest)
           </Button>
           <Button
@@ -124,7 +133,7 @@ class PortfolioRatingPanel extends Component {
             size='lg'
             disabled={rating && rating === TWO}
             onClick={() => this.handleRating(TWO)}
-            style={{ width: '20%', margin: '10px' }}
+            style={{ width: '20%', margin: '5px' }}
           >
             Two
           </Button>
@@ -133,7 +142,7 @@ class PortfolioRatingPanel extends Component {
             size='lg'
             disabled={rating && rating === THREE}
             onClick={() => this.handleRating(THREE)}
-            style={{ width: '20%', margin: '10px' }}
+            style={{ width: '20%', margin: '5px' }}
           >
            Three
           </Button>
@@ -142,7 +151,7 @@ class PortfolioRatingPanel extends Component {
             size='lg'
             disabled={rating && rating === FOUR}
             onClick={() => this.handleRating(FOUR)}
-            style={{ width: '20%', margin: '10px' }}
+            style={{ width: '20%', margin: '5px' }}
           >
            Four
           </Button>
@@ -151,9 +160,9 @@ class PortfolioRatingPanel extends Component {
             size='lg'
             disabled={rating && rating === FIVE}
             onClick={() => this.handleRating(FIVE)}
-            style={{ width: '20%', margin: '10px' }}
+            style={{ width: '20%', margin: '5px'}}
           >
-           Five
+           Five <br/>
            (Highest)
           </Button>
         </ButtonGroup>

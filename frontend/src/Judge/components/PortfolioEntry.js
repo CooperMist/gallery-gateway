@@ -20,7 +20,7 @@ function PortfolioEntry({entry}) {
           : `https://vimeo.com/${entry.videoId}`
       const icon =
         entry.provider === 'youtube' ? (
-          <FontAwesomeIcon icon={FaYouTube} size='3x' />
+          <FontAwesomeIcon icon={FaYouTube} size='1x' />
         ) : (
           <FontAwesomeIcon icon={FaVimeo} size='3x' />
         )

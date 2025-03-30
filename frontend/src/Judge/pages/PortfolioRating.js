@@ -2,14 +2,38 @@ import React, { useEffect, useState, Component } from "react";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import SinglePortfolioModal from "../../Student/components/SinglePortfolioModal";
 import PortfolioEntry from '../components/PortfolioEntry'
 import PortfolioRatingPanel from '../containers/PortfolioRatingPanel'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
+import styled from 'styled-components'
 import { setPortfolioViewing, fetchPortfolioRatings, fetchPortfolios} from '../actions'
 
+const PortfolioNavigationButtons = styled.div`
+  left: 0;
+  margin: 95px auto;
+  position: absolute;
+  width: 100%;
+  padding-bottom: 15px;
+
+  display: flex;
+  gap: 50%;
+
+  transform: translateX(-50%); 
+
+  @media (min-width: 768px) {
+    left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+  }
+`
 
 class PortfolioRating extends Component{
     static propTypes = {
@@ -114,17 +138,7 @@ class PortfolioRating extends Component{
                         <Row>
                             <PortfolioRatingPanel portfolio={portfolio} rating={rating} /> 
                         </Row>
-                        {next && next.id ? (
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => { 
-                                    setPortfolioViewing(next.id) 
-                                }}
-                            >
-                            Next Portfolio
-                            </button>
-                        ) : null
-                        }
+                        <PortfolioNavigationButtons>
                         {previous && previous.id ? (
                             <button
                                 className="btn btn-primary"
@@ -136,6 +150,19 @@ class PortfolioRating extends Component{
                             </button>
                         ) : null
                         }
+                        {next && next.id ? (
+                            <button
+                                className="btn btn-primary"
+                                size='lg'
+                                onClick={() => { 
+                                    setPortfolioViewing(next.id) 
+                                }}
+                            >
+                            Next Portfolio
+                            </button>
+                        ) : null
+                        }
+                        </PortfolioNavigationButtons>
                         </Col>
                         : 
                         <Col>
@@ -206,7 +233,7 @@ const mapStateToProps = (state, ownProps) => {
         id: portfolioPeriodId
       },
       portfolio: portfolioId !== null ? portfolios[portfolioId] : null,
-      rating: portfolioId !== null && ratings.byPortfolioId.size() != 0 ?  ratings.byPortfolioId[portfolioId].rating : null,
+      rating: portfolioId !== null && Object.keys(ratings.byPortfolioId).length !== 0  && ratings.byPortfolioId[portfolioId] !== undefined ?  ratings.byPortfolioId[portfolioId].rating : null,
       currentIndex: viewing + 1,
       totalPortfolios: order.length
     }
