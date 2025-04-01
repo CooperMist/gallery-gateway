@@ -346,58 +346,39 @@ router.route('/csv/:showId')
   })
 
   router.route('/portfolioPeriodCsv/:portfolioPeriodId')
-  .get(ensureAdminDownloadToken, (req, res, next) => {
+  .get(ensureAdminDownloadToken, async (req, res) => {
 
-    PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
-      .then(portfolioPeriod => {
-        console.log("LOGGER PortfolioPeriod:")
-        console.log(portfolioPeriod)
-        // find all image Entries to this show id
-        Portfolio.findAll({where: {portfolioPeriodId: portfolioPeriod.dataValues.id}})
-          .then(portfolios => {
-            console.log("LOGGER FULL PORTFOLIOS:")
-            console.log(portfolios)
-                // Format the data to be csv-stringified
-                const newPortfolioSummaries = portfolios.map(portfolio => {
-                    let portfolioData = portfolio.dataValues
-                    console.log("LOGGER SINGLE PORTFOLIO:")
-                    console.log(portfolio)
-                    console.log("LOGGER PORTFOLIO DATA:")
-                    console.log(portfolio.dataValues)
-                    let newEntry = {
-                      studentEmail: `${portfolioData.studentUsername}@rit.edu`,
-                      title: portfolioData.title,
-                      score: portfolioData.score,
-                      submittedAt: moment(portfolioData.createdAt).format()
-                    }
-                    console.log("LOGGER NEW ENTRY:")
-                    console.log(newEntry)
-                    return {...newEntry}
-                  })
-                  return {...newPortfolioSummaries}
-                }, [])
-              })
-              .then(newPortfolioSummaries => {
-                // Send csv data to browser
-                const columns = {
-                  studentEmail: 'Student Email',
-                  title: 'Title',
-                  score: 'Score',
-                  submittedAt: 'Submitted At'
-                }
-                stringifyAsync(newPortfolioSummaries, { header: true, columns: columns })
-                  .then(output => {
-                    res.status(200)
-                      .type('text/csv')
-                      .attachment(`${portfolioPeriod.dataValues.name}.csv`)
-                      .send(output)
-                  })
-                  .catch(err => {
-                    console.error(err)
-                    res.status(500).send('500: Oops! Try again later.')
-                  })
-              })
-      })
+    const portfolioPeriod = await PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
+
+    const portfolios = await Portfolio.findAll({ where: { portfolioPeriodId: portfolioPeriod.dataValues.id } })
+
+    const newPortfolioSummaries = portfolios.map(portfolio => {
+      let portfolioData = portfolio.dataValues
+
+      const newEntry = {
+        studentEmail: `${portfolioData.studentUsername}@rit.edu`,
+        title: portfolioData.title,
+        score: portfolioData.score,
+        submittedAt: moment(portfolioData.createdAt).format()
+      }
+      return newEntry
+    });
+
+    const columns = {
+      studentEmail: 'Student Email',
+      title: 'Title',
+      score: 'Score',
+      submittedAt: 'Submitted At'
+    }
+
+    const csvOutput = await stringifyAsync(newPortfolioSummaries, { header: true, columns: columns })
+    res.status(200)
+      .type('text/csv')
+      .attachment(`${portfolioPeriod.name}.csv`)
+      .send(csvOutput)
+  }
+  )
+    
 
 
 /*
