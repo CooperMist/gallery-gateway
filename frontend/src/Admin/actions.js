@@ -176,7 +176,6 @@ export const downloadPortfolioPeriodCsv = portfolioPeriodId => (dispatch, getSta
   const { shared: { auth: { downloadToken } } } = getState()
 
   const url = `${PORTFOLIO_PERIOD_CSV_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`
-  console.log("Downloading Portfolio CSV from URL:", url)
   
   window.open(
     `${PORTFOLIO_PERIOD_CSV_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`,
