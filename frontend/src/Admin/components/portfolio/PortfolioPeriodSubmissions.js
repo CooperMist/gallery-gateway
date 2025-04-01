@@ -57,9 +57,13 @@ function PortfolioPeriodSubmissions(props) {
                 </Col>
             </Row>
 
-            {scholarshipSubmissions.map(scholarshipSubmission => {
-                return <ScholarshipSubmissionCard scholarshipSubmission={scholarshipSubmission} />
-            })}
+            {scholarshipSubmissions
+                .filter(scholarshipSubmission => scholarshipSubmission.portfolioPeriodId == portfolioPeriod.id)
+                .map(scholarshipSubmission => {
+                    return <ScholarshipSubmissionCard key={scholarshipSubmission.id} 
+                        scholarshipSubmission={scholarshipSubmission} />
+                })
+            }
         </Container>
     )
 

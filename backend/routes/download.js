@@ -348,7 +348,7 @@ router.route('/csv/:showId')
   router.route('/portfolioPeriodCsv/:portfolioPeriodId')
   .get(ensureAdminDownloadToken, async (req, res) => {
     const portfolioPeriod = await PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
-    
+
     const portfolios = await Portfolio.findAll({ where: { portfolioPeriodId: portfolioPeriod.dataValues.id } })
 
     const newPortfolioSummaries = portfolios.map(portfolio => {
@@ -377,8 +377,6 @@ router.route('/csv/:showId')
       .send(csvOutput)
   }
   )
-
-
 
 /*
  * Look up all Images for these Entries to add the 'path' attribute to
