@@ -368,6 +368,19 @@ const ratingQueues = (state = {}, action) => {
   }
 }
 
+const essays = (state = {}, action) => {
+  switch (action.type) {
+    case actions.FETCH_PORTFOLIO_ESSAYS:
+
+      return {
+        ...state,
+        [action.payload.portfolioId]: action.payload.portfolioEssays
+      }
+    default:
+      return state
+  }
+}
+
 const ui = (state = {}, action) => {
   switch (action.type) {
     default:
@@ -382,5 +395,6 @@ export default combineReducers({
   ratingQueues,
   portfolios,
   ratings,
+  essays,
   ui
 })

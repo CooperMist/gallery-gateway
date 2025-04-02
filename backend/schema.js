@@ -353,6 +353,7 @@ type Query {
     portfolioPeriod(id: ID): PortfolioPeriod
     portfolioPeriods(orderBy: OrderByItem, active: Boolean, activeSubmission: Boolean, activeJudging: Boolean): [PortfolioPeriod]
     portfolios(orderBy: OrderByItem, studentUsername: String): [Portfolio]
+    portfolioEssays(portfolioId: Int): [ScholarshipSubmission]
     scholarship(id: ID): Scholarship
     scholarships(orderBy: OrderByItem, includeInactive: Boolean): [Scholarship]
     scholarshipSubmission(id: ID): ScholarshipSubmission

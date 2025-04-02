@@ -152,7 +152,7 @@ function PortfolioPeriodCard(props) {
         <Col xs='12' md='6'>
           <h4>Submission Period</h4>
           <h6>{subHeading1}</h6>
-          {/* {renderOpenClose(startDate, endDate)} */}
+          {renderOpenClose(startDate, endDate)}
           {isPortfolioPeriodInSubmission ? (
             <Fragment>
               <h4>Judging Period</h4>

@@ -9,6 +9,7 @@ import PortfolioPeriodRatings from './queries/portfolioPeriodRatings.graphql'
 import GetPortfolioRating from './queries/portfolioRating.graphql'
 import PortfolioQuery from './queries/portfolio.graphql'
 import PortfoliosQuery from './queries/portfolios.graphql'
+import PortfolioEssays from './queries/portfolioEssays.graphql'
 
 export const FETCH_SUBMISSION = 'FETCH_SUBMISSION'
 export const FETCH_SUBMISSIONS = 'FETCH_SUBMISSIONS'
@@ -23,6 +24,7 @@ export const FETCH_PORTFOLIO_RATINGS = 'FETCH_PORTFOLIO_RATINGS'
 export const FETCH_PORTFOLIO_RATING = 'FETCH_PORTFOLIO_RATING'
 export const WILL_FETCH_PORTFOLIO_RATINGS = 'WILL_FETCH_PORTFOLIO_RATINGS'
 export const WILL_FETCH_PORTFOLIOS = 'WILL_FETCH_PORTFOLIOS'
+export const FETCH_PORTFOLIO_ESSAYS = 'FETCH_PORTFOLIO_ESSAYS'
 
 export const fetchSubmission = submissionId => (dispatch, getState, client) => {
   return client
@@ -162,6 +164,21 @@ export const fetchPortfolioRating = portfolioId => (dispatch, getState, client) 
       }
     })
     .then(({ data: { rating } }) => dispatch({ type: FETCH_PORTFOLIO_RATING, payload: rating }))
+    .catch(err => dispatch(displayError(err.message)))
+}
+
+export const fetchPortfolioEssays = portfolioId => (dispatch, getState, client) => {
+  const { shared: { auth: { user: { username } } } } = getState()
+  return client
+    .query({
+      query: PortfolioEssays,
+      variables: {
+        portfolioId
+      }
+    })
+    .then(({ data: { portfolioEssays } }) =>
+      dispatch({ type: FETCH_PORTFOLIO_ESSAYS, payload: { portfolioEssays, portfolioId } })
+    )
     .catch(err => dispatch(displayError(err.message)))
 }
 

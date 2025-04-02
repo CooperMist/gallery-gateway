@@ -8,7 +8,8 @@ import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
 import styled from 'styled-components'
-import { setPortfolioViewing, fetchPortfolioRatings, fetchPortfolios} from '../actions'
+import { setPortfolioViewing, fetchPortfolioRatings, fetchPortfolios, fetchPortfolioEssays} from '../actions'
+import { STATIC_PATH } from "../../utils"
 
 const PortfolioNavigationButtons = styled.div`
   left: 0;
@@ -34,7 +35,6 @@ const PortfolioNavigationButtons = styled.div`
     transform: translateX(-50%);
   }
 `
-
 class PortfolioRating extends Component{
     static propTypes = {
         portfolioPeriod: PropTypes.shape({
@@ -50,16 +50,27 @@ class PortfolioRating extends Component{
           id: PropTypes.string
         }),
         fetchPortfolioRatings: PropTypes.func.isRequired,
+        scholarshipEssays: PropTypes.arrayOf(
+          PropTypes.shape({
+            essayPath: PropTypes.string.isRequired,
+            scholarshipName: PropTypes.string.isRequired
+          })
+        ),
         rating: PropTypes.number,
         totalPortfolios: PropTypes.number.isRequired,
         currentIndex: PropTypes.number.isRequired
       }
 
     componentDidMount () {
-
       this.props.fetchPortfolios()
       this.props.fetchPortfolioRatings()
       document.addEventListener('keydown', this.handleKeyInput)
+    }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.portfolio && (!prevProps.portfolio ||prevProps.portfolio.id !== this.props.portfolio.id)) {
+        this.props.fetchPortfolioEssays(parseInt(this.props.portfolio.id))
+      }
     }
 
     componentWillUnmount () {
@@ -75,6 +86,7 @@ class PortfolioRating extends Component{
           next,
           rating,
           totalPortfolios,
+          scholarshipEssays,
           currentIndex
         } = this.props
 
@@ -130,6 +142,28 @@ class PortfolioRating extends Component{
                         <Col>
                         <p><strong>Created:</strong> {new Date(portfolio.createdAt).toDateString()}</p>
                         <hr />
+                        <h2>Scholarship Essay</h2>
+                        <Row className='d-flex flex-column'>
+                          {scholarshipEssays && scholarshipEssays.length > 0 ? (
+                            scholarshipEssays.map((entry, index) => (
+                              <Col xs={12} lg={3} key={`${entry.essayPath}-${index}`} className="mb-3 p-2 border border-dark rounded position-relative">
+                                <h6>{entry.scholarshipName}</h6>
+                                <a
+                                  className="btn btn-outline-primary"
+                                  href={`${STATIC_PATH}${entry.essayPath}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  View Essay
+                                </a>
+                              </Col>
+                            ))
+                          ) : (
+                            <Col xs={12}>
+                              <p>No Scholarship Essays have been submitted.</p>
+                            </Col>
+                          )}
+                        </Row>
                         <h2>Entries</h2>
                         <div className='d-flex flex-column'>
                         {portfolio.entries.map((entry) => {
@@ -238,6 +272,13 @@ const mapStateToProps = (state, ownProps) => {
       currentIndex: viewing + 1,
       totalPortfolios: order.length
     }
+
+    if(portfolioId !== null && state.judge.essays && Array.isArray(state.judge.essays[portfolioId]) && state.judge.essays[portfolioId].length > 0) {
+      obj.scholarshipEssays = state.judge.essays[portfolioId].map(submission => ({
+        essayPath: submission.essayPath,
+        scholarshipName: submission.scholarship.name
+      }))
+    }
   
     // Show the previous button
     if (viewing !== null && viewing > 0) {
@@ -262,7 +303,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
       setPortfolioViewing: portfolioId => dispatch(setPortfolioViewing(portfolioPeriodId, portfolioId)),
       fetchPortfolios: () => dispatch(fetchPortfolios(portfolioPeriodId)),
-      fetchPortfolioRatings: () => dispatch(fetchPortfolioRatings(portfolioPeriodId))
+      fetchPortfolioRatings: () => dispatch(fetchPortfolioRatings(portfolioPeriodId)),
+      fetchPortfolioEssays: portfolioId => dispatch(fetchPortfolioEssays(portfolioId))
     }
   }
   

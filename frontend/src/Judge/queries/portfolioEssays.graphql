@@ -1,0 +1,12 @@
+query PortfolioEssays($portfolioId: Int) {
+  portfolioEssays(portfolioId: $portfolioId) {
+    id
+    scholarshipId
+    scholarship {
+      id
+      name
+    }
+    portfolioId
+    essayPath
+  }
+}
