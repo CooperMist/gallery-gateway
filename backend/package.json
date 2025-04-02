@@ -56,7 +56,6 @@
     "express": "^4.17.1",
     "express-jwt": "^6.1.0",
     "fix": "0.0.6",
-    "gallery-gateway-backend": "file:",
     "graphql": "^15.6.0",
     "graphql-errors": "^2.1.0",
     "graphql-tools": "^8.2.0",
