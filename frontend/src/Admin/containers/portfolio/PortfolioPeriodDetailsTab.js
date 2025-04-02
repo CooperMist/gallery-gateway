@@ -8,7 +8,6 @@ import { getDownloadToken } from '../../../shared/actions'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 downloadPortfolioPeriodCsv: () => {
-    console.log("REACHED!")
   dispatch(getDownloadToken()).then(() =>
       dispatch(downloadPortfolioPeriodCsv(ownProps.portfolioPeriod.id))
     )}

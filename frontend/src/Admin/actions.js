@@ -155,7 +155,6 @@ export const downloadShowZip = showId => (dispatch, getState, client) => {
 }
 export const downloadPortfolioZip = portfolioId => (dispatch, getState, client) => {
   const { shared: { auth: { downloadToken } } } = getState()
-  console.log(`${ZIP_PATH}portfolio/${portfolioId}?token=${encodeURIComponent(downloadToken)}`)
 
   window.open(
     `${ZIP_PATH}portfolio/${portfolioId}?token=${encodeURIComponent(downloadToken)}`,
