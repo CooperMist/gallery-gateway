@@ -31,7 +31,6 @@ function PortfolioEntry({entry}) {
       return (
         <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative'>
           <h5>Video Submission {icon} </h5>
-          <h5><span className="text-muted">Distribution Allowed:</span> <span className="fw-bold">{entry.distributionAllowed ? "Yes" : "No"}</span></h5>
           <h5>
             <span className="text-muted">Title: </span>
             <a href={url} target='_blank' className="stretched-link">{entry.title}</a>
@@ -44,7 +43,6 @@ function PortfolioEntry({entry}) {
         <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative'>
           <h5>Photo Submission  <FontAwesomeIcon icon={FaImage} /> </h5>
           <h5><span className="text-muted">Title: </span> {entry.title}</h5>
-          <h5><span className="text-muted">Distribution Allowed:</span> <span className="fw-bold">{entry.distributionAllowed ? "Yes" : "No"}</span></h5>
           <h5><a href={`${STATIC_PATH}${getRawFile(entry.path)}`} target="_blank" download>Full Image</a></h5>
           <img className="img-fluid" src={`${STATIC_PATH}${getImageThumbnail(entry.path)}`} alt="Submitted entry" />
         </EntryNoThumbContainer>
@@ -56,7 +54,6 @@ function PortfolioEntry({entry}) {
         <EntryNoThumbContainer className='portfolio-entry border border-dark rounded position-relative'>
           <h5>Other Submission  <FontAwesomeIcon icon={FaBook} /> </h5>
           <h5><span className="text-muted">Title: </span> {entry.title}</h5>
-          <h5><span className="text-muted">Distribution Allowed:</span> {entry.distributionAllowed ? "Yes" : "No"}</h5>
           <h5><a href={fileUrl} target="_blank" download>Download Link</a></h5>
           {//<iframe src={fileUrl}></iframe>
             }
