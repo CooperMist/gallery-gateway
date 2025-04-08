@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":3,"fileHash":"Vg51BaK+JYt3m7vAnGslCUeoOEiTLbiSzPzAEjDRUNo=","filePath":"frontend/src/Admin/components/portfolio/PortfolioPeriodSubmissions.js","content":"import React from \"react\"\nfunction PortfolioPeriodSubmissions(props) {"}

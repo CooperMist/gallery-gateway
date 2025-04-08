@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"Ec4OqG6LoBmwDpiDYuEGYvyAmeq71WIdTX2tv3lzxwQ=","filePath":"frontend/src/Admin/queries/admins.graphql","content":"query Admins {\r\n  admins: users(type: ADMIN) {\r\n    username\r\n    firstName\r\n    lastName\r\n  }\r\n}\r\n"}

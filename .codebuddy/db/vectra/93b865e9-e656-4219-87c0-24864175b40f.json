@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":9,"fileHash":"WzsIQf7HVyXEB3pIQVcaK1HwzGYq9QlcAPxMzbOV0mQ=","filePath":"frontend/src/Admin/components/AssignJudgesTable.js","content":"import React, { Component, Fragment } from 'react'\nclass AssignJudgesTable extends Component {"}

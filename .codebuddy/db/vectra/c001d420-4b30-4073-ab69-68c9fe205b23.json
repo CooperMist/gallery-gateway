@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"ZYYbz3je4HnbqDAquXbz29yp9S0rwcnxE/PAuEkAqLA=","filePath":"frontend/src/Admin/mutations/updateUser.graphql","content":"mutation updateUser($input: UserInput!) {\r\n  updateUser(input: $input) {\r\n    username\r\n    firstName\r\n    lastName\r\n    hometown\r\n  }\r\n}\r\n"}

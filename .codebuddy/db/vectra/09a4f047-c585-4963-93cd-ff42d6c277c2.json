@@ -1,0 +1,1 @@
+{"chunk":5,"numChunks":8,"fileHash":"CJmE7kH58HMTaxvWwrOMrJ9RqKuoM+uzslRdXxD+DqM=","filePath":"frontend/src/Judge/pages/Vote.js","content":"import React, { Component } from 'react'\nconst mapStateToProps = (state, ownProps) => {"}

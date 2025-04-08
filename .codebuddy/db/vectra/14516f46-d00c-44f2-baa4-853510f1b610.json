@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":4,"fileHash":"JCQcmnEpzzy99RhPH/5gBfCe+Ow8Nn7fMRAmikA96NI=","filePath":"frontend/src/Student/components/portfolio/Portfolios.js","content":"import PropTypes from 'prop-types'\nfunction Portfolios(props) {"}

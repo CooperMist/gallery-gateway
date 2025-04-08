@@ -1,0 +1,1 @@
+{"chunk":9,"numChunks":10,"fileHash":"ORIvwid53DdKn5mb0ur+fGof67b6tpotaMYVfE4R2Pc=","filePath":"frontend/src/Judge/pages/PortfolioRating.js","content":"Props.history.replace(`/portfolio-period/${portfolioPeriodId}/rating?${newQueryString}`)\n      }\n    }"}

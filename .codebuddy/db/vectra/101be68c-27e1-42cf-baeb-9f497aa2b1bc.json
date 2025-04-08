@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"5kLRdRC5yRyV8lIAk5nZNZw+zSyYBPYT+lxtQasB9LA=","filePath":"frontend/src/Admin/queries/scholarships/scholarship.graphql","content":"query Scholarship($id: ID) {\r\n  scholarship(id: $id) {\r\n    id\r\n    name\r\n    description\r\n    active\r\n  }\r\n}"}

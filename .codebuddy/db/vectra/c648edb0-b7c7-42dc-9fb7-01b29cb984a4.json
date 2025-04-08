@@ -1,0 +1,1 @@
+{"chunk":2,"numChunks":7,"fileHash":"AK1zrI6gdImO2TnL8I5GXq0w4Sj2TmBb34kxzft62G0=","filePath":"backend/db/migrations/20171116292217-create-entry.js","content":"export function up (queryInterface, Sequelize) {"}

@@ -1,0 +1,1 @@
+{"chunk":5,"numChunks":11,"fileHash":"bx36C3jrXY4J9x//mxTxhqCNu6Vm5nhaShtWFbWkafY=","filePath":"README.md","content":"Nginx](https://nginx.org/en/)\n```sh\nsudo apt update\nsudo apt install nginx\n```\n\nThen start Nginx with\n```sh\n"}

@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"/jOOvmxKNOgVFiEirGGvkQxguQvc5FGv5N5TK2q1ADU=","filePath":"frontend/src/Admin/mutations/deleteShow.graphql","content":"mutation deleteShow($id: ID!) {\r\n  deleteShow(id: $id)\r\n}\r\n"}

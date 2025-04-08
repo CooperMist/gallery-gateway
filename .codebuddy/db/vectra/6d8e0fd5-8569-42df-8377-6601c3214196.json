@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"8IwMYMQhVHGNwS+uQNFZuJgS6+zVzNJ1/Q4Ct4NpJW8=","filePath":"frontend/src/Judge/queries/entryVote.graphql","content":"query getVote($entryId: ID!, $username: String!) {\r\n  vote(entryId: $entryId, judgeUsername: $username) {\r\n    id,\r\n    entry {\r\n      id\r\n    },\r\n    value\r\n  }\r\n}\r\n"}

@@ -1,0 +1,1 @@
+{"chunk":12,"numChunks":14,"fileHash":"aiKNGYaohRn28If2gH7CvVhXLNYJBek3r3shhUAadWY=","filePath":"frontend/src/Admin/components/ShowSubmissionDetails.js","content":"import React, { Component, Fragment } from 'react'\nclass ShowSubmissionDetails extends Component {\n  render () {\n    return ("}

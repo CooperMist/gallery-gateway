@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"nI8aB/8DkJy2AW4Pp6x29cntwyRFsxfAlX6L1JqtJb4=","filePath":"backend/resolvers/types/voteType.js","content":"export default {\r\n  Vote: {\r\n    judge (vote) {\r\n      return vote.getJudge()\r\n    },\r\n    entry (vote) {\r\n      return vote.getEntry()\r\n    }\r\n  }\r\n}\r\n"}

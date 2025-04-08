@@ -1,0 +1,1 @@
+{"chunk":9,"numChunks":14,"fileHash":"kPWrDXhIKUQ64zprCsdQbC6o5j6evy17Pg420Gtz1SY=","filePath":"backend/test/resolvers/vote.js","content":"/* eslint-disable no-unused-expressions */\ndescribe('Vote Mutation', function () {\n  describe('Validation Failures', function () {"}

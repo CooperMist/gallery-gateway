@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"RsWh1X0UD/PzoDzdgNlpUeYMZzWi0pOKjjG0Sb6Qk9o=","filePath":"backend/config/upload.js","content":"export default {\r\n  imageDir: process.env.NODE_ENV === 'test' ? './test/uploads/images' : './uploads/images',\r\n  pdfDir: process.env.NODE_ENV === 'test' ? './test/uploads/pdfs' : './uploads/pdfs'\r\n}\r\n"}

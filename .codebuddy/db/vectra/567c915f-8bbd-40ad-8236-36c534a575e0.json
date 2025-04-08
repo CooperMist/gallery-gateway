@@ -1,0 +1,1 @@
+{"chunk":10,"numChunks":15,"fileHash":"SNJ1HPKV6SHtX8AitT8xFdMkCjfZ33UdW+lXMkoPqXs=","filePath":"frontend/src/Admin/components/ShowSubmissionsTab.js","content":"import React, { Component, Fragment } from 'react'\nclass ShowSubmissionsTab extends Component {\n  render () {\n    return (\n      <Fragment>\n        <ReactTable\n          columns={["}

@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":3,"fileHash":"QNjGnnYEG0Pj7LBwokTmYzhNjVPm2npTghwefq7i8aw=","filePath":"frontend/src/shared/components/CheckboxTable.js","content":"import React, { Component } from 'react'\nclass MultiCheckTable extends Component {"}

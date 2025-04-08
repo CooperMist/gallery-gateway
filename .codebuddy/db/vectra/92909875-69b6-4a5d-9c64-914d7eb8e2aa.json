@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":6,"fileHash":"IxaFa8K6Qz5J8Q6kTp5MxATAJKvZapD1xeL7klzHXFg=","filePath":"frontend/src/Admin/components/portfolio/PortfolioPeriodPortfoliosTab.js","content":"import React, { useEffect, useState } from \"react\";\nimport { Col, Container, Row } from \"reactstrap\";\nimport SinglePortfolioModal from \"../../../Student/components/SinglePortfolioModal\";"}

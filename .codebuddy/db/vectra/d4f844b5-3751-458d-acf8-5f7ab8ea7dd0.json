@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"zYtsfiXscwjt70t5U4ItM/6Q1SMos5facEaseZyFN6Y=","filePath":"frontend/src/Student/mutations/createPortfolio.graphql","content":"mutation createPortfolio($input: PortfolioInput!) {\r\n  createPortfolio(input: $input) {\r\n    id\r\n    title\r\n    studentUsername\r\n  }\r\n}\r\n"}

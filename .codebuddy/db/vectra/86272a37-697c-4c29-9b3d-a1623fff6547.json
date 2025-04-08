@@ -1,0 +1,1 @@
+{"chunk":2,"numChunks":19,"fileHash":"R3AhPGkTG76iaT0CuSXaqvdmSzdiLm7UvsgibdjZdX4=","filePath":"backend/resolvers/mutations/show.js","content":"import { promisify } from 'util'\nexport function deleteShow (_, args, context) {"}

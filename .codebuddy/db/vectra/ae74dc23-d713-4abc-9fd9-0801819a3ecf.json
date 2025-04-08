@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"BJiH1ZlKNb/cbQZlbJqb+2Zrwc5/PYS8BDQfGRqK13E=","filePath":"frontend/src/Admin/mutations/createShow.graphql","content":"mutation createShow($input: ShowInput!) {\r\n  createShow(input: $input) {\r\n    id\r\n    name\r\n    description\r\n    entryStart\r\n    entryEnd\r\n    judgingStart\r\n    judgingEnd\r\n  }\r\n}\r\n"}

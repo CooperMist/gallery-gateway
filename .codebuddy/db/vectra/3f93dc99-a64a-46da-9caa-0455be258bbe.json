@@ -1,0 +1,1 @@
+{"chunk":3,"numChunks":8,"fileHash":"94bJwsJwwn8+SToO+5qNjjZ2vNxR00WWSLy4Ayw3Gy0=","filePath":"frontend/src/Admin/components/CreateUserForm.js","content":"import React, { Component } from 'react'\nclass CreateUserForm extends Component {\n  render () {"}

@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"+/+ftVrAVF/5+7P+N0LeyMH4i2Ajy6clQTp//smVcCo=","filePath":"backend/docker/mysql/createTestDb.sql","content":"CREATE DATABASE IF NOT EXISTS test;\r\nALTER DATABASE test CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;\r\n"}

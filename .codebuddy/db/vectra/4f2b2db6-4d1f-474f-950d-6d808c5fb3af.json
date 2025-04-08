@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":4,"fileHash":"t60o8L4IXX44udF5dpYys2XLRUa92QTfXpoYzRYaY3c=","filePath":"frontend/config/webpack.config.prod.js","content":"const path = require('path')\nmodule.exports = {"}

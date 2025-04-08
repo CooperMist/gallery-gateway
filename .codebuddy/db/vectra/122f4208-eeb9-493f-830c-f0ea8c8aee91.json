@@ -1,0 +1,1 @@
+{"chunk":11,"numChunks":25,"fileHash":"IheIbb4hwNnJersVA+Z5HKTq+Up0UDJLLklzMNvgrOU=","filePath":"backend/db/seeds/20180415220000-seed-demo.js","content":"import https from 'https'\nexport function up (queryInterface, Sequelize) {\n  return Promise.all([\n    .then(ids => {\n      return queryInterface.bulkInsert('images', ["}

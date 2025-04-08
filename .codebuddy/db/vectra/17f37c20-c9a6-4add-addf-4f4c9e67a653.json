@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"PdXftItE+ApuDVAw/dNvoloatjcNqdwR5NWS5mzBfyI=","filePath":"frontend/src/Admin/mutations/assignToShow.graphql","content":"mutation assignToShow($showId: ID!, $usernames: [String]!) {\r\n  assignToShow(showId: $showId, usernames: $usernames)\r\n}\r\n"}

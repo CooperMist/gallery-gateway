@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"7JQPwTmXjXZV3UzMijxS0B8MaqAMAIKiL1rOImcOLG8=","filePath":"frontend/src/Admin/mutations/scholarship/createScholarship.graphql","content":"mutation CreateScholarship($input: ScholarshipInput!) {\r\n  createScholarship(input: $input) {\r\n    id\r\n    name\r\n    description\r\n  }\r\n}"}

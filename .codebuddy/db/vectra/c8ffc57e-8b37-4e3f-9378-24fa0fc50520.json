@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":3,"fileHash":"9dGenkPDKNxYsJLilZh3knzU98eTMTpnAWbQS3UWsYk=","filePath":"frontend/config/webpack.config.dev.js","content":"const path = require('path')\nconst HtmlWebpackPlugin = require('html-webpack-plugin')\nconst webpack = require('webpack')"}

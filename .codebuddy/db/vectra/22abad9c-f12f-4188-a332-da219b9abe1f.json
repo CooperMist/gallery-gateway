@@ -1,0 +1,1 @@
+{"chunk":8,"numChunks":46,"fileHash":"rgY5LIVyu8ZXHuBTfXMXoWx/ctH+OGAgjLxB0j9j1Bs=","filePath":"backend/routes/download.js","content":"import fs from 'fs'\nrouter.route('/csv/:showId')\n  .get(ensureAdminDownloadToken, (req, res, next) => {"}

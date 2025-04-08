@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"2fbu2TfZF0JgEqYHbjhsvlTBLGIOSlcVQyqbOLw0sEo=","filePath":"frontend/src/history.js","content":"import createHistory from 'history/createBrowserHistory'\r\n\r\nexport default createHistory()\r\n"}

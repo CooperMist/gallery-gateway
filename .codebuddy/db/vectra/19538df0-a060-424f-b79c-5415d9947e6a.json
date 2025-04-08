@@ -1,0 +1,1 @@
+{"chunk":4,"numChunks":6,"fileHash":"gLLZGoK8C0H1DiOmErTKUJbSq/Ihiw+a+He7U8xeIm4=","filePath":"frontend/src/Judge/components/PortfolioPeriodPortfolios.js","content":"import React, { useEffect, useState } from \"react\";\nfunction PortfolioPeriodPortfoliosTab(props) {\n    return ("}

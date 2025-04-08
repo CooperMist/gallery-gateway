@@ -1,0 +1,1 @@
+{"chunk":7,"numChunks":11,"fileHash":"bx36C3jrXY4J9x//mxTxhqCNu6Vm5nhaShtWFbWkafY=","filePath":"README.md","content":"    \n### Deploy the App\nRun the deploy script from the top level directory\n```sh\ndeploy/deploy.sh <git url>\n```\n"}

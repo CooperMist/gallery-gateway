@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":3,"fileHash":"lzDG+6Z5ooJ6p/MywOV8bGMsnjTEtyPJ6nkmH9U6pu4=","filePath":"frontend/src/Student/components/portfolio/CreatePortfolioEntryCard.js","content":"import React, { useState } from \"react\";\nfunction CreatePortfolioEntryCard(props) {"}

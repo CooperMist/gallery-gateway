@@ -1,0 +1,1 @@
+{"chunk":46,"numChunks":51,"fileHash":"a+FASeiRPRDZBZ0S/9mF+yVl99YVRCx6NJRkd9d3q0M=","filePath":"backend/routes/download.js","content":"import fs from 'fs'\nrouter.route('/zips/portfolio/:portfolioId')\n  .get(ensureAdminDownloadToken, (req, res, next) => {"}

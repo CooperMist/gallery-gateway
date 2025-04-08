@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"YYKRvgpPN4C0HaAyVZHd6ymHmqWlzAmdevLnuRvHrNM=","filePath":"frontend/src/Judge/mutations/sendVote.graphql","content":"mutation sendVote($input: VoteInput!) {\r\n  vote(input: $input) {\r\n    id\r\n    entry {\r\n      id\r\n      score\r\n    }\r\n    value\r\n  }\r\n}\r\n"}

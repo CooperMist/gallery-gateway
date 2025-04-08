@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":3,"fileHash":"dDW9VBz6FrPVE8X/g7O6nh5BTYlTSfqR3wGcAK/Hiu4=","filePath":"frontend/src/Student/components/portfolio/PortfolioPeriodCard.js","content":"import React from 'react'\nfunction PortfolioPeriodCard(props) {"}

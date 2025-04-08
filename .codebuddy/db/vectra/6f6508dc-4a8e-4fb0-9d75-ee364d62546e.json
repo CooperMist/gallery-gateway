@@ -1,0 +1,1 @@
+{"chunk":1,"numChunks":10,"fileHash":"M7f4IOLCzcHzDH4CUE/xA30itMLbBrG7sFFCmPNExiE=","filePath":"frontend/src/Judge/pages/PortfolioRating.js","content":"import React, { useEffect, useState, Component } from \"react\";\nclass PortfolioRating extends Component{"}

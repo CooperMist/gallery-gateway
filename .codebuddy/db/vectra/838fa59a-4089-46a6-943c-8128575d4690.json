@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"Ir1sKDy/u/Wzv6trZ61EhNF67VM2OWZMn9r+Eah5s5A=","filePath":"backend/config/env.js","content":"import dotenv from 'dotenv'\r\n\r\ndotenv.config() // Load environment variables from '.env'\r\n"}

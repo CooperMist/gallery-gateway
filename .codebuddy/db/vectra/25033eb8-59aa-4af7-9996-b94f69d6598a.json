@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":3,"fileHash":"lzDG+6Z5ooJ6p/MywOV8bGMsnjTEtyPJ6nkmH9U6pu4=","filePath":"frontend/src/Student/components/portfolio/CreatePortfolioEntryCard.js","content":"import React, { useState } from \"react\";\nimport PropTypes from \"prop-types\"\nimport { FormGroup, Input, Label } from \"reactstrap\";\nimport Dropzone from \"react-dropzone\";"}

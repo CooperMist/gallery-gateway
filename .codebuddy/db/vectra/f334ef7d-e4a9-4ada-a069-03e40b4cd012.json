@@ -1,0 +1,1 @@
+{"chunk":2,"numChunks":4,"fileHash":"tPC4VQI7mjlkoId3xNkTzOP8GloFfh+z6F/ayCmYL5Q=","filePath":"backend/routes/upload.js","content":"import multer from 'multer'\nfunction handleRes (req, res, err, fileType) {"}

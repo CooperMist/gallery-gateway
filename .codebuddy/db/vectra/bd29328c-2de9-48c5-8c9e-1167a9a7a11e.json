@@ -1,0 +1,1 @@
+{"chunk":0,"numChunks":1,"fileHash":"1ZuODD+qDnWNekkQsn5b5VyRwCdD22/c+U+k6yVg0h0=","filePath":"frontend/src/Admin/mutations/removeFromShow.graphql","content":"mutation removeFromShow($showId: ID!, $usernames: [String]!) {\r\n  removeFromShow(showId: $showId, usernames: $usernames)\r\n}\r\n"}

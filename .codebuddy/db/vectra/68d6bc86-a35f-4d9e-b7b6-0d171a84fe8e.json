@@ -1,0 +1,1 @@
+{"chunk":4,"numChunks":7,"fileHash":"bnRKSnTPq82LOVThmaRm+v4bJ6QwWgm+QnGjumEq9IM=","filePath":"backend/models/entry.js","content":"import Image from './image'\nconst Entry = sequelize.define('entry', {"}
