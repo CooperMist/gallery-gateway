@@ -67,7 +67,7 @@ function PortfolioPeriodPortfoliosTab(props) {
                         </Col>
                         <Col xs={5} lg={3} className="d-flex flex-column flex-lg-row align-items-lg-center">
                             <span className="d-lg-none text-muted">Score</span>
-                            {portfolio ? portfolio.score : "N/A"}
+                            {portfolio ? parseFloat(portfolio.score.toFixed(6)) : "N/A"}
                         </Col>
                         <Col xs={9} lg={3} className="d-flex flex-column flex-lg-row justify-content-lg-end mt-3 mt-lg-0">
                             <button
