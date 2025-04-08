@@ -22,7 +22,8 @@ export default function ScholarshipSubmissionCard({ scholarshipSubmission }) {
             <Col xs={4} lg={3} className="d-flex flex-column flex-lg-row align-items-lg-center">
                 <span className="d-lg-none text-muted">Artist</span>
                 {!portfolio.entries[0] ? null
-                    : portfolio.entries[0].student.displayName || `${portfolio.entries[0].student.firstName} ${portfolio.entries[0].student.lastName}`
+                    //: portfolio.entries[0].student.displayName || `${portfolio.entries[0].student.firstName} ${portfolio.entries[0].student.lastName}`
+                    : portfolio.studentUsername + "@rit.edu"
                 }
             </Col>
             <Col xs={4} lg={3} className="d-flex flex-column flex-lg-row align-items-lg-center">
