@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"r2gl2QKo6htq3EUWq90SK70d/rP5JerFvHWiA6uu8sQ=","filePath":"backend/resolvers/queries/queryUtils.js","content":"export function isRequestingOwnUser (context, args) {\r\n    return context.username !== undefined &&\r\n          context.username === args.studentUsername\r\n  }"}

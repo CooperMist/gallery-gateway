@@ -1,1 +1,0 @@
-{"chunk":1,"numChunks":2,"fileHash":"O2qFKvA37dYDuXifFKCCT+xpm1lrVtUCo3CVj8BXs2Q=","filePath":"backend/models/portfolio.js","content":" => acc + curr) / ratingValues.length\n    })\n}"}

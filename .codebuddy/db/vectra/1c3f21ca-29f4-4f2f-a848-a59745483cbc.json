@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"ZhSNm+ifUHR+hp5sWiTvuJT+Z5mVYt2QdrMAKVvb4ZY=","filePath":"frontend/src/Admin/mutations/updateInvitation.graphql","content":"mutation updateInvitation($id: ID! $input: EntryUpdate!) {\r\n  updateEntry(id: $id, input: $input) {\r\n    id,\r\n    invited\r\n  }\r\n}\r\n"}

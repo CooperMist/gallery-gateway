@@ -1,1 +1,0 @@
-{"chunk":7,"numChunks":16,"fileHash":"mR9DC30NCZm4fUVCJ9XPA6RwzxRgaCcAIbkeTRtJq/A=","filePath":"frontend/src/Admin/pages/PrintableReport.js","content":"import React, { Fragment, Component } from 'react'\nclass PrintableReport extends Component {\n  render () {\n    return (\n      <DocumentTitle title={`Gallery Guide - ${show.name}`}>"}

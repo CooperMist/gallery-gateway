@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"0y8eIlW3aWjEC989K5veYptSVnIGbfmr7owz2hgPwCw=","filePath":"frontend/src/Admin/mutations/createAdmin.graphql","content":"mutation createAdmin($input: UserInput!) {\r\n  createAdmin(input: $input) {\r\n    username\r\n    firstName\r\n    lastName\r\n  }\r\n}\r\n"}

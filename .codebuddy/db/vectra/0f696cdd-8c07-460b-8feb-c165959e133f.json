@@ -1,1 +1,0 @@
-{"chunk":3,"numChunks":5,"fileHash":"Lqi5HFXe2zOMg8Ytjs+BSb2zi1AGEpHD34n2LNiG8p4=","filePath":"frontend/src/Judge/components/PortfolioEntry.js","content":"import React from \"react\"\nfunction PortfolioEntry({entry}) {\n  switch (entry.entryType) {"}

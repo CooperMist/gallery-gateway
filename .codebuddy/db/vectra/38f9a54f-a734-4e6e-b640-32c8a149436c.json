@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"dtTMmrVh6/gUothcCsnmCEB+hNSccBeHdwK5JF7GsxI=","filePath":"frontend/src/Admin/mutations/createPortfolioPeriod.graphql","content":"mutation CreatePortfolioPeriod($input: PortfolioPeriodInput!) {\r\n  createPortfolioPeriod(input: $input) {\r\n    id\r\n    startDate\r\n    endDate\r\n    judgingStartDate\r\n    judgingEndDate\r\n  }\r\n}"}

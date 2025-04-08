@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"Utaw4sXrgfMHLsoiziqV8Qw4vlmx3OJkNdmtKpwmeXo=","filePath":"backend/resolvers/types/otherMediaType.js","content":"import { EntryBase } from './entryType'\r\n\r\nexport default {\r\n  OtherMedia: {\r\n    ...EntryBase,\r\n    path (entry) {\r\n      return entry.getOther().then(other => other.path)\r\n    }\r\n  }\r\n}\r\n"}

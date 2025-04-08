@@ -1,1 +1,0 @@
-{"chunk":5,"numChunks":7,"fileHash":"TyE711HJV8kQBpoQAI3rhd8RzjsXLVmBBcp+r+ZT21s=","filePath":"frontend/src/Admin/components/ShowCard.js","content":"import React, { Component, Fragment } from 'react'\nclass ShowCard extends Component {\n  renderBody = (props) => {"}

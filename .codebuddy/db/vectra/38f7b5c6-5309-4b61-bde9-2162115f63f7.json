@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"7+ipVX+i3FKvERrd/vLb/fDH+xY9W0IvIQWVpE5z6aY=","filePath":"frontend/src/Admin/queries/judges.graphql","content":"query Judges {\r\n  judges: users(type: JUDGE) {\r\n    username\r\n    firstName\r\n    lastName\r\n  }\r\n}\r\n"}

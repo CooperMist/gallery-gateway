@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"mqiu5mKEQyDZ4P+dk+V7dNRG/aoSIasD3LDSi7T9rCs=","filePath":"frontend/src/store/index.js","content":"let store\r\n\r\nif (process.env.NODE_ENV === 'production') {\r\n  store = require('./prod').default\r\n} else {\r\n  store = require('./dev').default\r\n}\r\n\r\nexport default store\r\n"}

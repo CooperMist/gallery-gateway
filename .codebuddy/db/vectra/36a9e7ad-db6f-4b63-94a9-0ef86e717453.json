@@ -1,1 +1,0 @@
-{"chunk":21,"numChunks":25,"fileHash":"VId2jvAlzGPcQWc/noMCwiN/07xgsdtgqYktj7bczBg=","filePath":"backend/db/seeds/20211026060000-seed-portfolio.js","content":"import moment from 'moment'\nexport function up (queryInterface, Sequelize) {\n    return Promise.all([\n    .then(ids => {\n      return queryInterface.bulkInsert('entries', ["}

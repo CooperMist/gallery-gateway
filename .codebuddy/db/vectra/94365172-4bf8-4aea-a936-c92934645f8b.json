@@ -1,1 +1,0 @@
-{"chunk":1,"numChunks":4,"fileHash":"1K4WtTIAvUrXAOW+ddrpo6TQdkRVaRKpMqLzE0erg3o=","filePath":"frontend/src/Admin/components/scholarship/ScholarshipSubmissionCard.js","content":"import React, { useState } from \"react\"\nexport default function ScholarshipSubmissionCard({ scholarshipSubmission }) {"}

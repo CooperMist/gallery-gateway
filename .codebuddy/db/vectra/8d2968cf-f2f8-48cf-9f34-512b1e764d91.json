@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"u6X/+xLZB7w5DAYH8/BAUjKAdOzLs3XoifQPsOpwQYY=","filePath":"frontend/src/Judge/queries/portfolioRating.graphql","content":"query getRating($portfolioId: ID!, $username: String!) {\r\n  rating(portfolioId: $portfolioId, judgeUsername: $username) {\r\n    id,\r\n    portfolio {\r\n      id\r\n    },\r\n    rating\r\n  }\r\n}"}

@@ -1,1 +1,0 @@
-{"chunk":1,"numChunks":5,"fileHash":"LL4X/7j6GNkZK5SRPhlzfv6iOhSc8Sp9EdRyqEOAuYw=","filePath":"frontend/src/Student/components/portfolio/PortfolioEntry.js","content":"import React from \"react\"\nfunction PortfolioEntry({entry}) {"}

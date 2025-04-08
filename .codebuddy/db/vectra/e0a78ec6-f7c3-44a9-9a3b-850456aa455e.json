@@ -1,1 +1,0 @@
-{"chunk":1,"numChunks":4,"fileHash":"eHR5Vu2AXi9tMsN6iVu4GKKVP54xYnCqR/5WeVxr/dk=","filePath":"frontend/src/Judge/components/VotePanel.js","content":"import React, { Component } from 'react'\nclass VotePanel extends Component {"}

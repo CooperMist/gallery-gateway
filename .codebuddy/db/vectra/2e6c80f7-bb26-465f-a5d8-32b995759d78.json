@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"MZoD1TAcnIz/ihKLUOlvLN4swHiqY7ZrUTDgvo/CVrI=","filePath":"frontend/src/Judge/queries/submission.graphql","content":"query Submission($id: ID!) {\r\n  submission: entry(id: $id) {\r\n    id\r\n    title\r\n    entryType\r\n    excludeFromJudging\r\n  }\r\n}\r\n"}

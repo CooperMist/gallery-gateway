@@ -1,1 +1,0 @@
-{"chunk":5,"numChunks":10,"fileHash":"Q27W7MzCMk8N8DtIEpoSEyPIYhKAnqsNxX7u7CE3Zrs=","filePath":"frontend/src/Judge/pages/PortfolioRating.js","content":"import React, { useEffect, useState, Component } from \"react\";\nconst mapStateToProps = (state, ownProps) => {"}

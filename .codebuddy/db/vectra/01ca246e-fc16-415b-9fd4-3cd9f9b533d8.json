@@ -1,1 +1,0 @@
-{"chunk":2,"numChunks":9,"fileHash":"1dt00JKvGGEzGtJzGVWK4trTPQ1eUcGsqhhKLTupX9c=","filePath":"frontend/src/Judge/components/PortfolioPeriodCard.js","content":"import React, { Component, Fragment } from 'react'\nfunction PortfolioPeriodCard(props) {"}

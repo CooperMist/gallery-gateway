@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"j+BPz99SKe2wVscMxezByevMVGGHvHeLyJ2KjI26iSQ=","filePath":"frontend/src/Admin/mutations/portfolio/assignJudgesToPortfolioPeriod.graphql","content":"mutation AssignJudgesToPortfolioPeriod($input: PortfolioPeriodJudgeInput!) {\r\n  assignJudgesToPortfolioPeriod(input: $input)\r\n}"}

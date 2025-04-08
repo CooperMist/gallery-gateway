@@ -1,1 +1,0 @@
-{"chunk":6,"numChunks":8,"fileHash":"c29S3hFXHC5JDlZErFPgL5vUjqdX2x1YUYX9Id68mnY=","filePath":"frontend/src/Admin/components/portfolio/PortfolioPeriodPortfoliosTab.js","content":"import React, { useEffect, useState } from \"react\";\nfunction PortfolioPeriodPortfoliosTab(props) {\n    return (\n        <Container fluid>\n            {[...portfolioPeriod.portfolios]"}

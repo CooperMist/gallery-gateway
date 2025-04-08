@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"Hudl3ybA8hxYsOG+XrD+sEXyHS6OI8tFT6YAvWJKRlE=","filePath":"frontend/src/Admin/mutations/editShow.graphql","content":"mutation editShow($id: ID! $input: ShowUpdate!) {\r\n  updateShow(id: $id input: $input) {\r\n    name\r\n    description\r\n    entryStart\r\n    entryEnd\r\n    judgingStart\r\n    judgingEnd\r\n  }\r\n}\r\n"}

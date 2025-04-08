@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"bOFp4jNnYGrp+DsN0p+vU1AE+s/hrwn/aY4AnXXhqf4=","filePath":"backend/resolvers/types/groupType.js","content":"export default {\r\n  Group: {\r\n    creator (group) {\r\n      return group.getCreator()\r\n    }\r\n  }\r\n}\r\n"}

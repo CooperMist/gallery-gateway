@@ -1,1 +1,0 @@
-{"chunk":1,"numChunks":2,"fileHash":"XJ101xNCQnEWoHPWDNY873SLf9DwfwdK04l7Ga7EBT8=","filePath":"backend/models/portfolio.js","content":" + curr) / ratingScores.length\n    })\n}"}

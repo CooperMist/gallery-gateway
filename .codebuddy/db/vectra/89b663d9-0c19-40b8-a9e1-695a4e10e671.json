@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"K0gtEwOxHQbT4QsWgqvZxichzlQMXzbUsRtY3CZdyWE=","filePath":"backend/docker/test-saml-idp/Dockerfile","content":"FROM kristophjunge/test-saml-idp\r\n\r\nEXPOSE 8080 8443"}

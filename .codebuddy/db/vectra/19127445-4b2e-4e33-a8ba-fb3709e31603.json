@@ -1,1 +1,0 @@
-{"chunk":4,"numChunks":10,"fileHash":"JgCYEgxssx8slQlqNqdfLe3RFXT/I7PnkPSJ+qCrARQ=","filePath":"frontend/src/Judge/components/PortfolioRatingPanel.js","content":"import React, { Component } from 'react'\nclass PortfolioRatingPanel extends Component {\n  render () {"}

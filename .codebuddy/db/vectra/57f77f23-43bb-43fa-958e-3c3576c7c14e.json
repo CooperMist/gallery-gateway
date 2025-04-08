@@ -1,1 +1,0 @@
-{"chunk":2,"numChunks":8,"fileHash":"NwgKkCb4w79rY+xdPp4XO9Pa2izlGElqRMT5HodPl6Y=","filePath":"frontend/src/Student/components/scholarships/ScholarshipCard.js","content":"import React, { useState } from \"react\"\nconst AWARD_ICON = () => (<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" height=\"2rem\">"}

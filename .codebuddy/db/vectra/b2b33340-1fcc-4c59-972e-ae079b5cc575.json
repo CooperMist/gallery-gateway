@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"8fKEHufHsUoQyHUOPZuhPPSe1w1OjpZtNr57rligFv8=","filePath":"frontend/src/Admin/mutations/createJudge.graphql","content":"mutation createJudge($input: UserInput!) {\r\n  createJudge(input: $input) {\r\n    username\r\n    firstName\r\n    lastName\r\n  }\r\n}\r\n"}

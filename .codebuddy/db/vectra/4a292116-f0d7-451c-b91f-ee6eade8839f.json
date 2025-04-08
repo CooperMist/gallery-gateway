@@ -1,1 +1,0 @@
-{"chunk":2,"numChunks":3,"fileHash":"OMHjWjyC7PGDRx35Zcu4nCLj+2bRTt5aVdqjSh0rRTo=","filePath":"backend/docker/test-saml-idp/authsources.php","content":"<?php\n$config = array(\n    'admin' => array(\n        'core:AdminPassword',\n    ),"}

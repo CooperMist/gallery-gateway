@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"wDTWk4BmYjnFB0KXn83PJmuJ/KROsEtMLOcLcarmu+s=","filePath":"backend/test/unit_testing/portfolios.test.js","content":"import sequelize from '../config/sequelize'\r\n\r\nit('should return 1 value'), (done) => {\r\n    console.log(await Portfolio.findAll({}));\r\n}"}

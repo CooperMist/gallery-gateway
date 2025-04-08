@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"XiAzm50wPe2076+LbJJIQU8ZcQwyJSHYw3JIk16Yjws=","filePath":"backend/resolvers/types/portfolioRatingType.js","content":"export default {\r\n    Rating: {\r\n      judge (rating) {\r\n        return rating.getJudge()\r\n      },\r\n      portfolio (rating) {\r\n        return rating.getPortfolio()\r\n      }\r\n    }\r\n  }\r\n  "}

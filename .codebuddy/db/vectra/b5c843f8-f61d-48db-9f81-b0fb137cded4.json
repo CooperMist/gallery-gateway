@@ -1,1 +1,0 @@
-{"chunk":4,"numChunks":13,"fileHash":"GpXOvF8WKxwDnF+WdW5RPz7CiGlqOB59c43orTD5Pz4=","filePath":"frontend/src/Student/components/portfolio/PortfolioSubmissionForm.js","content":" pdf_path.data.path\n      })\n    }\n\n    return created_entry\n  }"}

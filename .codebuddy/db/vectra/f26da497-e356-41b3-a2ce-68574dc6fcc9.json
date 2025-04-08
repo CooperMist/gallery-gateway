@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"O3eZ1gOYQ3NJDQFZiE5MjPW6Y/gh8C1PX7RFagkMw30=","filePath":"frontend/src/Admin/mutations/updateExcludeFromJudging.graphql","content":"mutation updateExcludeFromJudging($id: ID! $input: EntryUpdate!) {\r\n  updateEntry(id: $id, input: $input) {\r\n    id,\r\n    excludeFromJudging\r\n  }\r\n}\r\n"}

@@ -1,1 +1,0 @@
-{"chunk":5,"numChunks":10,"fileHash":"YgxFyNPtILK2ZLMBdoFiJwxzp0jKkdjgtk59c9UIcvk=","filePath":"backend/test/resolvers/voteQuery.js","content":"import { expect } from 'chai'\ndescribe('Vote Queries', function () {\n  describe('Votes query', function () {"}

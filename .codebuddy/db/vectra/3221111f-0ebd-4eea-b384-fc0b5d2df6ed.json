@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"IjpQUM7LW9IR6OabfNyapCsZvP9OixOziX+7KVz3DLA=","filePath":"frontend/src/Admin/queries/students.graphql","content":"query Students {\r\n  students: users(type: STUDENT) {\r\n    username\r\n    firstName\r\n    lastName\r\n    hometown\r\n  }\r\n}\r\n"}

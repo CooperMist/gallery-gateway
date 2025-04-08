@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"VsH2liDs/oK0yWX7C2Sq6CrgqSiwJ0qPW1ym8ceQDLM=","filePath":"frontend/src/Admin/mutations/scholarship/updateScholarship.graphql","content":"mutation UpdateScholarship($id: ID! $input: UpdateScholarshipInput!) {\r\n  updateScholarship(id: $id input: $input) {\r\n    name\r\n    description\r\n    active\r\n  }\r\n}"}

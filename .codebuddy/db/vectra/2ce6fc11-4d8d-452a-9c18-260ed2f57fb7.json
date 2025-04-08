@@ -1,1 +1,0 @@
-{"chunk":6,"numChunks":46,"fileHash":"rgY5LIVyu8ZXHuBTfXMXoWx/ctH+OGAgjLxB0j9j1Bs=","filePath":"backend/routes/download.js","content":"import fs from 'fs'\nconst submissionsWithSubmittersPromise = (entries) => {\n  const { studentSubmissions, groupSubmissions } = groupEntriesBySubmitter(entries)\n  return getSubmitterData(studentSubmissions, groupSubmissions)\n}"}

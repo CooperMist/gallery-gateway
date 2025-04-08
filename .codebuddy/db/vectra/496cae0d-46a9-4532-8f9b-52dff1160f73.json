@@ -1,1 +1,0 @@
-{"chunk":0,"numChunks":1,"fileHash":"0eVXPmELb9fMpxFN4pnTAGyed9flFcs2kXlTFcr+oJE=","filePath":"frontend/src/Admin/queries/judgesForShow.graphql","content":"query JudgesForShow($id: ID!) {\r\n  show(id: $id) {\r\n    id\r\n    judges {\r\n      username\r\n      firstName\r\n      lastName\r\n      shows {\r\n        id\r\n      }\r\n    }\r\n  }\r\n}\r\n"}
