@@ -72,7 +72,8 @@ class PrintableReport extends Component {
   }
 
   state = {
-    allImagesLoaded: false
+    allImagesLoaded: false,
+    printTriggered: false
   }
 
   loadedImagePaths = new Set()
@@ -88,10 +89,12 @@ class PrintableReport extends Component {
 
     // If all paths are now loaded, we are ready to print
     if (allPaths.every(path => this.loadedImagePaths.has(path))) {
-      this.setState({
-        allImagesLoaded: true
-      })
-      setTimeout(window.print, 1000)
+      this.setState({ allImagesLoaded: true }, () => {
+        if (!this.state.printTriggered) { // only print if not triggered
+          this.setState({ printTriggered: true });
+          setTimeout(window.print, 1000);
+        }
+      });
     }
   }
 
@@ -105,7 +108,7 @@ class PrintableReport extends Component {
     return (
       <DocumentTitle title={`Gallery Guide - ${show.name}`}>
         <Fragment>
-          {this.state.allImagesLoaded || entries.length === 0 ? null : (
+          {this.state.allImagesLoaded || show.entries.length === 0 ? null : (
             <LoadingContainer>
               <Loading />
             </LoadingContainer>
@@ -113,25 +116,27 @@ class PrintableReport extends Component {
           <PageContainer>
             <h1>Gallery Guide</h1>
             <h2>{show.name}</h2>
-            <p>Entries: {entries.length}</p>
+            <p>Entries: {show.entries.length}</p>
             <p style={{ paddingLeft: '2em' }}>
-              Images: {entries.filter(e => e.entryType === 'PHOTO').length}
+              Images: {show.entries.filter(e => e.entryType === 'PHOTO').length}
             </p>
             <p style={{ paddingLeft: '2em' }}>
-              Videos: {entries.filter(e => e.entryType === 'VIDEO').length}
+              Videos: {show.entries.filter(e => e.entryType === 'VIDEO').length}
             </p>
             <p style={{ paddingLeft: '2em' }}>
-              Other: {entries.filter(e => e.entryType === 'OTHER').length}
+              Other: {show.entries.filter(e => e.entryType === 'OTHER').length}
             </p>
           </PageContainer>
           {// Create a page for each entry
-            entries.map(entry => (
+            show.entries.map(entry => (
               <PageContainer key={entry.id}>
-                <h1>{entry.title}</h1>
-                <h3>
+                <h1>{entry.title}</h1>                
+                {entry.student ? ( 
+                <h3>               
                   {entry.student.lastName}, {entry.student.firstName} -{' '}
                   {entry.student.username}@rit.edu
                 </h3>
+                ) : null}                
                 {entry.path && entry.path.endsWith('.jpg') ? (
                   <img
                     src={`${STATIC_PATH}${entry.path}`}

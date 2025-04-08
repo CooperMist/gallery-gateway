@@ -20,3 +20,9 @@ export function scholarshipSubmissions(_, args, context) {
 
     return ScholarshipSubmissions.findAll(Object.assign({}, whereClause, order))
 }
+
+export function portfolioEssays(_, args, context) {
+    return ScholarshipSubmissions.findAll({
+        where: { portfolioId: args.portfolioId }
+      })
+}

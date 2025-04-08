@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { displayError, getDownloadToken } from '../../shared/actions'
-import PortfolioPeriodPortfolios from '../components/PortfolioPeriodPortfolios'
+import PortfolioPeriodJudging from '../components/PortfolioPeriodJudging'
 import { downloadPortfolioZip } from '../../Admin/actions'
 import PortfolioPeriodQuery from "../queries/portfolioPeriod.graphql"
 
@@ -29,4 +29,4 @@ export default compose(
             loading
         })
     })
-)(PortfolioPeriodPortfolios)
+)(PortfolioPeriodJudging)

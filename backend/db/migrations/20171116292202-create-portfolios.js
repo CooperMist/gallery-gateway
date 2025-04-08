@@ -33,6 +33,11 @@ export function up (queryInterface, Sequelize) {
         key: 'id'
       }
     },
+    score: {
+      type: Sequelize.DOUBLE,
+      defaultValue: 0,
+      allowNull: false
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,

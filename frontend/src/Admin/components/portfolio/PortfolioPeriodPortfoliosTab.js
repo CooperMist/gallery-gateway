@@ -36,30 +36,40 @@ function PortfolioPeriodPortfoliosTab(props) {
     return (
         <Container fluid>
             <Row className={"d-none d-lg-flex mt-5"}>
-                <Col xs={4} className=" h5">
+                <Col xs={3} className=" h5">
                     Title
                 </Col>
-                <Col xs={4} className=" h5">
+                <Col xs={3} className=" h5">
                     Artist
                 </Col>
-                <Col xs={4} className="d-flex justify-content-end h5">
+                <Col xs={3} className=" h5">
+                    Score
+                </Col>
+                <Col xs={3} className="d-flex justify-content-end h5">
                     View
                 </Col>
             </Row>
-            {portfolioPeriod.portfolios.map((portfolio, i) => {
+
+            {[...portfolioPeriod.portfolios]
+            .sort((a, b) => (b.score || 0) - (a.score || 0)) // Sort portfolios by score in descending order
+            .map((portfolio, i) => {
                 return (
                     <Row className="my-3 p-3 border rounded" key={`portfolio-row-${portfolio.id}`}>
-                        <Col xs={6} lg={4} className="d-flex flex-column flex-lg-row align-items-lg-center">
+                        <Col xs={5} lg={3} className="d-flex flex-column flex-lg-row align-items-lg-center">
                             <span className="d-lg-none text-muted">Title</span>
                             {portfolio.title}
                         </Col>
-                        <Col xs={6} lg={4} className="d-flex flex-column flex-lg-row align-items-lg-center">
+                        <Col xs={5} lg={3} className="d-flex flex-column flex-lg-row align-items-lg-center">
                             <span className="d-lg-none text-muted">Artist</span>
                             {!portfolio.entries[0] ? null
                                 : portfolio.entries[0].student.displayName || `${portfolio.entries[0].student.firstName} ${portfolio.entries[0].student.lastName}`
                             }
                         </Col>
-                        <Col xs={12} lg={4} className="d-flex flex-column flex-lg-row justify-content-lg-end mt-3 mt-lg-0">
+                        <Col xs={5} lg={3} className="d-flex flex-column flex-lg-row align-items-lg-center">
+                            <span className="d-lg-none text-muted">Score</span>
+                            {portfolio ? portfolio.score : "N/A"}
+                        </Col>
+                        <Col xs={9} lg={3} className="d-flex flex-column flex-lg-row justify-content-lg-end mt-3 mt-lg-0">
                             <button
                                 className="btn btn-outline-primary mb-3 mb-lg-0 mr-lg-3"
                                 onClick={() => { props.downloadZip(portfolio.id) }}

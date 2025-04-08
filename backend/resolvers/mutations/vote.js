@@ -15,7 +15,7 @@ function judgeIsAllowedToVote (judgeUsername, entryId, userType) {
     return Promise.reject(new UserError('Students may not vote'))
   }
 
-  // Judges may only vote on entries submited to shows they've been assigned to.
+  // Judges may only vote on entries submitted to shows they've been assigned to.
   return User.findByPk(judgeUsername).then(judge => {
     return Entry.findByPk(entryId).then(entry => {
       if (!entry) {
@@ -61,8 +61,21 @@ export function vote (_, args, context) {
           if (created) {
             return vote
           } else {
-            return vote.update({ value: input.value })
+            return vote.update({ value: input.value }).then(() => vote)
           }
+        })
+    })
+    .then((vote) => {
+
+      return Entry.findByPk(input.entryId)
+        .then((entry) => {
+          if (!entry) {
+            throw new UserError('Entry not found')
+          }
+          // Get and log the score of the entry
+          return entry.getScore().then(newScore => {
+            return entry.update({ score: newScore }).then(() => vote)
+          })
         })
     })
 }

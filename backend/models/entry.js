@@ -99,6 +99,11 @@ const Entry = sequelize.define('entry', {
     allowNull: true,
     type: DataTypes.TEXT
   },
+  score: {
+    type: DataTypes.DOUBLE,
+    defaultValue: 0,
+    allowNull: false
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE

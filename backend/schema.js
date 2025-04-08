@@ -51,6 +51,7 @@ type PortfolioPeriod {
     judgingStartDate: Date!
     judgingEndDate: Date!
     portfolios: [Portfolio]
+    ownRatings: [Rating]
     createdAt: Date!
     updatedAt: Date!
 }
@@ -89,6 +90,7 @@ type Portfolio {
     studentUsername: String!
     description: String
     portfolioPeriodId: ID
+    score: Float
     entries: [Entry]
     createdAt: Date!
     updatedAt: Date!
@@ -185,6 +187,20 @@ input VoteInput {
     judgeUsername: String!
     entryId: Int!
     value: Int!
+}
+
+type Rating {
+    id: ID!
+    portfolio: Portfolio
+    rating: Int!
+    judge: User
+}
+
+input RatingInput {
+    portfolioPeriodId: Int!
+    portfolioId: Int!
+    rating: Int!
+    judgeUsername: String!
 }
 
 interface Entry {
@@ -337,6 +353,7 @@ type Query {
     portfolioPeriod(id: ID): PortfolioPeriod
     portfolioPeriods(orderBy: OrderByItem, active: Boolean, activeSubmission: Boolean, activeJudging: Boolean): [PortfolioPeriod]
     portfolios(orderBy: OrderByItem, studentUsername: String): [Portfolio]
+    portfolioEssays(portfolioId: Int): [ScholarshipSubmission]
     scholarship(id: ID): Scholarship
     scholarships(orderBy: OrderByItem, includeInactive: Boolean): [Scholarship]
     scholarshipSubmission(id: ID): ScholarshipSubmission
@@ -346,11 +363,14 @@ type Query {
     shows(orderBy: OrderByItem, studentUsername: String): [Show]
     vote(entryId: ID!, judgeUsername: String!): Vote
     votes(showId: ID!, judgeUsername: String): [Vote]
+    rating(portfolioId: ID!, judgeUsername: String!): Rating
+    ratings(portfolioPeriodId: ID!, judgeUsername: String!): [Rating]
     photo(id: ID!): Photo
     video(id: ID!): Video
     otherMedia(id: ID!): OtherMedia
     entry(id: ID!): Entry
     entries(showId: ID, studentUsername: String): [Entry]
+    periodPortfolios(portfolioPeriodId: ID!): [Portfolio]
 }
 
 type Mutation {
@@ -387,6 +407,7 @@ type Mutation {
     updateEntry(id: ID!, input: EntryUpdate!): Entry
 
     vote(input: VoteInput): Vote
+    rating(input: RatingInput): Rating
 }
 
 enum SortDirection {

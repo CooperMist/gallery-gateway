@@ -20,6 +20,7 @@ import sequelize from '../config/sequelize'
 import { parseToken } from '../helpers/jwt'
 import Portfolio from '../models/portfolio'
 import Other from '../models/other'
+import PortfolioPeriod from '../models/portfolioPeriod'
 
 const readFileAsync = promisify(fs.readFile)
 const stringifyAsync = promisify(stringify)
@@ -256,6 +257,7 @@ router.route('/csv/:showId')
                       awardWon: entryData.awardWon,
                       invited: entryData.invited,
                       yearLevel: entryData.yearLevel,
+                      score: entryData.score,
                       academicProgram: entryData.academicProgram,
                       excludeFromJudging: entryData.excludeFromJudging,
                       submittedAt: moment(entryData.createdAt).format(),
@@ -317,6 +319,7 @@ router.route('/csv/:showId')
                   awardWon: 'Award Won?',
                   invited: 'Invited?',
                   yearLevel: 'Year Level',
+                  score: 'Score',
                   academicProgram: 'Academic Program',
                   excludeFromJudging: 'Exclude From Judging?',
                   submittedAt: 'Submitted At',
@@ -341,6 +344,39 @@ router.route('/csv/:showId')
           })
       })
   })
+
+  router.route('/portfolioPeriodCsv/:portfolioPeriodId')
+  .get(ensureAdminDownloadToken, async (req, res) => {
+    const portfolioPeriod = await PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
+
+    const portfolios = await Portfolio.findAll({ where: { portfolioPeriodId: portfolioPeriod.dataValues.id } })
+
+    const newPortfolioSummaries = portfolios.map(portfolio => {
+      let portfolioData = portfolio.dataValues
+
+      const newEntry = {
+        studentEmail: `${portfolioData.studentUsername}@rit.edu`,
+        title: portfolioData.title,
+        score: portfolioData.score,
+        submittedAt: moment(portfolioData.createdAt).format()
+      }
+      return newEntry
+    });
+
+    const columns = {
+      studentEmail: 'Student Email',
+      title: 'Title',
+      score: 'Score',
+      submittedAt: 'Submitted At'
+    }
+
+    const csvOutput = await stringifyAsync(newPortfolioSummaries, { header: true, columns: columns })
+    res.status(200)
+      .type('text/csv')
+      .attachment(`${portfolioPeriod.name}.csv`)
+      .send(csvOutput)
+  }
+  )
 
 /*
  * Look up all Images for these Entries to add the 'path' attribute to

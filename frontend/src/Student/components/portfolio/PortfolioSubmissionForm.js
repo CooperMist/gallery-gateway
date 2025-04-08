@@ -139,7 +139,7 @@ function PortfolioSubmissionForm(props) {
   /**
    * Creates the portfolio via the graphQL mutation prop provided by the container
    * Extracts the portfolio_id then loops over each submission and 
-   * creates an entry using the porfolio_id
+   * creates an entry using the portfolio_id
    * @param {React.FormEvent} event 
    */
   async function handleSubmit(event) {
@@ -150,12 +150,12 @@ function PortfolioSubmissionForm(props) {
   async function createPortfolio() {
     // Create the portfolio from form_data
     setShowPreview(false);
-    setIsProcessing(true);
     const portfolio = {
       title: form_data.title,
       studentUsername: form_data.studentUsername,
       portfolioPeriodId: portfolioPeriodId,
     }
+    setIsProcessing(true);
     const portfolio_response = await props.createPortfolio(portfolio);
     try {
       // Extract the portfolio id and use that to create all the entries
@@ -219,7 +219,6 @@ function PortfolioSubmissionForm(props) {
                   <div key={`form_data.submissions.${submission.id}`}>
                     <PortfolioEntryInput
                       submission={submission}
-                      renderErrors={this.renderErrors}
                       setSubmissions={(submissions) => {
                         setFormData({
                           ...form_data,
@@ -233,8 +232,6 @@ function PortfolioSubmissionForm(props) {
                   </div>
                 )
               })}
-
-
 
             <FormGroup>
               <WorkReleasePopover />
@@ -283,7 +280,7 @@ function PortfolioSubmissionForm(props) {
           </Col>
         </Row>
       </Container>
-      <PortfolioCreationPreviewModal isOpen={showPreview} cancel={() => { setShowPreview(false) }} accept={createPortfolio} form_data={form_data} />
+      <PortfolioCreationPreviewModal isPreview={showPreview} isProcess={isProcessing} cancel={() => { setShowPreview(false) }} accept={createPortfolio} form_data={form_data} />
     </Form>
   )
 }

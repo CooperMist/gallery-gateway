@@ -11,6 +11,7 @@ query PortfolioPeriod($id: ID) {
     portfolios {
       createdAt
       description
+      score
       entries{
         id
         distributionAllowed
