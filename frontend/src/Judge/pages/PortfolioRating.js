@@ -160,7 +160,7 @@ class PortfolioRating extends Component{
                             ))
                           ) : (
                             <Col xs={12}>
-                              <p>No Scholarship Essays have been submitted.</p>
+                              <p>No scholarship essays have been submitted.</p>
                             </Col>
                           )}
                         </Row>
