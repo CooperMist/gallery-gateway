@@ -21,6 +21,8 @@ import { parseToken } from '../helpers/jwt'
 import Portfolio from '../models/portfolio'
 import Other from '../models/other'
 import PortfolioPeriod from '../models/portfolioPeriod'
+import PortfolioRating from '../models/portfolioRating'
+import { where } from 'sequelize'
 
 const readFileAsync = promisify(fs.readFile)
 const stringifyAsync = promisify(stringify)
@@ -34,6 +36,7 @@ const router = Router()
 
 const ensureAdminDownloadToken = (req, res, next) => {
   const token = req.query.token
+  console.log('Token:', token); // Debugging
   next()
   parseToken(token, (err, decoded) => {
     if (err || decoded.type !== ADMIN) {
@@ -345,6 +348,54 @@ router.route('/csv/:showId')
       })
   })
 
+  router.route('/portfolioPeriodCsvJudges/:portfolioPeriodId')
+  .get(ensureAdminDownloadToken, async (req, res) => {
+    try {
+      console.log('Route hit with portfolioPeriodId:', req.params.portfolioPeriodId);
+
+      const portfolioPeriod = await PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true });
+      console.log('PortfolioPeriod found:', portfolioPeriod);
+
+      const portfolios = await Portfolio.findAll({ where: { portfolioPeriodId: portfolioPeriod.dataValues.id } })
+      console.log('Portfolios found:', portfolios);
+
+      const portfolioIdToNameMap = await new Map(portfolios.map(portfolio => [portfolio.id, portfolio.title]));
+
+      const portfolioRatings = await PortfolioRating.findAll({
+        where: { portfolioId: portfolios.map(portfolio => portfolio.id) }
+      });
+      console.log('PortfolioRatings found:', portfolioRatings);
+
+      const newPortfolioSummaries = portfolioRatings.map(portfolioRating => {
+        const portfolioRatingData = portfolioRating.dataValues;
+
+        const newEntry = {
+          portfolioId: portfolioRatingData.portfolioId,
+          portfolioName: portfolioIdToNameMap.get(portfolioRatingData.portfolioId) || 'Unknown Portfolio',
+          judgeName: portfolioRatingData.judgeUsername,
+          judgeScore: portfolioRatingData.rating
+        };
+        return newEntry;
+      });
+
+      const columns = {
+        portfolioId: 'Portfolio ID',
+        portfolioName: 'Portfolio Name',
+        judgeName: 'Judge Name',
+        judgeScore: 'Judge Score'
+      };
+
+      const csvOutput = await stringifyAsync(newPortfolioSummaries, { header: true, columns });
+      res.status(200)
+        .type('text/csv')
+        .attachment(`${portfolioPeriod.name}_judges.csv`)
+        .send(csvOutput);
+    } catch (err) {
+      console.error('Error:', err);
+      res.status(500).send('Oops! Something went wrong.');
+    }
+  });
+
   router.route('/portfolioPeriodCsv/:portfolioPeriodId')
   .get(ensureAdminDownloadToken, async (req, res) => {
     const portfolioPeriod = await PortfolioPeriod.findByPk(req.params.portfolioPeriodId, { rejectOnEmpty: true })
@@ -377,6 +428,7 @@ router.route('/csv/:showId')
       .send(csvOutput)
   }
   )
+
 
 /*
  * Look up all Images for these Entries to add the 'path' attribute to

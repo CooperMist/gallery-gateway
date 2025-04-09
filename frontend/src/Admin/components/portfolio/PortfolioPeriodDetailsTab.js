@@ -46,6 +46,16 @@ function PortfolioPeriodDetailsTab(props){
               <FontAwesomeIcon icon={FaTable} className='align-middle' />{' '}
               Download Portfolio Period CSV Report
             </Button>
+            <Button
+              color='dark'
+              className='text-left'
+              outline
+              block
+              onClick={() => props.downloadPortfolioPeriodCsvJudges()}
+            >
+              <FontAwesomeIcon icon={FaTable} className='align-middle' />{' '}
+              Download Portfolio Period CSV Individual Judge Report
+            </Button>
         </Col>
       </Row>
     </Fragment>
