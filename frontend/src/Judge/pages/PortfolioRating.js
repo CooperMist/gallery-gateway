@@ -94,7 +94,7 @@ class PortfolioRating extends Component{
         if (typeof portfolioPeriod !== "object") {
             return (
                 <Container fluid>
-                    <Row className={"d-none d-lg-flex mt-5"}>
+                    <Row className={"mt-5"}>
                         <Col xs={12}>
                             No portfolio period selected.
                         </Col>
@@ -107,7 +107,7 @@ class PortfolioRating extends Component{
         if (totalPortfolios === 0) {
             return (
                 <Container fluid>
-                    <Row className={"d-none d-lg-flex mt-5"}>
+                    <Row className={"mt-5"}>
                         <Col xs={12}>
                             No portfolios have been submitted to this portfolio period.
                         </Col>
@@ -119,7 +119,7 @@ class PortfolioRating extends Component{
           if(portfolio == undefined) {
             return (
               <Container fluid>
-                      <Row className={"d-none d-lg-flex mt-5"}>
+                      <Row className={"mt-5"}>
                           <Col xs={12}>
                               Loading
                           </Col>
@@ -138,83 +138,73 @@ class PortfolioRating extends Component{
                 <h2>Portfolio Rating</h2>
                 <br/>
                 <Row>
-                    {currentIndex <= totalPortfolios ? 
-                        <Col>
-                        <p><strong>Created:</strong> {new Date(portfolio.createdAt).toDateString()}</p>
-                        <hr />
-                        <h2>Scholarship Essay</h2>
-                        <Row className='d-flex flex-column'>
-                          {scholarshipEssays && scholarshipEssays.length > 0 ? (
-                            scholarshipEssays.map((entry, index) => (
-                              <Col xs={12} lg={3} key={`${entry.essayPath}-${index}`} className="mb-3 p-2 border border-dark rounded position-relative">
-                                <h6>{entry.scholarshipName}</h6>
-                                <a
-                                  className="btn btn-outline-primary"
-                                  href={`${STATIC_PATH}${entry.essayPath}`}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  View Essay
-                                </a>
-                              </Col>
-                            ))
-                          ) : (
-                            <Col xs={12}>
-                              <p>No scholarship essays have been submitted.</p>
-                            </Col>
-                          )}
-                        </Row>
-                        <h2>Entries</h2>
-                        <div className='d-flex flex-column'>
-                        {portfolio.entries.map((entry) => {
-                            return <PortfolioEntry entry={entry} key={entry.id} />
-                        })}
-                        </div>
-                        <Row>
-                            <PortfolioRatingPanel portfolio={portfolio} rating={rating} /> 
-                        </Row>
-                        <PortfolioNavigationButtons>
-                        {previous && previous.id ? (
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => { 
-                                    setPortfolioViewing(previous.id) 
-                                }}
-                            >
-                            Go Back
-                            </button>
-                        ) : null
+                  {currentIndex <= totalPortfolios ? 
+                    <Col>
+                      <p><strong>Created:</strong> {new Date(portfolio.createdAt).toDateString()}</p>
+                      <hr />
+                      <h2>Scholarship Essay</h2>
+                      <Row className='d-flex flex-column'>
+                        {scholarshipEssays && scholarshipEssays.length > 0 ? (
+                          scholarshipEssays.map((entry, index) => (
+                          <Col xs={12} lg={3} key={`${entry.essayPath}-${index}`} className="mb-3 p-2 border border-dark rounded position-relative">
+                            <h6>{entry.scholarshipName}</h6>
+                             <a
+                              className="btn btn-outline-primary"
+                              href={`${STATIC_PATH}${entry.essayPath}`}
+                              target="_blank"
+                              rel="noreferrer"
+                             >
+                              View Essay
+                            </a>
+                          </Col>
+                        ))
+                        ) : (
+                          <Col xs={12}>
+                            <p>No scholarship essays have been submitted.</p>
+                          </Col>
+                        )}
+                      </Row>
+                      <h2>Entries</h2>
+                      <div className='d-flex flex-column'>
+                      {portfolio.entries.map((entry) => {
+                        return <PortfolioEntry entry={entry} key={entry.id} />
+                      })}
+                      </div>
+                      <Row>
+                        <PortfolioRatingPanel portfolio={portfolio} rating={rating} /> 
+                      </Row>
+                    </Col>
+                      : 
+                    <Col>
+                      <p>Reached end of portfolios for judging!</p>
+                    </Col>
+                  }                   
+                </Row>
+                <Row>
+                  <PortfolioNavigationButtons>
+                    <button
+                      className={`btn ${previous && previous.id ? 'btn-primary' : 'btn-disabled text-gray-200 cursor-not-allowed'}`}
+                      onClick={() => {
+                          if (previous && previous.id) {
+                            setPortfolioViewing(previous.id);
+                          }
+                      }}
+                      disabled={!previous || !previous.id}
+                    >
+                        Go Back
+                    </button>
+                    <button
+                      className={`btn ${next && next.id ? 'btn-primary' : 'btn-disabled text-gray-200 cursor-not-allowed'}`}
+                      onClick={() => {
+                        if (next && next.id) {
+                          setPortfolioViewing(next.id);
                         }
-                        {next && next.id ? (
-                            <button
-                                className="btn btn-primary"
-                                size='lg'
-                                onClick={() => { 
-                                    setPortfolioViewing(next.id) 
-                                }}
-                            >
-                            Next Portfolio
-                            </button>
-                        ) : null
-                        }
-                        </PortfolioNavigationButtons>
-                        </Col>
-                        : 
-                        <Col>
-                        <p>Reached end of portfolios for judging!</p>
-                        {previous && previous.id ? (
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => { 
-                                    setPortfolioViewing(previous.id) 
-                                }}
-                            >
-                            Go Back
-                            </button>
-                        ) : null
-                        }
-                        </Col>
-                    }    
+                      }} 
+                      disabled={!next || !next.id}
+                    >
+                      Next Portfolio
+                    </button>
+                  </PortfolioNavigationButtons> 
                 </Row>
             </Container>
         )
@@ -289,6 +279,13 @@ const mapStateToProps = (state, ownProps) => {
   
     // Show the next button
     if (viewing !== null && viewing + 1 < order.length) {
+      obj.next = {
+        id: order[viewing + 1]
+      }
+    }
+
+    // Show the next button
+    if (viewing !== null && viewing + 1 == order.length) {
       obj.next = {
         id: order[viewing + 1]
       }

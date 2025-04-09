@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom'
 import { compose } from 'recompose'
 
 import PortfolioPeriodDetailsTab from '../containers/portfolio/PortfolioPeriodDetailsTab'
+import PortfolioPeriodProgressTab from '../containers/portfolio/PortfolioPeriodProgressTab'
 import PortfolioPeriodPortfoliosTab from '../containers/portfolio/PortfolioPeriodPortfoliosTab'
 import AssignJudgesPortfolioPeriodTable from '../containers/portfolio/AssignJudgesPortfolioPeriodTable'
 import PortfolioPeriodQuery from '../queries/portfolio/portfolioPeriod.graphql'
@@ -73,6 +74,14 @@ const ViewPortfolioPeriod = props => {
         >
           Judges
         </NavTab>
+        <NavTab
+          exact
+          to='/judges/progress'
+          replace={false}
+          className='nav-item nav-link'
+        >
+          Progress
+        </NavTab>
       </RoutedTabs>
 
       <TabContent>
@@ -81,6 +90,10 @@ const ViewPortfolioPeriod = props => {
             <Route
               path={`/portfolio-period/:id/judges/assign`}
               render={() => <AssignJudgesPortfolioPeriodTable portfolioPeriod={portfolioPeriod} />}
+            />
+            <Route
+              path={`/portfolio-period/:id/judges/progress`}
+              render={() => <PortfolioPeriodProgressTab portfolioPeriod={portfolioPeriod} />}
             />
             <Route
               path={`/portfolio-period/:id/portfolios`}

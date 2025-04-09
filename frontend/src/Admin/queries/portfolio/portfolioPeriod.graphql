@@ -5,6 +5,11 @@ query PortfolioPeriod($id: ID) {
     id
     startDate
     endDate
+    judges {
+      firstName
+      lastName
+      username
+    }
     judgingStartDate
     judgingEndDate
     createdAt
@@ -39,6 +44,14 @@ query PortfolioPeriod($id: ID) {
         score
         ... on OtherMedia {
           path
+        }
+      }
+      ratings {
+        id
+        judge {
+          username
+          firstName
+          lastName
         }
       }
       portfolioPeriodId

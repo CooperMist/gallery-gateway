@@ -20,7 +20,8 @@ function PortfolioPeriodDetailsTab(props){
             </Fragment>
           ) : null}
           <dt>Individual Submission Limit</dt>
-          <dd>{props.portfolioPeriod.entryCap}</dd>
+          {/* Portfolio Periods currently only allow one submission */}
+          <dd>1</dd>
         </Col>
         <Col>
           <Button
