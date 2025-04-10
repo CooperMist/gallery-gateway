@@ -56,11 +56,11 @@ class CreateUserForm extends Component {
             .then(resetForm()) // Clear the form after submitted
             .catch(err => handleError(err.message))
         }}
-        render={({ values, errors, touched, handleSubmit, isSubmitting }) => (
+        >{({ values, errors, touched, handleSubmit, isSubmitting }) => (
           <Form onSubmit={handleSubmit}>
             <h3>{heading}</h3>
             <Row>
-              <Col md='6' xs='12'>
+              <Col md='auto' xs='12'>
                 <FormGroup>
                   <Label>Username</Label>
                   <div className='input-group'>
@@ -119,7 +119,7 @@ class CreateUserForm extends Component {
             </Button>
           </Form>
         )}
-      />
+        </Formik>
     )
   }
 }

@@ -379,6 +379,8 @@ type Mutation {
     createAdmin(input: UserInput!): User
     updatePermissions(input: PermissionInput!): User
     updateUser(input: UserInput!): User
+    demoteAdminUsers(usernames: [String]!): [User]!
+    demoteJudgeUsers(usernames: [String]!): [User]!
     deleteUser(id: ID!): User
 
     createScholarship(input: ScholarshipInput!): Scholarship

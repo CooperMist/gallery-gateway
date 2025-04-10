@@ -24,7 +24,8 @@ const filterUnassignedJudges = (judges, assignments = []) => {
 }
 
 const mapAssignmentsToJudges = (judges, assignments = []) => {
-  return assignments.map(key => judges[key])
+  //Filters out judges that have been demoted before mapping
+  return assignments.filter(key => judges[key] != undefined).map(key => judges[key])
 }
 
 const mapStateToProps = (state, ownProps) => {
