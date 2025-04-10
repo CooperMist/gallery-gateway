@@ -4,7 +4,7 @@ import AdminsQuery from './queries/admins.graphql'
 import JudgesQuery from './queries/judges.graphql'
 import JudgesForShowQuery from './queries/judgesForShow.graphql'
 import { displayError } from '../shared/actions'
-import { ZIP_PATH, CSV_PATH, PORTFOLIO_PERIOD_CSV_PATH } from '../utils'
+import { ZIP_PATH, CSV_PATH, PORTFOLIO_PERIOD_CSV_PATH, PORTFOLIO_PERIOD_CSV_JUDGE_PATH } from '../utils'
 
 export const LOADING_DATA = 'LOADING_DATA'
 export const FETCH_SHOW = 'FETCH_SHOW'
@@ -197,3 +197,11 @@ export const downloadPortfolioPeriodCsv = portfolioPeriodId => (dispatch, getSta
     '_self'
   )
 }
+
+export const downloadPortfolioPeriodCsvJudges = portfolioPeriodId => (dispatch, getState, client) => {
+  const { shared: { auth: { downloadToken } } } = getState();
+
+  const url = `${PORTFOLIO_PERIOD_CSV_JUDGE_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`;
+  
+  window.open(url, '_self');
+};

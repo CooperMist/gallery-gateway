@@ -92,6 +92,7 @@ type Portfolio {
     portfolioPeriodId: ID
     score: Float
     entries: [Entry]
+    ratings: [Rating]
     createdAt: Date!
     updatedAt: Date!
 }

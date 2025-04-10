@@ -188,6 +188,16 @@ function PortfolioPeriodCard(props) {
         >
           Assign Judges
         </Button>
+        <Button
+          color='primary'
+          style={{ cursor: 'pointer' }}
+          tag={Link}
+          to={`/portfolio-period/${props.id}/judges/progress`}
+          block
+          outline
+        >
+          View Progress
+        </Button>
       </Col>
     </Row>
   )

@@ -20,7 +20,8 @@ function PortfolioPeriodDetailsTab(props){
             </Fragment>
           ) : null}
           <dt>Individual Submission Limit</dt>
-          <dd>{props.portfolioPeriod.entryCap}</dd>
+          {/* Portfolio Periods currently only allow one submission */}
+          <dd>1</dd>
         </Col>
         <Col>
           <Button
@@ -44,6 +45,16 @@ function PortfolioPeriodDetailsTab(props){
             >
               <FontAwesomeIcon icon={FaTable} className='align-middle' />{' '}
               Download Portfolio Period CSV Report
+            </Button>
+            <Button
+              color='dark'
+              className='text-left'
+              outline
+              block
+              onClick={() => props.downloadPortfolioPeriodCsvJudges()}
+            >
+              <FontAwesomeIcon icon={FaTable} className='align-middle' />{' '}
+              Download Portfolio Period CSV Individual Judge Report
             </Button>
         </Col>
       </Row>
