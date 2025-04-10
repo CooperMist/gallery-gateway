@@ -15,6 +15,41 @@ const Card = styled.div`
   padding: 10px;
   width: 100%;
 `
+const BeforeJudging = () => (
+  <Col className='text-center mt-5'>
+    Judging hasn't started yet. Come back to vote soon!
+  </Col>
+)
+
+const DuringJudging = ({ ownRatings, portfolios, id }) => (
+  <Col>
+    <h4>Rating Progress</h4>
+    <p>
+      {ownRatings.length} / {portfolios.length}
+    </p>
+    <Button
+        color='primary'
+        style={{ cursor: 'pointer' }}
+        tag={Link}
+        to={`/portfolio-period/${id}/rating`}
+        block
+        outline
+    >
+        {ownRatings.length === 0
+        ? 'Start Judging'
+        : ownRatings.length === portfolios.length ? 'Review Ratings' : 'Resume Judging'}
+    </Button>
+  </Col>
+)
+
+const renderBasedOnJudgingPeriod = props => {
+  if (moment().isBefore(moment(props.judgingStartDate)) && !moment().isAfter(moment(props.judgingEndDate))) {
+    return <BeforeJudging />
+  }
+  if(!moment().isAfter(moment(props.judgingEndDate))){
+    return <DuringJudging {...props} />
+  }
+}
 
 // NOTE: Only 1 child should be provided
 const FormattedDate = (props) => (
@@ -142,6 +177,7 @@ function PortfolioPeriodCard(props) {
   }
 
   const renderButtons = (props) => (
+    <div>
     <Row>
       <Col>
         <Button
@@ -156,8 +192,11 @@ function PortfolioPeriodCard(props) {
         </Button>
       </Col>
     </Row>
+    <Row>
+      {renderBasedOnJudgingPeriod(props)}
+    </Row>
+    </div>
   )
-
 
 
   return (
@@ -181,6 +220,11 @@ PortfolioPeriodCard.propTypes = {
   judgingStartDate: PropTypes.string.isRequired,
   judgingEndDate: PropTypes.string.isRequired,
   portfolios: PropTypes.array,
+  ownRatings: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  )
 }
 
 export default PortfolioPeriodCard

@@ -1,6 +1,7 @@
 import DataTypes from 'sequelize'
 import sequelize from '../config/sequelize'
 import Entry from './entry'
+import PortfolioRating from './portfolioRating'
 
 // Defines a portfolio object and all of its fields
 const Portfolio = sequelize.define('portfolio', {
@@ -35,11 +36,32 @@ const Portfolio = sequelize.define('portfolio', {
     },
     onDelete: 'no action',
     onUpdate: 'cascade'
+  },
+  score: {// added score to support scholarship judging functionality
+    type: DataTypes.DOUBLE,
+    defaultValue: 0,
+    allowNull: false
   }
 })
 
 Portfolio.prototype.getEntries = function getEntries () {
   return Entry.findAll({ where: { portfolioId: this.id } })
+}
+
+/*
+* Calculate the score for a portfolio
+*/
+Portfolio.prototype.getScore = function getScore () {
+  // Calculate score by getting all votes with this
+  // entry id and then averaging over the sum of the votes
+  return PortfolioRating.findAll({ where: { portfolioId: this.id } })
+    .then((ratings) => {
+      const ratingScores = ratings.map(rating => rating.rating)
+      if (ratingScores.length === 0) {
+        return 0
+      }
+      return ratingScores.reduce((acc, curr) => acc + curr) / ratingScores.length
+    })
 }
 
 export default Portfolio

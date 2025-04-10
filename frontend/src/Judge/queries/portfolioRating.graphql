@@ -1,0 +1,9 @@
+query getRating($portfolioId: ID!, $username: String!) {
+  rating(portfolioId: $portfolioId, judgeUsername: $username) {
+    id,
+    portfolio {
+      id
+    },
+    rating
+  }
+}

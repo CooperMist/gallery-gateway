@@ -11,11 +11,18 @@ export const IMAGE_UPLOAD_PATH = `${HOST}/static/upload/image`
 export const PDF_UPLOAD_PATH = `${HOST}/static/upload/pdf`
 export const ZIP_PATH = `${HOST}/zips/`
 export const CSV_PATH = `${HOST}/csv/`
+export const PORTFOLIO_PERIOD_CSV_PATH = `${HOST}/portfolioPeriodCsv/`
+export const PORTFOLIO_PERIOD_CSV_JUDGE_PATH = `${HOST}/portfolioPeriodCsvJudges/`;
 export const GRAPHQL_PATH = `${HOST}/graphql`
 
 export const getImageThumbnail = path => {
   const [base, extn] = path.split('.')
   return `${base}_thumb.${extn}`
+}
+
+export const getRawFile = path => {
+  const [base, extn] = path.split('.')
+  return `${base}.${extn}`
 }
 
 /**

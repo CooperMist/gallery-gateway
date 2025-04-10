@@ -4,7 +4,7 @@ import AdminsQuery from './queries/admins.graphql'
 import JudgesQuery from './queries/judges.graphql'
 import JudgesForShowQuery from './queries/judgesForShow.graphql'
 import { displayError } from '../shared/actions'
-import { ZIP_PATH, CSV_PATH } from '../utils'
+import { ZIP_PATH, CSV_PATH, PORTFOLIO_PERIOD_CSV_PATH, PORTFOLIO_PERIOD_CSV_JUDGE_PATH } from '../utils'
 
 export const LOADING_DATA = 'LOADING_DATA'
 export const FETCH_SHOW = 'FETCH_SHOW'
@@ -155,7 +155,6 @@ export const downloadShowZip = showId => (dispatch, getState, client) => {
 }
 export const downloadPortfolioZip = portfolioId => (dispatch, getState, client) => {
   const { shared: { auth: { downloadToken } } } = getState()
-  console.log(`${ZIP_PATH}portfolio/${portfolioId}?token=${encodeURIComponent(downloadToken)}`)
 
   window.open(
     `${ZIP_PATH}portfolio/${portfolioId}?token=${encodeURIComponent(downloadToken)}`,
@@ -171,3 +170,22 @@ export const downloadCsv = showId => (dispatch, getState, client) => {
     '_self'
   )
 }
+
+export const downloadPortfolioPeriodCsv = portfolioPeriodId => (dispatch, getState, client) => {
+  const { shared: { auth: { downloadToken } } } = getState()
+
+  const url = `${PORTFOLIO_PERIOD_CSV_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`
+  
+  window.open(
+    `${PORTFOLIO_PERIOD_CSV_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`,
+    '_self'
+  )
+}
+
+export const downloadPortfolioPeriodCsvJudges = portfolioPeriodId => (dispatch, getState, client) => {
+  const { shared: { auth: { downloadToken } } } = getState();
+
+  const url = `${PORTFOLIO_PERIOD_CSV_JUDGE_PATH}${portfolioPeriodId}?token=${encodeURIComponent(downloadToken)}`;
+  
+  window.open(url, '_self');
+};

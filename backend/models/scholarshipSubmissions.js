@@ -57,4 +57,20 @@ ScholarshipSubmission.prototype.getScholarship = function getScholarship(){
   return Scholarship.findByPk(this.scholarshipId)
 }
 
+ScholarshipSubmission.prototype.getScholarshipByPortfolio = function getScholarshipByPortfolio(portfolioId){
+  return ScholarshipSubmission.findAll({
+    include: [{
+      model: sequelize.models.scholarship,
+      attributes: ['name'],
+      where: {
+        id: this.scholarshipId
+      }
+    }],
+    where: {
+      portfolioId: portfolioId
+    }
+  })
+}
+
+
 export default ScholarshipSubmission

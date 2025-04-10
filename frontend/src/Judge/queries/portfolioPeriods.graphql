@@ -45,5 +45,8 @@ query PortfolioPeriods {
       title
       id
     }
+    ownRatings {
+      id
+    }
   }
 }

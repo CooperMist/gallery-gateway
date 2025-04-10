@@ -5,8 +5,7 @@ export function up(queryInterface, Sequelize) {
       type: Sequelize.DOUBLE,
     });
   }
-  
+
   export function down(queryInterface) {
     return queryInterface.removeColumn('entries', 'score');
   }
-  
